@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://clunaetn2y7ld"]
+
+[ext_resource type="Script" uid="uid://b3yltocih240k" path="res://Scripts/Carta.gd" id="1_jopjk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrvte"]
+bg_color = Color(0.58321434, 0.40778616, 0.28473654, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.6, 0.1882353, 0.14117648, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+
+[node name="Node2D" type="Node2D" unique_id=1589700394]
+script = ExtResource("1_jopjk")
+
+[node name="Base" type="Panel" parent="." unique_id=57122258]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -199.0
+offset_right = 150.0
+offset_bottom = 201.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lrvte")
+
+[node name="TextureRect" type="TextureRect" parent="Base" unique_id=238729905]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 10.0
+offset_right = 283.0
+offset_bottom = 200.0
