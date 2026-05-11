@@ -1,6 +1,14 @@
 [gd_scene format=3 uid="uid://clunaetn2y7ld"]
 
 [ext_resource type="Script" uid="uid://b3yltocih240k" path="res://Scripts/Carta.gd" id="1_jopjk"]
+[ext_resource type="Texture2D" uid="uid://cmxkbnqmlrmk0" path="res://Sprites/Paises/Argentina/Futbolistas/Capitan/messi.png" id="2_lrvte"]
+[ext_resource type="Shader" uid="uid://b2063q262o3jp" path="res://Scripts/Carta.gdshader" id="2_srhn1"]
+[ext_resource type="Shader" uid="uid://duesf3x8ofuf6" path="res://Scripts/CartaJugador.gdshader" id="4_u7gos"]
+[ext_resource type="Shader" uid="uid://laj1l6kx5r0v" path="res://Scripts/CartaStat.gdshader" id="4_vy5sh"]
+[ext_resource type="Texture2D" uid="uid://6godnb1rkm3r" path="res://Sprites/Iconos/estrella-icon.png" id="5_66sx7"]
+[ext_resource type="Texture2D" uid="uid://do3w1fnkdcl2h" path="res://Sprites/Iconos/ataque-icon.png" id="5_tlt12"]
+[ext_resource type="Texture2D" uid="uid://6ypxqd7qx4or" path="res://Sprites/Iconos/velocidad-icon.png" id="6_u7gos"]
+[ext_resource type="Texture2D" uid="uid://rpqrohrpk3an" path="res://Sprites/Iconos/vida-icon.png" id="8_66sx7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrvte"]
 bg_color = Color(0.58321434, 0.40778616, 0.28473654, 1)
@@ -14,6 +22,102 @@ corner_radius_top_right = 30
 corner_radius_bottom_right = 30
 corner_radius_bottom_left = 30
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mlirv"]
+shader = ExtResource("2_srhn1")
+shader_parameter/radius = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7gos"]
+bg_color = Color(0.59607846, 0.62352943, 0.40392157, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_right = 20
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_66sx7"]
+shader = ExtResource("4_vy5sh")
+shader_parameter/top_left = 0.0
+shader_parameter/top_right = 17.50000083125
+shader_parameter/bottom_left = 0.0
+shader_parameter/bottom_right = 0.0
+
+[sub_resource type="Gradient" id="Gradient_louod"]
+colors = PackedColorArray(0.94725245, 0.4581442, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b4dmy"]
+gradient = SubResource("Gradient_louod")
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b4dmy"]
+shader = ExtResource("4_u7gos")
+shader_parameter/color_inicio = Color(0.99287206, 0.7267707, 7.70092e-07, 1)
+shader_parameter/color_fin = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66sx7"]
+bg_color = Color(0.95462483, 0.5308274, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_louod"]
+shader = ExtResource("4_vy5sh")
+shader_parameter/top_left = 6.000000285
+shader_parameter/top_right = 6.000000285
+shader_parameter/bottom_left = 6.000000285
+shader_parameter/bottom_right = 6.000000285
+
+[sub_resource type="Gradient" id="Gradient_b4dmy"]
+colors = PackedColorArray(0.9372549, 0.5803922, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_76m3i"]
+gradient = SubResource("Gradient_b4dmy")
+fill_from = Vector2(0.53276354, 1)
+fill_to = Vector2(0.5099715, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yjb5q"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Gradient" id="Gradient_h8fyd"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_njmkq"]
+gradient = SubResource("Gradient_h8fyd")
+fill_from = Vector2(0.53276354, 1)
+fill_to = Vector2(0.5099715, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e8jom"]
+bg_color = Color(2.5027991e-06, 0.538164, 0.4816783, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Gradient" id="Gradient_kl7se"]
+colors = PackedColorArray(2.0214916e-06, 0.5455323, 0.72563684, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yyyga"]
+gradient = SubResource("Gradient_kl7se")
+fill_from = Vector2(0.53276354, 1)
+fill_to = Vector2(0.5099715, 0)
+
 [node name="Node2D" type="Node2D" unique_id=1589700394]
 script = ExtResource("1_jopjk")
 
@@ -23,17 +127,253 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -199.0
-offset_right = 150.0
-offset_bottom = 201.0
+offset_left = 234.0
+offset_top = 58.0
+offset_right = 534.0
+offset_bottom = 458.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lrvte")
 
-[node name="TextureRect" type="TextureRect" parent="Base" unique_id=238729905]
+[node name="Jugador" type="TextureRect" parent="Base" unique_id=238729905]
+material = SubResource("ShaderMaterial_mlirv")
 layout_mode = 0
-offset_left = 19.0
+offset_left = 10.0
 offset_top = 10.0
-offset_right = 283.0
-offset_bottom = 200.0
+offset_right = 290.0
+offset_bottom = 190.0
+texture = ExtResource("2_lrvte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="RecipienteEstrellas" type="Panel" parent="Base" unique_id=620832900]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 10.0
+offset_right = 290.0
+offset_bottom = 72.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_u7gos")
+
+[node name="FondoEstrellas" type="TextureRect" parent="Base/RecipienteEstrellas" unique_id=1317581235]
+material = SubResource("ShaderMaterial_66sx7")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.5
+offset_top = -26.0
+offset_right = 41.249992
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+texture = SubResource("GradientTexture2D_b4dmy")
+
+[node name="EstrellaIcon" type="Sprite2D" parent="Base/RecipienteEstrellas" unique_id=1691656277]
+position = Vector2(32, 45)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("5_66sx7")
+
+[node name="Label" type="Label" parent="Base/RecipienteEstrellas" unique_id=1647795535]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 7.0
+offset_right = 37.0
+offset_bottom = 30.0
+theme_override_constants/outline_size = 3
+text = "0"
+
+[node name="InfoJugador" type="Label" parent="Base" unique_id=444611413]
+material = SubResource("ShaderMaterial_b4dmy")
+layout_mode = 0
+offset_left = 14.0
+offset_top = 12.0
+offset_right = 145.0
+offset_bottom = 61.0
+theme_override_constants/line_spacing = -8
+text = "NOMBRE APELLIDO
+PAIS"
+
+[node name="InfoJugadorBorde" type="Label" parent="Base" unique_id=383395657]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 12.0
+offset_right = 145.0
+offset_bottom = 61.0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -8
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 16
+text = "NOMBRE APELLIDO
+PAIS"
+
+[node name="Divisor" type="ColorRect" parent="Base" unique_id=1561029248]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -10.0
+offset_right = 150.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6, 0.1882353, 0.14117648, 1)
+
+[node name="Stats" type="HBoxContainer" parent="Base" unique_id=352277114]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 210.0
+offset_right = 290.0
+offset_bottom = 387.0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="CajaAtaque" type="Panel" parent="Base/Stats" unique_id=187334167]
+custom_minimum_size = Vector2(80, 80)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_66sx7")
+
+[node name="TextureRect" type="TextureRect" parent="Base/Stats/CajaAtaque" unique_id=1287885979]
+material = SubResource("ShaderMaterial_louod")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_76m3i")
+
+[node name="NumeroAtaque" type="Label" parent="Base/Stats/CajaAtaque" unique_id=1105580320]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.5
+offset_top = -12.5
+offset_right = 25.5
+offset_bottom = 36.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 35
+text = "00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AtaqueIcon" type="Sprite2D" parent="Base/Stats/CajaAtaque" unique_id=389421774]
+position = Vector2(40, 20)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("5_tlt12")
+
+[node name="CajaVelocidad" type="Panel" parent="Base/Stats" unique_id=48889624]
+custom_minimum_size = Vector2(80, 80)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_yjb5q")
+
+[node name="TextureRect" type="TextureRect" parent="Base/Stats/CajaVelocidad" unique_id=791551687]
+material = SubResource("ShaderMaterial_louod")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_njmkq")
+
+[node name="NumeroVelocidad" type="Label" parent="Base/Stats/CajaVelocidad" unique_id=1915790036]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.5
+offset_top = -12.5
+offset_right = 25.5
+offset_bottom = 36.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 35
+text = "00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VelocidadIcon" type="Sprite2D" parent="Base/Stats/CajaVelocidad" unique_id=1723069616]
+position = Vector2(40, 20)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("6_u7gos")
+
+[node name="CajaDefensa" type="Panel" parent="Base/Stats" unique_id=81480942]
+custom_minimum_size = Vector2(80, 80)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_e8jom")
+
+[node name="TextureRect" type="TextureRect" parent="Base/Stats/CajaDefensa" unique_id=979995550]
+material = SubResource("ShaderMaterial_louod")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_yyyga")
+
+[node name="NumeroDefensa" type="Label" parent="Base/Stats/CajaDefensa" unique_id=1903586197]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.5
+offset_top = -12.5
+offset_right = 25.5
+offset_bottom = 36.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 35
+text = "00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VidaIcon" type="Sprite2D" parent="Base/Stats/CajaDefensa" unique_id=774502272]
+position = Vector2(40, 20)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("8_66sx7")
