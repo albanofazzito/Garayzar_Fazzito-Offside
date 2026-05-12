@@ -118,8 +118,7 @@ gradient = SubResource("Gradient_kl7se")
 fill_from = Vector2(0.53276354, 1)
 fill_to = Vector2(0.5099715, 0)
 
-[node name="Node2D" type="Node2D" unique_id=1589700394]
-script = ExtResource("1_jopjk")
+[node name="Carta" type="Node2D" unique_id=1589700394]
 
 [node name="Base" type="Panel" parent="." unique_id=57122258]
 anchors_preset = 8
@@ -134,6 +133,7 @@ offset_bottom = 458.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lrvte")
+script = ExtResource("1_jopjk")
 
 [node name="Jugador" type="TextureRect" parent="Base" unique_id=238729905]
 material = SubResource("ShaderMaterial_mlirv")
@@ -176,12 +176,13 @@ position = Vector2(32, 45)
 scale = Vector2(0.02, 0.02)
 texture = ExtResource("5_66sx7")
 
-[node name="Label" type="Label" parent="Base/RecipienteEstrellas" unique_id=1647795535]
+[node name="Coste" type="Label" parent="Base/RecipienteEstrellas" unique_id=1647795535]
 layout_mode = 0
 offset_left = 27.0
 offset_top = 7.0
 offset_right = 37.0
 offset_bottom = 30.0
+theme_override_colors/font_color = Color(0.7103104, 0.7050788, 0, 1)
 theme_override_constants/outline_size = 3
 text = "0"
 
@@ -269,7 +270,7 @@ offset_right = 25.5
 offset_bottom = 36.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.6181253, 0.6149438, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 35
@@ -365,7 +366,7 @@ offset_right = 25.5
 offset_bottom = 36.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.34117648, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 35
