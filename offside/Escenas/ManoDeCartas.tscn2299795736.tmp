@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://ctcd0nbvhtn0n"]
+
+[ext_resource type="Script" uid="uid://cn212c4nrb462" path="res://Escenas/mano.gd" id="1_lih4g"]
+
+[node name="Node2D" type="Node2D" unique_id=869793766]
+
+[node name="Mano" type="Node2D" parent="." unique_id=1868606073]
+position = Vector2(531, 428)
+script = ExtResource("1_lih4g")
+angulo = null
+spaciado = null
+
+[node name="Control" type="Control" parent="." unique_id=602040349]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -3.0
+offset_top = -2.0
+offset_right = 12.0
+offset_bottom = 7.0
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1214783333]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 36.067
+anchor_top = 50.222004
+anchor_right = 36.067
+anchor_bottom = 50.222004
+offset_left = -82.005005
+offset_top = -29.998047
+offset_right = 95.994995
+offset_bottom = 41.001953

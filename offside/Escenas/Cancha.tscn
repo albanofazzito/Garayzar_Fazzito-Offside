@@ -8,9 +8,10 @@ script = ExtResource("1_2nxlf")
 metadata/_edit_horizontal_guides_ = [-1049.0]
 
 [node name="Cancha" type="Panel" parent="." unique_id=718389764]
-offset_top = 1232.0
-offset_right = 1152.0
-offset_bottom = 1882.0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 1603.0
+offset_bottom = 1001.0
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1992588017]
 offset_left = -256.0

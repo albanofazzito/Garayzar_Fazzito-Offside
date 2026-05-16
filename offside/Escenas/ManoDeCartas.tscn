@@ -1,3 +1,9 @@
 [gd_scene format=3 uid="uid://ctcd0nbvhtn0n"]
 
-[node name="Node2D" type="Node2D" unique_id=1666540295]
+[ext_resource type="Script" uid="uid://cn212c4nrb462" path="res://Escenas/mano.gd" id="1_lih4g"]
+
+[node name="Node2D" type="Node2D" unique_id=869793766]
+
+[node name="Mano" type="Node2D" parent="." unique_id=1868606073]
+position = Vector2(531, 428)
+script = ExtResource("1_lih4g")
