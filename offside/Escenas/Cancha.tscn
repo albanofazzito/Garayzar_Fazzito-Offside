@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cuv8o0w5daj0p"]
+
+[ext_resource type="Script" uid="uid://bv3da4qfjd8h5" path="res://node_2d.gd" id="1_2nxlf"]
+[ext_resource type="Texture2D" uid="uid://b72opbjnwvldr" path="res://Sprites/Cancha/Cancha.png" id="2_37ia2"]
+
+[node name="Node2D" type="Node2D" unique_id=748220641]
+script = ExtResource("1_2nxlf")
+metadata/_edit_horizontal_guides_ = [-1049.0]
+
+[node name="Cancha" type="Panel" parent="." unique_id=718389764]
+offset_top = 1232.0
+offset_right = 1152.0
+offset_bottom = 1882.0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1992588017]
+offset_left = -256.0
+offset_top = -60.0
+offset_right = 1860.0
+offset_bottom = 1061.0
+texture = ExtResource("2_37ia2")
