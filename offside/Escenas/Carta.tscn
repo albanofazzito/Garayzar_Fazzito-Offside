@@ -200,8 +200,7 @@ offset_top = 12.0
 offset_right = 145.0
 offset_bottom = 61.0
 theme_override_constants/line_spacing = -8
-text = "NOMBRE APELLIDO
-PAIS"
+text = "NOMBRE APELLIDO"
 
 [node name="InfoJugadorBorde" type="Label" parent="Base" unique_id=383395657]
 layout_mode = 0
@@ -214,8 +213,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -8
 theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 16
-text = "NOMBRE APELLIDO
-PAIS"
+text = "NOMBRE APELLIDO"
 
 [node name="Divisor" type="ColorRect" parent="Base" unique_id=1561029248]
 layout_mode = 1
@@ -384,6 +382,48 @@ vertical_alignment = 1
 position = Vector2(40, 20)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("8_66sx7")
+
+[node name="PaisJugador" type="Label" parent="Base" unique_id=730531469]
+material = SubResource("ShaderMaterial_b4dmy")
+layout_mode = 0
+offset_left = 14.0
+offset_top = 30.0
+offset_right = 145.0
+offset_bottom = 79.0
+theme_override_constants/line_spacing = -8
+text = "PAIS"
+
+[node name="PaisJugadorBorde" type="Label" parent="Base" unique_id=499903949]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 30.0
+offset_right = 145.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -8
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 16
+text = "PAIS"
+
+[node name="Posicion" type="Label" parent="Base" unique_id=773260995]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.5
+offset_top = 18.5
+offset_right = 38.5
+offset_bottom = 41.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.16710004, 0.347808, 0.68202364, 1)
+theme_override_colors/font_outline_color = Color(0.16862746, 0.34901962, 0.68235296, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 20
+text = "POSICION"
 
 [node name="BaseAtras" type="Panel" parent="." unique_id=1511881076]
 visible = false

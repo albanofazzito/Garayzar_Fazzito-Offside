@@ -7,7 +7,8 @@
 [resource]
 script = ExtResource("1_ekx4s")
 posicion = 3
-info = "LIONEL MESSI ARGENTINA"
+info = "LIONEL MESSI"
+pais = "ARGENTINA"
 foto = ExtResource("1_5ama6")
 bandera = ExtResource("1_2ymme")
 efecto = "\"Hace muchas cosas\""
