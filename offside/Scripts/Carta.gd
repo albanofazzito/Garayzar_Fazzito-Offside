@@ -8,6 +8,7 @@ var COLORES_CALIDAD = {
 	JugadorData.Calidad.ORO: Color("#d19700"), 
 	JugadorData.Calidad.CAPITAN: Color("#00c2d1")
 }
+var posiciones = ["ARQUERO", "DEFENSOR", "MEDIOCAMPISTA", "DELANTERO"]
 
 @export var datos: JugadorData:
 	set(value):
@@ -25,6 +26,9 @@ func actualizar_carta():
 	$Base/RecipienteEstrellas/Coste.text = str(datos.estrellas)
 	$BaseAtras/Bandera.texture=datos.bandera
 	$BaseAtras/CajaEfecto/Efecto.text=datos.efecto
+	$Base/PaisJugador.text=datos.pais
+	$Base/PaisJugadorBorde.text=datos.pais
+	$Base/Posicion.text= posiciones[datos.posicion]
 	aplicarCalidad(datos.calidad)
 
 func aplicarCalidad(calidad: JugadorData.Calidad):
