@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://cyl0wtmx3ly5v"]
+
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="1_42pa8"]
+[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/BanderaPortugal.png" id="1_cdjqx"]
+[ext_resource type="Texture2D" uid="uid://cjvobvl5aa52b" path="res://Sprites/Paises/Portugal/Futbolistas/BrunoFernandes.png" id="2_pd2xj"]
+
+[resource]
+script = ExtResource("1_42pa8")
+posicion = 2
+info = "BRUNO FERNANDES"
+pais = "PORTUGAL"
+foto = ExtResource("2_pd2xj")
+bandera = ExtResource("1_cdjqx")
+stat_ataque = 80
+stat_velocidad = 80
+stat_vida = 80
+estrellas = 5
+calidad = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

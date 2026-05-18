@@ -50,7 +50,8 @@ func sacar(escenaCarta) -> void:
 func orden() -> void:
 	var count = cartas.size()
 	for i in count:
-		var Carta = cartas[i]
+		var carta = cartas[i]
 		var offset = (i - (count - 1) / 2.0)
-		var r= 0
-		Carta.position.x= offset * spaciado
+		carta.position.x = offset * spaciado
+		carta.rotation = deg_to_rad(offset * angulo / max(count, 1))
+		carta.position.y = abs(offset) * 20.0

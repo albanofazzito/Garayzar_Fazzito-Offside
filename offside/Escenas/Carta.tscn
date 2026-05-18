@@ -125,6 +125,7 @@ shader = ExtResource("10_b4dmy")
 shader_parameter/radio = 0.1
 
 [node name="Carta" type="Node2D" unique_id=1589700394]
+texture_filter = 2
 script = ExtResource("1_jopjk")
 
 [node name="Base" type="Panel" parent="." unique_id=57122258]
@@ -480,10 +481,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -42.5
-offset_top = -51.5
-offset_right = 42.5
-offset_bottom = -2.5
+offset_left = -95.0
+offset_top = -57.0
+offset_right = 95.0
+offset_bottom = 58.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0.72655636, 0.52120495, 1)
@@ -493,3 +494,4 @@ theme_override_font_sizes/font_size = 15
 text = "Descripcion"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
