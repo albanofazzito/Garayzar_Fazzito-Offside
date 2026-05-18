@@ -1,20 +1,34 @@
-extends Node2D
-
-enum Calidad { BRONCE, PLATA, ORO, CAPITAN }
-
-const COLORES_CALIDAD= {Calidad.BRONCE: Color("#993024"), Calidad.PLATA: Color("#978f87"), Calidad.ORO: Color("#d19700"), Calidad.CAPITAN: Color("#00c2d1")}
-
-var calidad_actual: Calidad= Calidad.BRONCE
+extends Panel
 
 
-func _input(event):
-	if event is InputEventMouseButton:
-		if event.button_index== MOUSE_BUTTON_LEFT and event.pressed:
-			calidad_actual =(calidad_actual+ 1)% Calidad.size()
-			aplicar_calidad(calidad_actual)
+const COLORES_CALIDAD= {JugadorData.Calidad.BRONCE: Color("#993024"), 
+JugadorData.Calidad.PLATA: Color("#978f87"), 
+JugadorData.Calidad.ORO: Color("#d19700"), 
+JugadorData.Calidad.CAPITAN: Color("#00c2d1")}
 
-func aplicar_calidad(calidad: Calidad):
-	var stylebox= $Base.get_theme_stylebox("panel").duplicate()
-	stylebox.border_color= COLORES_CALIDAD[calidad]
-	$Base.add_theme_stylebox_override("panel", stylebox)
-	$Base/Divisor.color= COLORES_CALIDAD[calidad]
+
+
+@export var datos: JugadorData:
+	set(value):
+		datos= value
+		if is_node_ready():
+			actualizar_carta()
+
+
+
+
+func actualizar_carta():
+	$Jugador.texture = datos.foto
+	$InfoJugador.text = datos.info
+	$InfoJugadorBorde.text= datos.info
+	$RecipienteEstrellas/Coste.text= datos.estrellas
+	$Stats/CajaAtaque/NumeroAtaque.text= datos.stat_ataque
+	$Stats/CajaVelocidad/NumeroVelocidad.text= datos.stat_velocidad
+	$Stats/CajaDefensa/NumeroDefensa.text= datos.stat_vida
+	aplicarCalidad(datos.calidad)
+	
+func aplicarCalidad(calidad: JugadorData.Calidad):
+	var color = COLORES_CALIDAD[calidad]
+	var estilo = get_theme_stylebox("panel").duplicate()
+	estilo.border_color = color
+	add_theme_stylebox_override("panel", estilo)
