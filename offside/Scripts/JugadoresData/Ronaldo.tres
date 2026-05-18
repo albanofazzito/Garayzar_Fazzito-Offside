@@ -7,7 +7,8 @@
 [resource]
 script = ExtResource("1_7umn8")
 posicion = 3
-info = "CRISTIANO RONALDO PORTUGAL"
+info = "CRISTIANO RONALDO"
+pais = "PORTUGAL"
 foto = ExtResource("1_8ycpx")
 bandera = ExtResource("1_xo413")
 efecto = "\"mete goles\""

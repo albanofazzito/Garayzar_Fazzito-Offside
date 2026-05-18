@@ -52,4 +52,5 @@ func orden() -> void:
 	for i in count:
 		var Carta = cartas[i]
 		var offset = (i - (count - 1) / 2.0)
-		Carta.position.x = offset * spaciado
+		var r= 0
+		Carta.position.x= offset * spaciado
