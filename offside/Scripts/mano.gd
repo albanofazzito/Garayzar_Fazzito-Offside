@@ -6,23 +6,23 @@ var cartas_max: int = 7
 @export var angulo: float = 30.0
 @export var spaciado: float = 120.0
 
-@export var carta_scene: PackedScene
+var escenaCarta= load("res://Escenas/Carta.tscn")
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey:
+	if event is InputEventKey and cartas.size()<cartas_max   :
 		if event.keycode == KEY_SPACE and event.pressed:
-			agregar(carta_scene)
+			agregar(escenaCarta)
 
-func agregar(Carta : PackedScene) -> void:
-	var carti = Carta.instantiate()
+func agregar(escenaCarta) -> void:
+	var carti = escenaCarta.instantiate()
 	add_child(carti)
 	cartas.append(carti)
 	orden()
 
-func sacar(Carta) -> void:
-	cartas.erase(Carta)
-	Carta.queue_free()
-	orden()
+func sacar(escenaCarta) -> void:
+	cartas.erase(escenaCarta)
+	escenaCarta.queue_free()
+	orden()        
 
 func orden() -> void:
 	var count = cartas.size()

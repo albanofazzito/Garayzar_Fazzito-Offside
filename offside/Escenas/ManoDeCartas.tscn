@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ctcd0nbvhtn0n"]
 
-[ext_resource type="Script" uid="uid://cn212c4nrb462" path="res://Escenas/mano.gd" id="1_lih4g"]
+[ext_resource type="Script" uid="uid://cn212c4nrb462" path="res://Scripts/mano.gd" id="1_lih4g"]
 
 [node name="Node2D" type="Node2D" unique_id=869793766]
 

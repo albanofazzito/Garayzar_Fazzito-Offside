@@ -8,7 +8,7 @@ var cartas_max: int = 7
 @export var spaciado: float = 120.0
 
 func agregar(Carta : PackedScene) -> void:
-	var carti = Carta.instantiate()
+	var carti = Car   ta.instantiate()
 	add_child(carti)
 	cartas.append(carti)
 	orden()
