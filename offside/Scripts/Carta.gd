@@ -1,4 +1,6 @@
-extends Panel
+class_name Carta
+extends Node2D
+
 
 var COLORES_CALIDAD = {
 	JugadorData.Calidad.BRONCE: Color("#993024"), 
@@ -14,17 +16,19 @@ var COLORES_CALIDAD = {
 			actualizar_carta()
 
 func actualizar_carta():
-	$Jugador.texture = datos.foto
-	$InfoJugador.text = datos.info
-	$InfoJugadorBorde.text = datos.info
-	$RecipienteEstrellas/Coste.text = datos.estrellas
-	$Stats/CajaAtaque/NumeroAtaque.text = datos.stat_ataque
-	$Stats/CajaVelocidad/NumeroVelocidad.text = datos.stat_velocidad
-	$Stats/CajaDefensa/NumeroDefensa.text = datos.stat_vida
+	$Base/Jugador.texture = datos.foto
+	$Base/InfoJugador.text = datos.info
+	$Base/InfoJugadorBorde.text = datos.info
+	$Base/Stats/CajaAtaque/NumeroAtaque.text = str(datos.stat_ataque)
+	$Base/Stats/CajaVelocidad/NumeroVelocidad.text = str(datos.stat_velocidad)
+	$Base/Stats/CajaDefensa/NumeroDefensa.text = str(datos.stat_vida)
+	$Base/RecipienteEstrellas/Coste.text = str(datos.estrellas)
 	aplicarCalidad(datos.calidad)
 
 func aplicarCalidad(calidad: JugadorData.Calidad):
 	var color = COLORES_CALIDAD[calidad]
-	var estilo = get_theme_stylebox("panel").duplicate()
+	var Panel= $Base
+	var estilo = Panel.get_theme_stylebox("panel").duplicate()
 	estilo.border_color = color
-	add_theme_stylebox_override("panel", estilo)
+	Panel.add_theme_stylebox_override("panel", estilo)
+	$Base/Divisor.color= color

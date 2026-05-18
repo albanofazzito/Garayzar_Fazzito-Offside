@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://do3w1fnkdcl2h" path="res://Sprites/Iconos/ataque-icon.png" id="5_tlt12"]
 [ext_resource type="Texture2D" uid="uid://6ypxqd7qx4or" path="res://Sprites/Iconos/velocidad-icon.png" id="6_u7gos"]
 [ext_resource type="Texture2D" uid="uid://rpqrohrpk3an" path="res://Sprites/Iconos/vida-icon.png" id="8_66sx7"]
+[ext_resource type="Shader" uid="uid://bmutbe1431b18" path="res://Escenas/CartaAtras.gdshader" id="10_b4dmy"]
+[ext_resource type="Texture2D" uid="uid://n3ew0v06rbao" path="res://Sprites/Paises/Argentina/Bandera/banderaArgentina.png" id="11_76m3i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrvte"]
 bg_color = Color(0.58321434, 0.40778616, 0.28473654, 1)
@@ -56,7 +58,7 @@ shader_parameter/color_inicio = Color(0.99287206, 0.7267707, 7.70092e-07, 1)
 shader_parameter/color_fin = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66sx7"]
-bg_color = Color(0.95462483, 0.5308274, 0, 1)
+bg_color = Color(1, 0.7680485, 0.5867606, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -118,7 +120,12 @@ gradient = SubResource("Gradient_kl7se")
 fill_from = Vector2(0.53276354, 1)
 fill_to = Vector2(0.5099715, 0)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yjb5q"]
+shader = ExtResource("10_b4dmy")
+shader_parameter/radio = 0.1
+
 [node name="Carta" type="Node2D" unique_id=1589700394]
+script = ExtResource("1_jopjk")
 
 [node name="Base" type="Panel" parent="." unique_id=57122258]
 anchors_preset = 8
@@ -133,7 +140,6 @@ offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lrvte")
-script = ExtResource("1_jopjk")
 
 [node name="Jugador" type="TextureRect" parent="Base" unique_id=238729905]
 material = SubResource("ShaderMaterial_mlirv")
@@ -378,3 +384,72 @@ vertical_alignment = 1
 position = Vector2(40, 20)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("8_66sx7")
+
+[node name="BaseAtras" type="Panel" parent="." unique_id=1511881076]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lrvte")
+
+[node name="Bandera" type="TextureRect" parent="BaseAtras" unique_id=2123071073]
+material = SubResource("ShaderMaterial_yjb5q")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+texture = ExtResource("11_76m3i")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="CajaEfecto" type="Panel" parent="BaseAtras" unique_id=1426963443]
+custom_minimum_size = Vector2(80, 80)
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -102.5
+offset_top = -164.0
+offset_right = 102.5
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_66sx7")
+
+[node name="Efecto" type="Label" parent="BaseAtras/CajaEfecto" unique_id=1801955924]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.5
+offset_top = -51.5
+offset_right = 42.5
+offset_bottom = -2.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.72655636, 0.52120495, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 15
+text = "Descripcion"
+horizontal_alignment = 1
+vertical_alignment = 1

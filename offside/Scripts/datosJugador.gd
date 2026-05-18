@@ -1,7 +1,7 @@
 class_name JugadorData
 extends Resource
 enum Calidad { BRONCE, PLATA, ORO, CAPITAN }
-enum Posicion {ARQUERO, DEFENSOR, MEDIOCAMPISTA, }
+enum Posicion {ARQUERO, DEFENSOR, MEDIOCAMPISTA, DELANTERO}
 @export var posicion: Posicion= Posicion.ARQUERO
 @export var info: String= ""
 @export var foto: Texture2D
