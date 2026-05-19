@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="1_7umn8"]
 [ext_resource type="Texture2D" uid="uid://ckhua0tkp2wab" path="res://Sprites/Paises/Portugal/Futbolistas/Capitan/cr7.jpeg" id="1_8ycpx"]
-[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/BanderaPortugal.png" id="1_xo413"]
+[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png" id="1_xo413"]
 
 [resource]
 script = ExtResource("1_7umn8")
+pais = 7
 posicion = 3
 info = "CRISTIANO RONALDO"
-pais = "PORTUGAL"
 foto = ExtResource("1_8ycpx")
 bandera = ExtResource("1_xo413")
 efecto = "\"mete goles\""

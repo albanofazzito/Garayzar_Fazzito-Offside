@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3mypi0j4noow"
-path="res://.godot/imported/BanderaPortugal.png-d67cde06f48882d2ac9b1d673a520ea1.ctex"
+uid="uid://vb2sarwvwvvq"
+path="res://.godot/imported/balerdi.png-551e8ad657f72a77956d7e2a976b0fb7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Paises/Portugal/Bandera/BanderaPortugal.png"
-dest_files=["res://.godot/imported/BanderaPortugal.png-d67cde06f48882d2ac9b1d673a520ea1.ctex"]
+source_file="res://Sprites/Paises/Argentina/Futbolistas/balerdi.png"
+dest_files=["res://.godot/imported/balerdi.png-551e8ad657f72a77956d7e2a976b0fb7.ctex"]
 
 [params]
 

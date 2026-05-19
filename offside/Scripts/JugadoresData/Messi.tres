@@ -8,12 +8,10 @@
 script = ExtResource("1_ekx4s")
 posicion = 3
 info = "LIONEL MESSI"
-pais = "ARGENTINA"
 foto = ExtResource("1_5ama6")
 bandera = ExtResource("1_2ymme")
-efecto = "\"Hace muchas cosas\""
 stat_ataque = 99
-stat_velocidad = 99
+stat_velocidad = 94
 stat_vida = 45
 estrellas = 7
 calidad = 3
