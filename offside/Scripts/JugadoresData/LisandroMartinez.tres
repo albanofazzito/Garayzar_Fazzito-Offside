@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://bjg3avc663arp"]
+
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="1_f18px"]
+[ext_resource type="Texture2D" uid="uid://n3ew0v06rbao" path="res://Sprites/Paises/Argentina/Bandera/banderaArgentina.png" id="1_vho2g"]
+[ext_resource type="Texture2D" uid="uid://cp2n7jpbxq0jc" path="res://Sprites/Paises/Argentina/Futbolistas/LisandroMartinez.png" id="2_fonnw"]
+
+[resource]
+script = ExtResource("1_f18px")
+posicion = 1
+info = "LISANDRO MARTINEZ"
+foto = ExtResource("2_fonnw")
+bandera = ExtResource("1_vho2g")
+stat_ataque = 30
+stat_velocidad = 75
+stat_vida = 80
+estrellas = 3
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

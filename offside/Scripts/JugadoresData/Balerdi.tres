@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://bl21wy86jalaj"]
+
+[ext_resource type="Texture2D" uid="uid://n3ew0v06rbao" path="res://Sprites/Paises/Argentina/Bandera/banderaArgentina.png" id="1_0w8yj"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="1_55jw2"]
+[ext_resource type="Texture2D" uid="uid://vb2sarwvwvvq" path="res://Sprites/Paises/Argentina/Futbolistas/balerdi.png" id="2_rvsa6"]
+
+[resource]
+script = ExtResource("1_55jw2")
+posicion = 1
+info = "LEONARDO BALERDI"
+foto = ExtResource("2_rvsa6")
+bandera = ExtResource("1_0w8yj")
+stat_ataque = 30
+stat_velocidad = 66
+stat_vida = 85
+estrellas = 4
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

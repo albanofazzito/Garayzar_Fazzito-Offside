@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://dr526l75vsi73"]
+
+[ext_resource type="Texture2D" uid="uid://n3ew0v06rbao" path="res://Sprites/Paises/Argentina/Bandera/banderaArgentina.png" id="1_j7lo3"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="1_w3pj0"]
+[ext_resource type="Texture2D" uid="uid://d2ilxq3kbaj8a" path="res://Sprites/Paises/Argentina/Futbolistas/Molina.png" id="2_edxak"]
+
+[resource]
+script = ExtResource("1_w3pj0")
+posicion = 1
+info = "NAHUEL MOLINA"
+foto = ExtResource("2_edxak")
+bandera = ExtResource("1_j7lo3")
+stat_ataque = 70
+stat_velocidad = 82
+stat_vida = 66
+estrellas = 5
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

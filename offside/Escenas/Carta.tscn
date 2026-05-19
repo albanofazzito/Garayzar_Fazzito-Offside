@@ -9,8 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://do3w1fnkdcl2h" path="res://Sprites/Iconos/ataque-icon.png" id="5_tlt12"]
 [ext_resource type="Texture2D" uid="uid://6ypxqd7qx4or" path="res://Sprites/Iconos/velocidad-icon.png" id="6_u7gos"]
 [ext_resource type="Texture2D" uid="uid://rpqrohrpk3an" path="res://Sprites/Iconos/vida-icon.png" id="8_66sx7"]
-[ext_resource type="Shader" uid="uid://bmutbe1431b18" path="res://Escenas/CartaAtras.gdshader" id="10_b4dmy"]
+[ext_resource type="Shader" uid="uid://bmutbe1431b18" path="res://Scripts/CartaAtras.gdshader" id="10_b4dmy"]
 [ext_resource type="Texture2D" uid="uid://n3ew0v06rbao" path="res://Sprites/Paises/Argentina/Bandera/banderaArgentina.png" id="11_76m3i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h8fyd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lrvte"]
 bg_color = Color(0.58321434, 0.40778616, 0.28473654, 1)
@@ -122,20 +124,36 @@ fill_to = Vector2(0.5099715, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yjb5q"]
 shader = ExtResource("10_b4dmy")
-shader_parameter/radio = 0.1
+shader_parameter/radio = 0.06800000323
+shader_parameter/escala_vertical = 0.87400003825512
+shader_parameter/angulo_borde = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b4dmy"]
+bg_color = Color(0.58321434, 0.40778616, 0.28473654, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.8980392, 0, 0, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
 [node name="Carta" type="Node2D" unique_id=1589700394]
 texture_filter = 2
+scale = Vector2(0.8, 0.8)
 script = ExtResource("1_jopjk")
 
 [node name="Base" type="Panel" parent="." unique_id=57122258]
+material = SubResource("ShaderMaterial_h8fyd")
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -150.0
-offset_top = -200.0
+offset_top = -153.0
 offset_right = 150.0
 offset_bottom = 200.0
 grow_horizontal = 2
@@ -200,6 +218,7 @@ offset_left = 14.0
 offset_top = 12.0
 offset_right = 145.0
 offset_bottom = 61.0
+scale = Vector2(1.2, 1.2)
 theme_override_constants/line_spacing = -8
 text = "NOMBRE APELLIDO"
 
@@ -209,10 +228,11 @@ offset_left = 14.0
 offset_top = 12.0
 offset_right = 145.0
 offset_bottom = 61.0
+scale = Vector2(1.2, 1.2)
 theme_override_colors/font_color = Color(1, 1, 1, 0)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -8
-theme_override_constants/outline_size = 1
+theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 16
 text = "NOMBRE APELLIDO"
 
@@ -224,9 +244,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -150.0
-offset_top = -10.0
+offset_top = 14.0
 offset_right = 150.0
-offset_bottom = 10.0
+offset_bottom = 34.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.6, 0.1882353, 0.14117648, 1)
@@ -236,7 +256,7 @@ layout_mode = 0
 offset_left = 10.0
 offset_top = 210.0
 offset_right = 290.0
-offset_bottom = 387.0
+offset_bottom = 369.0
 theme_override_constants/separation = 10
 alignment = 1
 
@@ -391,6 +411,7 @@ offset_left = 14.0
 offset_top = 30.0
 offset_right = 145.0
 offset_bottom = 79.0
+scale = Vector2(1.2, 1.2)
 theme_override_constants/line_spacing = -8
 text = "PAIS"
 
@@ -400,10 +421,11 @@ offset_left = 14.0
 offset_top = 30.0
 offset_right = 145.0
 offset_bottom = 79.0
+scale = Vector2(1.2, 1.2)
 theme_override_colors/font_color = Color(1, 1, 1, 0)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -8
-theme_override_constants/outline_size = 1
+theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 16
 text = "PAIS"
 
@@ -414,10 +436,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -38.5
-offset_top = 18.5
-offset_right = 38.5
-offset_bottom = 41.5
+offset_left = -48.0
+offset_top = 40.0
+offset_right = 48.0
+offset_bottom = 68.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.16710004, 0.347808, 0.68202364, 1)
@@ -434,7 +456,7 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -150.0
-offset_top = -200.0
+offset_top = -152.0
 offset_right = 150.0
 offset_bottom = 200.0
 grow_horizontal = 2
@@ -448,9 +470,9 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 10.0
-offset_top = 10.0
+offset_top = -14.0
 offset_right = -10.0
-offset_bottom = -10.0
+offset_bottom = 18.0
 texture = ExtResource("11_76m3i")
 expand_mode = 1
 stretch_mode = 1
@@ -492,6 +514,131 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 15
 text = "Descripcion"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="BaseTruco" type="Panel" parent="." unique_id=1580867630]
+visible = false
+material = SubResource("ShaderMaterial_h8fyd")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -153.0
+offset_right = 150.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_b4dmy")
+
+[node name="ImagenTruco" type="TextureRect" parent="BaseTruco" unique_id=354085804]
+material = SubResource("ShaderMaterial_mlirv")
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 290.0
+offset_bottom = 190.0
+texture = ExtResource("2_lrvte")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="RecipienteEstrellas" type="Panel" parent="BaseTruco" unique_id=169349843]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 10.0
+offset_right = 290.0
+offset_bottom = 72.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_u7gos")
+
+[node name="FondoEstrellas" type="TextureRect" parent="BaseTruco/RecipienteEstrellas" unique_id=1480797130]
+material = SubResource("ShaderMaterial_66sx7")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.5
+offset_top = -26.0
+offset_right = 41.249992
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+texture = SubResource("GradientTexture2D_b4dmy")
+
+[node name="EstrellaIcon" type="Sprite2D" parent="BaseTruco/RecipienteEstrellas" unique_id=2001641084]
+position = Vector2(32, 45)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("5_66sx7")
+
+[node name="Coste" type="Label" parent="BaseTruco/RecipienteEstrellas" unique_id=1115371402]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 7.0
+offset_right = 37.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0.7103104, 0.7050788, 0, 1)
+theme_override_constants/outline_size = 3
+text = "0"
+
+[node name="InfoTruco" type="Label" parent="BaseTruco" unique_id=918929632]
+material = SubResource("ShaderMaterial_b4dmy")
+layout_mode = 0
+offset_left = 14.0
+offset_top = 12.0
+offset_right = 145.0
+offset_bottom = 61.0
+scale = Vector2(1.2, 1.2)
+theme_override_constants/line_spacing = -8
+text = "NOMBRE APELLIDO"
+
+[node name="InfoTrucoBorde" type="Label" parent="BaseTruco" unique_id=523040438]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 12.0
+offset_right = 145.0
+offset_bottom = 61.0
+scale = Vector2(1.2, 1.2)
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -8
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 16
+text = "NOMBRE APELLIDO"
+
+[node name="Divisor" type="ColorRect" parent="BaseTruco" unique_id=469140716]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 14.0
+offset_right = 150.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.8980392, 0, 0, 1)
+
+[node name="Efecto" type="Label" parent="BaseTruco" unique_id=605147258]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -132.5
+offset_top = -133.0
+offset_right = 133.74997
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Efecto del truco"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2

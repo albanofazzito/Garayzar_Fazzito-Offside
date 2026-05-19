@@ -5,5 +5,7 @@
 [node name="Node2D" type="Node2D" unique_id=869793766]
 
 [node name="Mano" type="Node2D" parent="." unique_id=1868606073]
-position = Vector2(531, 428)
+position = Vector2(531, 500)
 script = ExtResource("1_lih4g")
+angulo = 20.0
+spaciado = 130.0
