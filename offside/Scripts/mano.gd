@@ -6,6 +6,7 @@ var maso: Array = []
 var maso_actual: Array = []
 @export var angulo: float= 30.0
 @export var spaciado: float= 120.0
+
 var paisActual= JugadorData.Pais.ARGENTINA
 var escenaCarta= load("res://Escenas/Carta.tscn")
 func _ready() -> void:
@@ -34,7 +35,7 @@ func _input(event: InputEvent) -> void:
 			agregar()
 
 func cargar_jugador(ruta: String) -> Resource:
-	return load(ruta)
+	return load(ruta) 
 
 func robar_carta() -> String:
 	if maso_actual.is_empty():
@@ -62,6 +63,7 @@ func orden() -> void:
 	for i in count:
 		var carta = cartas[i]
 		var offset = (i - (count - 1) / 2.0)
-		var pos =Vector2(offset * spaciado, abs(offset) * 20.0)
-		var rot =deg_to_rad(offset * angulo / max(count, 1))
+		var pos = Vector2(offset * spaciado - 120.0, -282.0)
+		pos.y += abs(offset) * 20.0
+		var rot = deg_to_rad(offset * angulo / max(count, 1))
 		carta.orden_externo(pos, rot)

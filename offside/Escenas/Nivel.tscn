@@ -1,3 +1,24 @@
 [gd_scene format=3 uid="uid://cptmni1ap2q84"]
 
-[node name="Node2D" type="Node2D" unique_id=92363096]
+[ext_resource type="Script" uid="uid://de51q5ibwh2mv" path="res://Scripts/Slots.gd" id="1_ctkg4"]
+[ext_resource type="PackedScene" uid="uid://ctcd0nbvhtn0n" path="res://Escenas/ManoDeCartas.tscn" id="2_e1c7d"]
+
+[node name="Tablero" type="Node2D" unique_id=92363096]
+
+[node name="LadoJugador" type="Node2D" parent="." unique_id=908358253]
+position = Vector2(824, 874)
+
+[node name="SlotArquero" type="Panel" parent="LadoJugador" unique_id=1641994528]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -109.75
+offset_top = -218.0
+offset_right = 109.75
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_ctkg4")
+
+[node name="ManoJugador" parent="LadoJugador" unique_id=869793766 instance=ExtResource("2_e1c7d")]

@@ -7,7 +7,7 @@ var posicion_original: Vector2
 var rotacion_original: float
 var tween: Tween
 var en_mano: bool = true
-
+var rect_original: Rect2 #ahi lo arregle gary
 
 
 var COLORES_CALIDAD = {
@@ -69,12 +69,9 @@ func _input(event: InputEvent) -> void:
 						break
 			if !hay_carta_encima and !hover:
 				hover =true
-				posicion_original= position
-				rotacion_original =rotation
-				position.y -=80.0
-				rotation= 0.0
+				rect_original =$Base.get_global_rect()
 				z_index =10
-				animar(Vector2(position.x, position.y - 80.0), 0.0)
+				animar(Vector2(posicion_original.x, posicion_original.y - 80.0), 0.0)
 		else:
 			if hover:
 				hover= false
