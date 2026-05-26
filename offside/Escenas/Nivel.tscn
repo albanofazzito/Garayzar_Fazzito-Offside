@@ -1,3 +1,53 @@
 [gd_scene format=3 uid="uid://cptmni1ap2q84"]
 
-[node name="Node2D" type="Node2D" unique_id=92363096]
+[ext_resource type="Script" uid="uid://de51q5ibwh2mv" path="res://Scripts/Slots.gd" id="1_ctkg4"]
+[ext_resource type="PackedScene" uid="uid://ctcd0nbvhtn0n" path="res://Escenas/ManoDeCartas.tscn" id="2_e1c7d"]
+
+[node name="Node2D" type="Node2D" unique_id=1311472250]
+
+[node name="ManoJugador" parent="." unique_id=869793766 instance=ExtResource("2_e1c7d")]
+position = Vector2(575, 435)
+
+[node name="Slots" type="HBoxContainer" parent="." unique_id=990315265]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 96.0
+offset_top = 421.0
+offset_right = 1048.0
+offset_bottom = 562.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="SlotArquero" type="Panel" parent="Slots" unique_id=1216502561 groups=["slots"]]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_ctkg4")
+
+[node name="SlotDefensor" type="Panel" parent="Slots" unique_id=1372134565 groups=["slots"]]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_ctkg4")
+tipo = 1
+
+[node name="SlotMedio" type="Panel" parent="Slots" unique_id=9635761 groups=["slots"]]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_ctkg4")
+tipo = 2
+
+[node name="SlotMedio2" type="Panel" parent="Slots" unique_id=1912148919 groups=["slots"]]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_ctkg4")
+tipo = 2
+
+[node name="SlotDelantero" type="Panel" parent="Slots" unique_id=538043144 groups=["slots"]]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_ctkg4")
+tipo = 3

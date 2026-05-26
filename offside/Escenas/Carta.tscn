@@ -142,7 +142,7 @@ corner_radius_bottom_left = 30
 
 [node name="Carta" type="Node2D" unique_id=1589700394]
 texture_filter = 2
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.6, 0.6)
 script = ExtResource("1_jopjk")
 
 [node name="Base" type="Panel" parent="." unique_id=57122258]
@@ -153,9 +153,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -150.0
-offset_top = -153.0
+offset_top = -352.99988
 offset_right = 150.0
-offset_bottom = 200.0
+offset_bottom = 0.00012207031
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lrvte")
@@ -220,20 +220,6 @@ offset_right = 145.0
 offset_bottom = 61.0
 scale = Vector2(1.2, 1.2)
 theme_override_constants/line_spacing = -8
-text = "NOMBRE APELLIDO"
-
-[node name="InfoJugadorBorde" type="Label" parent="Base" unique_id=383395657]
-layout_mode = 0
-offset_left = 14.0
-offset_top = 12.0
-offset_right = 145.0
-offset_bottom = 61.0
-scale = Vector2(1.2, 1.2)
-theme_override_colors/font_color = Color(1, 1, 1, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -8
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 16
 text = "NOMBRE APELLIDO"
 
 [node name="Divisor" type="ColorRect" parent="Base" unique_id=1561029248]
@@ -415,20 +401,6 @@ scale = Vector2(1.2, 1.2)
 theme_override_constants/line_spacing = -8
 text = "PAIS"
 
-[node name="PaisJugadorBorde" type="Label" parent="Base" unique_id=499903949]
-layout_mode = 0
-offset_left = 14.0
-offset_top = 30.0
-offset_right = 145.0
-offset_bottom = 79.0
-scale = Vector2(1.2, 1.2)
-theme_override_colors/font_color = Color(1, 1, 1, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -8
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 16
-text = "PAIS"
-
 [node name="Posicion" type="Label" parent="Base" unique_id=773260995]
 layout_mode = 1
 anchors_preset = 8
@@ -456,9 +428,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -150.0
-offset_top = -152.0
+offset_top = -351.99988
 offset_right = 150.0
-offset_bottom = 200.0
+offset_bottom = 0.00012207031
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lrvte")
@@ -509,10 +481,9 @@ offset_right = 95.0
 offset_bottom = 58.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 0.72655636, 0.52120495, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 17
 text = "Descripcion"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -527,9 +498,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -150.0
-offset_top = -153.0
+offset_top = -352.99994
 offset_right = 150.0
-offset_bottom = 200.0
+offset_bottom = 6.1035156e-05
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_b4dmy")
@@ -594,20 +565,6 @@ offset_right = 145.0
 offset_bottom = 61.0
 scale = Vector2(1.2, 1.2)
 theme_override_constants/line_spacing = -8
-text = "NOMBRE APELLIDO"
-
-[node name="InfoTrucoBorde" type="Label" parent="BaseTruco" unique_id=523040438]
-layout_mode = 0
-offset_left = 14.0
-offset_top = 12.0
-offset_right = 145.0
-offset_bottom = 61.0
-scale = Vector2(1.2, 1.2)
-theme_override_colors/font_color = Color(1, 1, 1, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/line_spacing = -8
-theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 16
 text = "NOMBRE APELLIDO"
 
 [node name="Divisor" type="ColorRect" parent="BaseTruco" unique_id=469140716]
