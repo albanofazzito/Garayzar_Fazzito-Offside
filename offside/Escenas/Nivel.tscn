@@ -6,7 +6,7 @@
 [node name="Node2D" type="Node2D" unique_id=1311472250]
 
 [node name="ManoJugador" parent="." unique_id=869793766 instance=ExtResource("2_e1c7d")]
-position = Vector2(575, 659)
+position = Vector2(575, 435)
 
 [node name="Slots" type="HBoxContainer" parent="." unique_id=990315265]
 anchors_preset = 7
