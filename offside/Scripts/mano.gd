@@ -1,13 +1,13 @@
 extends Node2D
 
-var cartas : Array = []
-var cartas_max: int = 7
-var maso: Array = []
-var maso_actual: Array = []
+@export var cartas : Array = []
+@export var cartas_max: int = 7
+@export var maso: Array = []
+@export var maso_actual: Array = []
 @export var angulo: float= 30.0
 @export var spaciado: float= 120.0
-var mano_levantada: bool = false
-var estaba_en_zona: bool = false
+@export var mano_levantada: bool = false
+@export var estaba_en_zona: bool = false
 
 var paisActual= JugadorData.Pais.ARGENTINA
 var escenaCarta= load("res://Escenas/Carta.tscn")
