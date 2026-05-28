@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://de51q5ibwh2mv" path="res://Scripts/Slots.gd" id="1_ctkg4"]
 [ext_resource type="PackedScene" uid="uid://ctcd0nbvhtn0n" path="res://Escenas/ManoDeCartas.tscn" id="2_e1c7d"]
+[ext_resource type="Texture2D" uid="uid://cn22lxsr4f6af" path="res://icon.svg" id="3_e1c7d"]
+[ext_resource type="Texture2D" uid="uid://rpqrohrpk3an" path="res://Sprites/Iconos/vida-icon.png" id="4_hxvt1"]
+[ext_resource type="Script" uid="uid://nsmw8bjlc6yf" path="res://Scripts/ManoEnemigo.gd" id="4_of526"]
 
 [node name="Node2D" type="Node2D" unique_id=1311472250]
 
@@ -51,3 +54,59 @@ layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_ctkg4")
 tipo = 3
+
+[node name="PasarTurno" type="TextureButton" parent="." unique_id=924819973]
+offset_left = 1018.0
+offset_top = 294.0
+offset_right = 1146.0
+offset_bottom = 422.0
+texture_normal = ExtResource("3_e1c7d")
+texture_pressed = ExtResource("4_hxvt1")
+stretch_mode = 0
+
+[node name="SlotsEnemigo" type="HBoxContainer" parent="." unique_id=310155313]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 96.0
+offset_top = 133.0
+offset_right = 1048.0
+offset_bottom = 274.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="SlotArquero" type="Panel" parent="SlotsEnemigo" unique_id=1132030212 groups=["slots_enemigo"]]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_ctkg4")
+
+[node name="SlotDefensor" type="Panel" parent="SlotsEnemigo" unique_id=1873246654 groups=["slots_enemigo"]]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_ctkg4")
+
+[node name="SlotMedio" type="Panel" parent="SlotsEnemigo" unique_id=2044825710 groups=["slots_enemigo"]]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_ctkg4")
+
+[node name="SlotMedio2" type="Panel" parent="SlotsEnemigo" unique_id=178813553 groups=["slots_enemigo"]]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_ctkg4")
+
+[node name="SlotDelantero" type="Panel" parent="SlotsEnemigo" unique_id=844720116 groups=["slots_enemigo"]]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_ctkg4")
+
+[node name="ManoEnemigo" type="Node2D" parent="." unique_id=269307096]
+position = Vector2(580, 92)
+script = ExtResource("4_of526")
+pais = 7
+
+[connection signal="pressed" from="PasarTurno" to="ManoEnemigo" method="_on_pasar_turno_pressed"]
