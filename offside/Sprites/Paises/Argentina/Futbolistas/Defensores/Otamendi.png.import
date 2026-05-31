@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bh7t77t0pqsg8"
-path="res://.godot/imported/Otamendi.png-58597207691b0fa0c5db31d20439ad7c.ctex"
+path="res://.godot/imported/Otamendi.png-471fdbb24c17bf20c674cb5af895e292.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Paises/Argentina/Futbolistas/Otamendi.png"
-dest_files=["res://.godot/imported/Otamendi.png-58597207691b0fa0c5db31d20439ad7c.ctex"]
+source_file="res://Sprites/Paises/Argentina/Futbolistas/Defensores/Otamendi.png"
+dest_files=["res://.godot/imported/Otamendi.png-471fdbb24c17bf20c674cb5af895e292.ctex"]
 
 [params]
 
