@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dibsaor8iixg6"
-path="res://.godot/imported/depaul (1).jpg-cf12c84cfa9475bec7ec32ce172ee5f4.ctex"
+path="res://.godot/imported/depaul (1).jpg-31c8ec0e7ebc55d8407772dd9206ee4f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Paises/Argentina/Futbolistas/depaul (1).jpg"
-dest_files=["res://.godot/imported/depaul (1).jpg-cf12c84cfa9475bec7ec32ce172ee5f4.ctex"]
+source_file="res://Sprites/Paises/Argentina/Futbolistas/Medios/depaul (1).jpg"
+dest_files=["res://.godot/imported/depaul (1).jpg-31c8ec0e7ebc55d8407772dd9206ee4f.ctex"]
 
 [params]
 

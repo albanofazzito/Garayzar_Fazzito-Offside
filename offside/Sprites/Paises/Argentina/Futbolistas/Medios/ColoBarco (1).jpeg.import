@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b267d8pg1h1hy"
-path="res://.godot/imported/ColoBarco (1).jpeg-46a4d3602a2db3aa95d1256c8cd0d5d8.ctex"
+path="res://.godot/imported/ColoBarco (1).jpeg-b488465f81fd3698d8328722c3cea7f3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Paises/Argentina/Futbolistas/ColoBarco (1).jpeg"
-dest_files=["res://.godot/imported/ColoBarco (1).jpeg-46a4d3602a2db3aa95d1256c8cd0d5d8.ctex"]
+source_file="res://Sprites/Paises/Argentina/Futbolistas/Medios/ColoBarco (1).jpeg"
+dest_files=["res://.godot/imported/ColoBarco (1).jpeg-b488465f81fd3698d8328722c3cea7f3.ctex"]
 
 [params]
 

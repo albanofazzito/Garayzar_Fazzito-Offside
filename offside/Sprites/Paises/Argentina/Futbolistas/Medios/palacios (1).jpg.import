@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://4gii7cidy0gw"
-path="res://.godot/imported/palacios (1).jpg-d68ddd2ef3f95104e989e6e3648eff7c.ctex"
+path="res://.godot/imported/palacios (1).jpg-8f2f1aee85c6098e9fda59dac8886221.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Paises/Argentina/Futbolistas/palacios (1).jpg"
-dest_files=["res://.godot/imported/palacios (1).jpg-d68ddd2ef3f95104e989e6e3648eff7c.ctex"]
+source_file="res://Sprites/Paises/Argentina/Futbolistas/Medios/palacios (1).jpg"
+dest_files=["res://.godot/imported/palacios (1).jpg-8f2f1aee85c6098e9fda59dac8886221.ctex"]
 
 [params]
 

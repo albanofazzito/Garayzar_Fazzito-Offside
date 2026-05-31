@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://bxn2k0srja0ky"]
+
+[ext_resource type="Script" uid="uid://d15fa026lwj0c" path="res://Scripts/Menu/Menu.gd" id="1_xhjix"]
+[ext_resource type="Texture2D" uid="uid://br3aekxc7mqvr" path="res://Sprites/Fases/seleccion.jpg" id="2_o2l53"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_425bc"]
+bg_color = Color(0.9641623, 0.22069371, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.52854294, 0.84891075, 0.9999998, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j7eae"]
+bg_color = Color(0.26708373, 0.6049381, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xhjix"]
+bg_color = Color(0.7305252, 0.5779242, 0.16418123, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 1, 1, 1)
+
+[node name="Menu" type="Control" unique_id=1506411835]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xhjix")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1494903604]
+layout_mode = 0
+offset_left = -83.0
+offset_right = 1213.0
+offset_bottom = 729.0
+texture = ExtResource("2_o2l53")
+
+[node name="Button" type="Button" parent="." unique_id=1837110241]
+layout_mode = 0
+offset_left = 725.0
+offset_top = 573.0
+offset_right = 902.0
+offset_bottom = 628.0
+theme_override_colors/font_color = Color(0.8755652, 0.8762764, 0.8591207, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_425bc")
+text = "SALIR"
+
+[node name="Button2" type="Button" parent="." unique_id=2092469330]
+layout_mode = 0
+offset_left = 284.0
+offset_top = 573.0
+offset_right = 461.0
+offset_bottom = 628.0
+theme_override_colors/font_color = Color(0.8755652, 0.8762764, 0.8591207, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_j7eae")
+text = "JUGAR"
+
+[node name="Label" type="Label" parent="." unique_id=91069539]
+layout_mode = 0
+offset_left = 471.0
+offset_top = 570.0
+offset_right = 721.0
+offset_bottom = 635.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.135178, 0.5548037, 0.746757, 1)
+theme_override_colors/font_outline_color = Color(0, 0.59819067, 0.7045848, 1)
+theme_override_constants/line_spacing = 5
+theme_override_constants/paragraph_spacing = 4
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 20
+text = "AYUDALOS A CUMPLIR EL 
+SUEÑO DE NUEVO"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=619270389]
+layout_mode = 0
+offset_left = 327.0
+offset_top = 146.0
+offset_right = 839.0
+offset_bottom = 249.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.135178, 0.5548037, 0.746757, 1)
+theme_override_colors/font_outline_color = Color(0.7443627, 0.21467945, 1, 1)
+theme_override_constants/line_spacing = 5
+theme_override_constants/paragraph_spacing = 4
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxFlat_xhjix")
+text = "OFFSIDE"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

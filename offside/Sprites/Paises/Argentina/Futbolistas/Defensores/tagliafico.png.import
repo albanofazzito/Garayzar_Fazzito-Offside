@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c036n534c31n0"
-path="res://.godot/imported/tagliafico.png-4579833761b63f03598b1fdd79fda39d.ctex"
+path="res://.godot/imported/tagliafico.png-95e8aff59f184d377ff4cbe160536ea6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Paises/Argentina/Futbolistas/tagliafico.png"
-dest_files=["res://.godot/imported/tagliafico.png-4579833761b63f03598b1fdd79fda39d.ctex"]
+source_file="res://Sprites/Paises/Argentina/Futbolistas/Defensores/tagliafico.png"
+dest_files=["res://.godot/imported/tagliafico.png-95e8aff59f184d377ff4cbe160536ea6.ctex"]
 
 [params]
 

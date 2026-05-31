@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7v1ejuwlmw0j"
-path="res://.godot/imported/Expulsion.png-d0b9606b131e1e3173b114d691ee76f4.ctex"
+path="res://.godot/imported/Expulsion.png-5dbd17c8f9cf77aacad55158d5a5f585.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Paises/Argentina/Trucos/Expulsion.png"
-dest_files=["res://.godot/imported/Expulsion.png-d0b9606b131e1e3173b114d691ee76f4.ctex"]
+source_file="res://Sprites/Paises/PaisesBajos/Trucos/Expulsion.png"
+dest_files=["res://.godot/imported/Expulsion.png-5dbd17c8f9cf77aacad55158d5a5f585.ctex"]
 
 [params]
 

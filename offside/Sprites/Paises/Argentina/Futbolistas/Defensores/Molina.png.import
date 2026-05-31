@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2ilxq3kbaj8a"
-path="res://.godot/imported/Molina.png-7bd60832c24fd9b486c6c60d8c203963.ctex"
+path="res://.godot/imported/Molina.png-9a01911ec0d5ad856a5b4e58145bb560.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Paises/Argentina/Futbolistas/Molina.png"
-dest_files=["res://.godot/imported/Molina.png-7bd60832c24fd9b486c6c60d8c203963.ctex"]
+source_file="res://Sprites/Paises/Argentina/Futbolistas/Defensores/Molina.png"
+dest_files=["res://.godot/imported/Molina.png-9a01911ec0d5ad856a5b4e58145bb560.ctex"]
 
 [params]
 

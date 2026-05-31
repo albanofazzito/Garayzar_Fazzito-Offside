@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjvobvl5aa52b"
-path="res://.godot/imported/BrunoFernandes.png-2ab8a7b1454ab450780874154a9ccb5e.ctex"
+path="res://.godot/imported/BrunoFernandes.png-2e0b3e2084daf6081b3d4fb4879d74bd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Paises/Portugal/Futbolistas/BrunoFernandes.png"
-dest_files=["res://.godot/imported/BrunoFernandes.png-2ab8a7b1454ab450780874154a9ccb5e.ctex"]
+source_file="res://Sprites/Paises/Portugal/Futbolistas/Medios/BrunoFernandes.png"
+dest_files=["res://.godot/imported/BrunoFernandes.png-2e0b3e2084daf6081b3d4fb4879d74bd.ctex"]
 
 [params]
 
