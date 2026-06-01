@@ -1,10 +1,22 @@
 [gd_scene format=3 uid="uid://cptmni1ap2q84"]
 
 [ext_resource type="Script" uid="uid://de51q5ibwh2mv" path="res://Scripts/Slots.gd" id="1_ctkg4"]
+[ext_resource type="Script" uid="uid://b00r5mawlovtv" path="res://Scripts/BatallaManager.gd" id="1_gql56"]
 [ext_resource type="PackedScene" uid="uid://ctcd0nbvhtn0n" path="res://Escenas/ManoDeCartas.tscn" id="2_e1c7d"]
-[ext_resource type="Texture2D" uid="uid://cn22lxsr4f6af" path="res://icon.svg" id="3_e1c7d"]
-[ext_resource type="Texture2D" uid="uid://rpqrohrpk3an" path="res://Sprites/Iconos/vida-icon.png" id="4_hxvt1"]
 [ext_resource type="Script" uid="uid://nsmw8bjlc6yf" path="res://Scripts/ManoEnemigo.gd" id="4_of526"]
+[ext_resource type="Texture2D" uid="uid://6godnb1rkm3r" path="res://Sprites/Iconos/estrella-icon.png" id="5_estrella"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hxvt1"]
+bg_color = Color(1, 0.4252191, 0.31822595, 0.2784314)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.7359835, 0.540162, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="Node2D" type="Node2D" unique_id=1311472250]
 
@@ -17,10 +29,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 96.0
-offset_top = 421.0
-offset_right = 1048.0
-offset_bottom = 562.0
+offset_left = 72.0
+offset_top = 509.0
+offset_right = 947.0
+offset_bottom = 551.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 100
@@ -36,33 +48,36 @@ layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_ctkg4")
 tipo = 1
+columna = 1
 
 [node name="SlotMedio" type="Panel" parent="Slots" unique_id=9635761 groups=["slots"]]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_ctkg4")
 tipo = 2
+columna = 2
 
 [node name="SlotMedio2" type="Panel" parent="Slots" unique_id=1912148919 groups=["slots"]]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_ctkg4")
 tipo = 2
+columna = 3
 
 [node name="SlotDelantero" type="Panel" parent="Slots" unique_id=538043144 groups=["slots"]]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_ctkg4")
 tipo = 3
+columna = 4
 
-[node name="PasarTurno" type="TextureButton" parent="." unique_id=924819973]
-offset_left = 1018.0
-offset_top = 294.0
-offset_right = 1146.0
-offset_bottom = 422.0
-texture_normal = ExtResource("3_e1c7d")
-texture_pressed = ExtResource("4_hxvt1")
-stretch_mode = 0
+[node name="PasarTurno" type="Button" parent="." unique_id=924819973]
+offset_left = 980.0
+offset_top = 330.0
+offset_right = 1140.0
+offset_bottom = 390.0
+focus_mode = 0
+text = "▶ Mi turno"
 
 [node name="SlotsEnemigo" type="HBoxContainer" parent="." unique_id=310155313]
 anchors_preset = 7
@@ -70,10 +85,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 96.0
-offset_top = 133.0
-offset_right = 1048.0
-offset_bottom = 274.0
+offset_left = 72.0
+offset_top = 229.0
+offset_right = 947.0
+offset_bottom = 271.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 100
@@ -83,30 +98,62 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_ctkg4")
+tipo = 3
 
 [node name="SlotDefensor" type="Panel" parent="SlotsEnemigo" unique_id=1873246654 groups=["slots_enemigo"]]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_ctkg4")
+tipo = 2
+columna = 1
 
 [node name="SlotMedio" type="Panel" parent="SlotsEnemigo" unique_id=2044825710 groups=["slots_enemigo"]]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_ctkg4")
+tipo = 2
+columna = 2
 
 [node name="SlotMedio2" type="Panel" parent="SlotsEnemigo" unique_id=178813553 groups=["slots_enemigo"]]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_ctkg4")
+tipo = 1
+columna = 3
 
 [node name="SlotDelantero" type="Panel" parent="SlotsEnemigo" unique_id=844720116 groups=["slots_enemigo"]]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_ctkg4")
+columna = 4
 
-[node name="ManoEnemigo" type="Node2D" parent="." unique_id=269307096]
-position = Vector2(580, 92)
+[node name="ManoEnemigo" type="Node2D" parent="." unique_id=269307096 node_paths=PackedStringArray("batalla_manager", "boton_turno", "label_estrellas_enemigo")]
+position = Vector2(573, 285)
 script = ExtResource("4_of526")
-pais = 7
+batalla_manager = NodePath("../BatallaManager")
+boton_turno = NodePath("../PasarTurno")
+label_estrellas_enemigo = NodePath("../LabelEstrellas")
+
+[node name="BatallaManager" type="Node2D" parent="." unique_id=65791828]
+script = ExtResource("1_gql56")
+
+[node name="ContenedorEstrellas" type="Panel" parent="." unique_id=199899716]
+offset_left = 1066.0
+offset_top = 54.0
+offset_right = 1139.0
+offset_bottom = 151.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hxvt1")
+
+[node name="LabelEstrellas" type="Label" parent="." unique_id=1801489672]
+offset_left = 1090.0
+offset_top = 125.0
+offset_right = 1130.0
+offset_bottom = 148.0
+
+[node name="EstrellaIcon" type="Sprite2D" parent="." unique_id=1017572418]
+position = Vector2(1103.0001, 85)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("5_estrella")
 
 [connection signal="pressed" from="PasarTurno" to="ManoEnemigo" method="_on_pasar_turno_pressed"]
+[connection signal="batalla_terminada" from="BatallaManager" to="ManoEnemigo" method="_on_batalla_manager_batalla_terminada"]

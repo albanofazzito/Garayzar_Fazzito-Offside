@@ -13,6 +13,8 @@ var pos_click_inicial: Vector2
 const umbral_arrastre:= 8.0
 static var carta_siendo_arrastrada:Carta= null
 static var y_oculto: float = 280.0
+var vida_actual: int = 0
+var tween_color: Tween
 
 
 var COLORES_CALIDAD = {
@@ -21,7 +23,7 @@ var COLORES_CALIDAD = {
 	JugadorData.Calidad.ORO: Color("#d19700"), 
 	JugadorData.Calidad.CAPITAN: Color("#00c2d1")
 }
-var posiciones = ["ARQUERO", "DEFENSOR", "MEDIOCAMPISTA", "DELANTERO"]
+var posiciones = ["ARQUERO", "DEFENSOR", "MEDIOCAMPISTA", "DELANTERO","TODO"]
 var paises = ["ARGENTINA", "BRASIL", "FRANCIA", "INGLATERRA", "ALEMANIA", "HOLANDA", "ESPAÑA", "PORTUGAL"]
 
 @export var datos: Resource:
@@ -62,6 +64,10 @@ func aplicarCalidad(calidad: JugadorData.Calidad):
 
 func _input(event: InputEvent) -> void:
 	if !en_mano:
+		if event is InputEventMouseButton and event.button_index ==MOUSE_BUTTON_RIGHT and event.pressed:
+			if $Base.get_global_rect().has_point(event.global_position) or $BaseAtras.get_global_rect().has_point(event.global_position):
+				voltear()
+				get_viewport().set_input_as_handled()
 		return
 
 	if event is InputEventMouseMotion and arrastrando:
@@ -80,7 +86,8 @@ func _input(event: InputEvent) -> void:
 			if slot.get_global_rect().has_point(mouse_pos):
 				slot_encontrado =slot
 				break
-		if slot_encontrado and slot_encontrado.carta_actual ==null and slot_encontrado.tipo ==datos.posicion:
+		if slot_encontrado and slot_encontrado.carta_actual ==null and slot_encontrado.tipo ==datos.posicion and datos.estrellas <= get_parent().estrellas and ManoEnemigo.es_turno_jugador:
+			get_parent().gastar_estrellas(datos.estrellas)
 			slot_encontrado.carta_actual =self
 			en_mano =false
 			z_index =-1
@@ -177,3 +184,27 @@ func _process(_delta: float) -> void:
 				z_index =20
 				if tween:
 					tween.kill()
+
+func inicializar_combate() -> void:
+	if vida_actual <=0:
+		vida_actual =datos.stat_vida
+
+func recibir_danio(danio: int) -> void:
+	vida_actual -=danio
+	$Base/Stats/CajaDefensa/NumeroDefensa.text =str(max(vida_actual, 0))
+	if tween_color:
+		tween_color.kill()
+	tween_color =create_tween()
+	tween_color.tween_property(self, "modulate", Color.RED, 0.05)
+	tween_color.tween_property(self, "modulate", Color.WHITE, 0.15)
+
+func esta_viva() -> bool:
+	return vida_actual > 0
+
+func animar_ataque(objetivo: Carta) -> void:
+	var dir_y =sign(objetivo.global_position.y - global_position.y)
+	var offset =Vector2(0, dir_y * 25)
+	var tw =create_tween()
+	tw.tween_property(self, "position", position + offset, 0.12)
+	tw.tween_property(self, "position", position, 0.12)
+	await tw.finished
