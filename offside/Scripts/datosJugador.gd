@@ -1,7 +1,7 @@
 class_name JugadorData
 extends Resource
 enum Calidad { BRONCE, PLATA, ORO, CAPITAN }
-enum Posicion {ARQUERO, DEFENSOR, MEDIOCAMPISTA, DELANTERO}
+enum Posicion {ARQUERO, DEFENSOR, MEDIOCAMPISTA, DELANTERO,TODO}
 enum Pais { ARGENTINA, BRASIL, FRANCIA, INGLATERRA, ALEMANIA, HOLANDA, ESPAÑA, PORTUGAL}
 @export var pais: Pais = Pais.ARGENTINA
 @export var posicion: Posicion= Posicion.ARQUERO

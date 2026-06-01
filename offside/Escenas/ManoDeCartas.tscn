@@ -1,6 +1,18 @@
 [gd_scene format=3 uid="uid://ctcd0nbvhtn0n"]
 
 [ext_resource type="Script" uid="uid://cn212c4nrb462" path="res://Scripts/mano.gd" id="1_lih4g"]
+[ext_resource type="Texture2D" uid="uid://6godnb1rkm3r" path="res://Sprites/Iconos/estrella-icon.png" id="2_elojs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_elojs"]
+bg_color = Color(0.8156863, 0.58431375, 0, 0.2784314)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="Node2D" type="Node2D" unique_id=869793766]
 
@@ -8,3 +20,21 @@
 script = ExtResource("1_lih4g")
 angulo = 20.0
 spaciado = 130.0
+
+[node name="ContenedorEstrellas" type="Panel" parent="Mano" unique_id=783423668]
+offset_left = 490.0
+offset_top = 54.0
+offset_right = 563.0
+offset_bottom = 151.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_elojs")
+
+[node name="EstrellaIcon" type="Sprite2D" parent="Mano" unique_id=740298458]
+position = Vector2(527.00006, 85.00001)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_elojs")
+
+[node name="LabelEstrellas" type="Label" parent="Mano" unique_id=845066956]
+offset_left = 514.0
+offset_top = 124.99999
+offset_right = 554.0
+offset_bottom = 148.0

@@ -1,3 +1,4 @@
+class_name Mano
 extends Node2D
 
 var cartas : Array = []
@@ -8,11 +9,15 @@ var maso_actual: Array = []
 @export var spaciado: float= 120.0
 var mano_levantada: bool = false
 var estaba_en_zona: bool = false
+var estrellas : int= 1
+var estrellas_max : int= 1
+@onready var label_estrellas : Label= $LabelEstrellas
 
 var paisActual= JugadorData.Pais.ARGENTINA
 var escenaCarta= load("res://Escenas/Carta.tscn")
 func _ready() -> void:
 	cargar_maso(paisActual)
+	_actualizar_label()
 
 
 func cargar_maso(pais: JugadorData.Pais) -> void:
@@ -52,6 +57,7 @@ func agregar() -> void:
 	add_child(carti)
 	if datos:
 		carti.datos= datos
+		carti.get_node("Base/RecipienteEstrellas/Coste").text =str(datos.estrellas)
 	cartas.append(carti)
 	orden()
 
@@ -92,3 +98,15 @@ func _process(delta: float) -> void:
 	if abs(nuevo - Carta.y_oculto) > 0.1:
 		Carta.y_oculto =nuevo
 		orden()
+
+func sumar_estrella() -> void:
+	estrellas_max +=1
+	estrellas =estrellas_max
+	_actualizar_label()
+
+func gastar_estrellas(costo : int) -> void:
+	estrellas =max(0, estrellas - costo)
+	_actualizar_label()
+
+func _actualizar_label() -> void:
+	label_estrellas.text =str(estrellas) + "/" +str(estrellas_max)
