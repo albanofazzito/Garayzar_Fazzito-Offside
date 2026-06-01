@@ -5,6 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://ctcd0nbvhtn0n" path="res://Escenas/ManoDeCartas.tscn" id="2_e1c7d"]
 [ext_resource type="Script" uid="uid://nsmw8bjlc6yf" path="res://Scripts/ManoEnemigo.gd" id="4_of526"]
 [ext_resource type="Texture2D" uid="uid://6godnb1rkm3r" path="res://Sprites/Iconos/estrella-icon.png" id="5_estrella"]
+[ext_resource type="Texture2D" uid="uid://dhllhdnq3qyxs" path="res://Sprites/Iconos/Arco.png" id="6_gql56"]
+[ext_resource type="Texture2D" uid="uid://csxcpj6gjhqus" path="res://Sprites/Iconos/ladrillos.png" id="7_7b7no"]
+[ext_resource type="Script" uid="uid://ccg33ron5hdu8" path="res://Scripts/VidaBase.gd" id="8_vidabase"]
+[ext_resource type="Script" uid="uid://bm5n008oa2d5g" path="res://Scripts/Nivel.gd" id="9_nivel"]
+[ext_resource type="Texture2D" uid="uid://bm1ppkpi2o5gv" path="res://Sprites/Paises/Portugal/PantallaDerrota.png" id="10_sxaxo"]
+[ext_resource type="Script" path="res://Scripts/Tutorial.gd" id="11_tutorial"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hxvt1"]
 bg_color = Color(1, 0.4252191, 0.31822595, 0.2784314)
@@ -18,7 +24,22 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7b7no"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tuto"]
+bg_color = Color(1, 1, 0, 0.08)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 0, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
 [node name="Node2D" type="Node2D" unique_id=1311472250]
+script = ExtResource("9_nivel")
 
 [node name="ManoJugador" parent="." unique_id=869793766 instance=ExtResource("2_e1c7d")]
 position = Vector2(575, 435)
@@ -29,10 +50,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 72.0
-offset_top = 509.0
+offset_left = 183.0
+offset_top = 477.0
 offset_right = 947.0
-offset_bottom = 551.0
+offset_bottom = 519.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 100
@@ -72,7 +93,8 @@ tipo = 3
 columna = 4
 
 [node name="PasarTurno" type="Button" parent="." unique_id=924819973]
-offset_left = 980.0
+z_index = -1
+offset_left = 1036.0
 offset_top = 330.0
 offset_right = 1140.0
 offset_bottom = 390.0
@@ -80,12 +102,13 @@ focus_mode = 0
 text = "▶ Mi turno"
 
 [node name="SlotsEnemigo" type="HBoxContainer" parent="." unique_id=310155313]
+z_index = -1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 72.0
+offset_left = 183.0
 offset_top = 229.0
 offset_right = 947.0
 offset_bottom = 271.0
@@ -134,8 +157,10 @@ batalla_manager = NodePath("../BatallaManager")
 boton_turno = NodePath("../PasarTurno")
 label_estrellas_enemigo = NodePath("../LabelEstrellas")
 
-[node name="BatallaManager" type="Node2D" parent="." unique_id=65791828]
+[node name="BatallaManager" type="Node2D" parent="." unique_id=65791828 node_paths=PackedStringArray("vida_enemigo", "vida_jugador")]
 script = ExtResource("1_gql56")
+vida_enemigo = NodePath("../VidaEnemigo")
+vida_jugador = NodePath("../Vida")
 
 [node name="ContenedorEstrellas" type="Panel" parent="." unique_id=199899716]
 offset_left = 1066.0
@@ -155,5 +180,152 @@ position = Vector2(1103.0001, 85)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("5_estrella")
 
+[node name="Vida" type="Panel" parent="." unique_id=1082618665]
+offset_left = 8.0
+offset_top = 365.0
+offset_right = 119.0
+offset_bottom = 455.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7b7no")
+script = ExtResource("8_vidabase")
+
+[node name="Arco" type="Sprite2D" parent="Vida" unique_id=145151561]
+texture_filter = 1
+position = Vector2(55, 42)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("6_gql56")
+
+[node name="Ladrillos" type="Sprite2D" parent="Vida" unique_id=868855252]
+texture_filter = 1
+position = Vector2(55.000004, 42)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("7_7b7no")
+
+[node name="Label" type="Label" parent="Vida" unique_id=1775767857]
+layout_mode = 0
+offset_left = 31.0
+offset_top = -15.0
+offset_right = 71.0
+offset_bottom = 8.0
+vertical_alignment = 2
+
+[node name="VidaEnemigo" type="Panel" parent="." unique_id=304700936]
+offset_left = 8.0
+offset_top = 205.0
+offset_right = 119.0
+offset_bottom = 295.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7b7no")
+script = ExtResource("8_vidabase")
+
+[node name="Arco" type="Sprite2D" parent="VidaEnemigo" unique_id=2117419652]
+texture_filter = 1
+position = Vector2(55, 42)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("6_gql56")
+
+[node name="Ladrillos" type="Sprite2D" parent="VidaEnemigo" unique_id=2102418859]
+texture_filter = 1
+position = Vector2(55.000004, 42)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("7_7b7no")
+
+[node name="Label" type="Label" parent="VidaEnemigo" unique_id=1443058367]
+layout_mode = 0
+offset_left = 31.0
+offset_top = -15.0
+offset_right = 71.0
+offset_bottom = 8.0
+
+[node name="PantallaFin" type="CanvasLayer" parent="." unique_id=2036601682]
+process_mode = 3
+layer = 100
+visible = false
+
+[node name="Fondo" type="ColorRect" parent="PantallaFin" unique_id=1196976087]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.7)
+
+[node name="Mensaje" type="Label" parent="PantallaFin" unique_id=121026302]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -50.0
+offset_right = 200.0
+offset_bottom = 50.0
+text = "DERROTA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BotonMenu" type="Button" parent="PantallaFin" unique_id=1302293006]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = 60.0
+offset_right = 60.0
+offset_bottom = 95.0
+text = "Menu"
+
+[node name="PantallaDerrota" type="Sprite2D" parent="." unique_id=62566926]
+visible = false
+position = Vector2(576.25, 323.75)
+scale = Vector2(2.0527728, 1.607232)
+texture = ExtResource("10_sxaxo")
+
+[node name="Tutorial" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 99
+script = ExtResource("11_tutorial")
+
+[node name="Fondo" type="ColorRect" parent="Tutorial"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.75)
+
+[node name="Recuadro" type="Panel" parent="Tutorial"]
+offset_right = 200.0
+offset_bottom = 100.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tuto")
+
+[node name="Texto" type="Label" parent="Tutorial"]
+offset_right = 550.0
+offset_bottom = 130.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Indicador" type="Label" parent="Tutorial"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -40.0
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 2
+
+[node name="Flecha" type="Label" parent="Tutorial"]
+visible = false
+offset_right = 30.0
+offset_bottom = 35.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "▼"
+horizontal_alignment = 1
+
 [connection signal="pressed" from="PasarTurno" to="ManoEnemigo" method="_on_pasar_turno_pressed"]
 [connection signal="batalla_terminada" from="BatallaManager" to="ManoEnemigo" method="_on_batalla_manager_batalla_terminada"]
+[connection signal="vida_agotada" from="Vida" to="." method="_on_derrota"]
+[connection signal="vida_agotada" from="VidaEnemigo" to="." method="_on_victoria"]
+[connection signal="pressed" from="PantallaFin/BotonMenu" to="." method="_on_boton_menu_pressed"]

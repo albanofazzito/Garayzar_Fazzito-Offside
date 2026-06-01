@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://03ur6qhuh7f4"]
+
+[ext_resource type="Texture2D" uid="uid://n3ew0v06rbao" path="res://Sprites/Paises/Argentina/Bandera/banderaArgentina.png" id="1_sehb8"]
+[ext_resource type="Texture2D" uid="uid://cjg2vtfn76d20" path="res://Sprites/Paises/Argentina/Futbolistas/Arqueros/muss (1).jpeg" id="2_sehb8"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_clwbq"]
+
+[resource]
+script = ExtResource("3_clwbq")
+info = "Juan Musso"
+foto = ExtResource("2_sehb8")
+bandera = ExtResource("1_sehb8")
+stat_ataque = 20
+stat_velocidad = 22
+stat_vida = 83
+estrellas = 3
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

@@ -1,17 +1,17 @@
 [gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://c835ci006rodo"]
 
-[ext_resource type="Texture2D" uid="uid://b2f7bernk32sk" path="res://Sprites/Paises/Argentina/Futbolistas/EmilianoMartinez.png" id="1_5phxy"]
+[ext_resource type="Texture2D" uid="uid://b2f7bernk32sk" path="res://Sprites/Paises/Argentina/Futbolistas/Arqueros/EmilianoMartinez.png" id="1_5phxy"]
 [ext_resource type="Texture2D" uid="uid://n3ew0v06rbao" path="res://Sprites/Paises/Argentina/Bandera/banderaArgentina.png" id="1_67nfh"]
 [ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="1_cblie"]
 
 [resource]
 script = ExtResource("1_cblie")
+efecto_tipo = 3
 info = "EMILIANO MARTINEZ"
-pais = "ARGENTINA"
 foto = ExtResource("1_5phxy")
 bandera = ExtResource("1_67nfh")
 efecto = "\"El Dibu usa sus dotes  de baile para desenfocar a sus rivales, esquivando un ataque cada 2 turnos\""
-stat_ataque = 12
+stat_ataque = 24
 stat_velocidad = 30
 stat_vida = 94
 estrellas = 5

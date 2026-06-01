@@ -15,6 +15,8 @@ static var carta_siendo_arrastrada:Carta= null
 static var y_oculto: float = 280.0
 var vida_actual: int = 0
 var tween_color: Tween
+var turnos_en_campo: int =0
+var esquivar_contador: int= 0
 
 
 var COLORES_CALIDAD = {
@@ -81,12 +83,29 @@ func _input(event: InputEvent) -> void:
 		z_index =0
 		carta_siendo_arrastrada =null
 		var mouse_pos =get_viewport().get_mouse_position()
+
+		if datos is TrucoData and ManoEnemigo.es_turno_jugador and datos.estrellas <= get_parent().estrellas:
+			var columna :=-1
+			for slot in get_tree().get_nodes_in_group("slots"):
+				if slot.get_global_rect().has_point(mouse_pos):
+					columna =slot.columna
+					break
+			if columna ==-1:
+				for slot in get_tree().get_nodes_in_group("slots_enemigo"):
+					if slot.get_global_rect().has_point(mouse_pos):
+						columna =slot.columna
+						break
+			if columna >=0:
+				get_parent().jugar_truco(self, columna)
+				get_viewport().set_input_as_handled()
+				return
+
 		var slot_encontrado: Slot =null
 		for slot in get_tree().get_nodes_in_group("slots"):
 			if slot.get_global_rect().has_point(mouse_pos):
 				slot_encontrado =slot
 				break
-		if slot_encontrado and slot_encontrado.carta_actual ==null and slot_encontrado.tipo ==datos.posicion and datos.estrellas <= get_parent().estrellas and ManoEnemigo.es_turno_jugador:
+		if slot_encontrado and slot_encontrado.carta_actual ==null and _puede_ir_en_slot(slot_encontrado) and datos.estrellas <= get_parent().estrellas and ManoEnemigo.es_turno_jugador:
 			get_parent().gastar_estrellas(datos.estrellas)
 			slot_encontrado.carta_actual =self
 			en_mano =false
@@ -146,13 +165,22 @@ func voltear() -> void:
 	frente_visible =!frente_visible
 	$Base.visible= frente_visible
 	$BaseAtras.visible =!frente_visible
-	if !frente_visible:
+	if !en_mano:
+		z_index =-1
+	elif !frente_visible:
 		z_index= 10
 	else:
 		if hover:
 			z_index =10
 		else:
 			z_index =0
+
+func _puede_ir_en_slot(slot: Slot) -> bool:
+	if datos.posicion ==JugadorData.Posicion.TODO:
+		return true
+	if datos.efecto_tipo ==JugadorData.EfectoJugador.MULTIPOSICION:
+		return slot.tipo !=JugadorData.Posicion.ARQUERO
+	return slot.tipo ==datos.posicion
 
 #usa esto para animar cartas cualquier cosa
 func animar(pos_destino: Vector2, rot_destino: float) -> void:
@@ -194,17 +222,70 @@ func recibir_danio(danio: int) -> void:
 	$Base/Stats/CajaDefensa/NumeroDefensa.text =str(max(vida_actual, 0))
 	if tween_color:
 		tween_color.kill()
-	tween_color =create_tween()
-	tween_color.tween_property(self, "modulate", Color.RED, 0.05)
+	tween_color =create_tween().set_trans(Tween.TRANS_SINE)
+	tween_color.tween_property(self, "modulate", Color(1.0, 0.2, 0.2), 0.06)
+	tween_color.tween_property(self, "scale", Vector2(0.54, 0.66), 0.05)
+	tween_color.parallel().tween_property(self, "position", position + Vector2(randf_range(-5, 5), 0), 0.03)
+	tween_color.tween_property(self, "scale", Vector2(0.6, 0.6), 0.12).set_trans(Tween.TRANS_ELASTIC)
+	tween_color.parallel().tween_property(self, "position", position, 0.08)
 	tween_color.tween_property(self, "modulate", Color.WHITE, 0.15)
 
 func esta_viva() -> bool:
 	return vida_actual > 0
 
 func animar_ataque(objetivo: Carta) -> void:
-	var dir_y =sign(objetivo.global_position.y - global_position.y)
-	var offset =Vector2(0, dir_y * 25)
-	var tw =create_tween()
-	tw.tween_property(self, "position", position + offset, 0.12)
-	tw.tween_property(self, "position", position, 0.12)
+	var dir =objetivo.global_position - global_position
+	var offset =dir.normalized() * 35.0
+	var pos_orig =position
+	var tw =create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	tw.tween_property(self, "scale", Vector2(0.69, 0.54), 0.08)
+	tw.tween_property(self, "position", position + offset, 0.1).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	tw.tween_property(self, "scale", Vector2(0.57, 0.63), 0.04)
+	tw.tween_property(self, "position", pos_orig, 0.15).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	tw.parallel().tween_property(self, "scale", Vector2(0.6, 0.6), 0.12)
 	await tw.finished
+
+func animar_ataque_base() -> void:
+	var dir_y =-1 if en_mano == false and get_parent() is ManoEnemigo else 1
+	var offset =Vector2(0, dir_y * 45)
+	var pos_orig =position
+	var tw =create_tween()
+	tw.tween_property(self, "scale", Vector2(0.72, 0.51), 0.1).set_trans(Tween.TRANS_BACK)
+	tw.tween_property(self, "position", position + offset, 0.12).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	tw.tween_property(self, "scale", Vector2(0.54, 0.66), 0.05)
+	tw.tween_property(self, "position", pos_orig, 0.2).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	tw.parallel().tween_property(self, "scale", Vector2(0.6, 0.6), 0.15)
+	await tw.finished
+
+func aplicar_efecto_turno() -> void:
+	turnos_en_campo +=1
+	if datos.efecto_tipo ==JugadorData.EfectoJugador.BUFF_ATAQUE_POR_TURNO:
+		datos.stat_ataque +=datos.efecto_valor
+		$Base/Stats/CajaAtaque/NumeroAtaque.text =str(datos.stat_ataque)
+		var tw= create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+		tw.tween_property(self, "modulate", Color(1.0, 0.9, 0.3), 0.08)
+		tw.parallel().tween_property(self, "scale", Vector2(0.67, 0.67), 0.1)
+		tw.tween_property(self, "scale", Vector2(0.6, 0.6), 0.2)
+		tw.parallel().tween_property(self, "modulate", Color.WHITE, 0.25)
+
+func puede_esquivar() -> bool:
+	if datos.efecto_tipo ==JugadorData.EfectoJugador.ESQUIVAR_CADA_2:
+		esquivar_contador +=1
+		if esquivar_contador >=2:
+			esquivar_contador =0
+			return true
+	return false
+
+func activar_rage(vida_base: int) -> void:
+	if datos.efecto_tipo ==JugadorData.EfectoJugador.RAGE_AL_GOL:
+		datos.stat_ataque =99
+		$Base/Stats/CajaAtaque/NumeroAtaque.text =str(datos.stat_ataque)
+		var tw =create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+		tw.tween_property(self, "modulate", Color(1.0, 0.0, 0.0), 0.08)
+		tw.parallel().tween_property(self, "scale", Vector2(0.75, 0.75), 0.12)
+		tw.tween_property(self, "rotation", deg_to_rad(-5.0), 0.06)
+		tw.tween_property(self, "rotation", deg_to_rad(5.0), 0.06)
+		tw.tween_property(self, "rotation", 0.0, 0.08)
+		tw.parallel().tween_property(self, "scale", Vector2(0.6, 0.6), 0.2)
+		tw.tween_property(self, "modulate", Color(1.0, 0.6, 0.6), 0.3)
+		await tw.finished

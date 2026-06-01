@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://crwbaoi3u3ua8"]
+
+[ext_resource type="Texture2D" uid="uid://n3ew0v06rbao" path="res://Sprites/Paises/Argentina/Bandera/banderaArgentina.png" id="1_xh2wg"]
+[ext_resource type="Texture2D" uid="uid://bx2n38gr2c7ss" path="res://Sprites/Paises/Argentina/Futbolistas/Medios/paredes (1).jpg" id="2_xh2wg"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_uxekg"]
+
+[resource]
+script = ExtResource("3_uxekg")
+posicion = 2
+info = "Leandro Paredes"
+foto = ExtResource("2_xh2wg")
+bandera = ExtResource("1_xh2wg")
+stat_ataque = 60
+stat_velocidad = 64
+stat_vida = 80
+estrellas = 2
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

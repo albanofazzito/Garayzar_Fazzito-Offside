@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="TrucoData" format=3 uid="uid://b23w31gwp4fgl"]
+
+[ext_resource type="Script" uid="uid://bl6k4oeqdr5vx" path="res://Scripts/datosTruco.gd" id="1_4ao3s"]
+[ext_resource type="Texture2D" uid="uid://n3ew0v06rbao" path="res://Sprites/Paises/Argentina/Bandera/banderaArgentina.png" id="1_i4uh4"]
+[ext_resource type="Texture2D" uid="uid://r8bdo6p4wiwy" path="res://Sprites/Paises/Argentina/Trucos/RobarCartas.jpg" id="2_syx6h"]
+
+[resource]
+script = ExtResource("1_4ao3s")
+tipo_efecto = 5
+valor = 3
+info = "MATEU LAHOZ"
+foto = ExtResource("2_syx6h")
+bandera = ExtResource("1_i4uh4")
+efecto = "Utiliza a este ladron parar robar 3 cartas del mazo"
+estrellas = 2
+metadata/_custom_type_script = "uid://bl6k4oeqdr5vx"
