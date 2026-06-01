@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://clunaetn2y7ld"]
 
 [ext_resource type="Script" uid="uid://b3yltocih240k" path="res://Scripts/Carta.gd" id="1_jopjk"]
-[ext_resource type="Texture2D" uid="uid://cmxkbnqmlrmk0" path="res://Sprites/Paises/Argentina/Futbolistas/Capitan/messi.png" id="2_lrvte"]
+[ext_resource type="Texture2D" uid="uid://cmxkbnqmlrmk0" path="res://Sprites/Paises/PaisesBajos/Futbolistas/Capitan/messi.png" id="2_lrvte"]
 [ext_resource type="Shader" uid="uid://b2063q262o3jp" path="res://Scripts/Carta.gdshader" id="2_srhn1"]
 [ext_resource type="Shader" uid="uid://duesf3x8ofuf6" path="res://Scripts/CartaJugador.gdshader" id="4_u7gos"]
 [ext_resource type="Shader" uid="uid://laj1l6kx5r0v" path="res://Scripts/CartaStat.gdshader" id="4_vy5sh"]
@@ -203,12 +203,12 @@ texture = ExtResource("5_66sx7")
 
 [node name="Coste" type="Label" parent="Base/RecipienteEstrellas" unique_id=1647795535]
 layout_mode = 0
-offset_left = 27.0
-offset_top = 7.0
-offset_right = 37.0
-offset_bottom = 30.0
-theme_override_colors/font_color = Color(0.7103104, 0.7050788, 0, 1)
-theme_override_constants/outline_size = 3
+offset_left = 25.333332
+offset_top = 1.9999695
+offset_right = 42.333332
+offset_bottom = 43.99997
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
 text = "0"
 
 [node name="InfoJugador" type="Label" parent="Base" unique_id=444611413]
@@ -548,12 +548,12 @@ texture = ExtResource("5_66sx7")
 
 [node name="Coste" type="Label" parent="BaseTruco/RecipienteEstrellas" unique_id=1115371402]
 layout_mode = 0
-offset_left = 27.0
-offset_top = 7.0
-offset_right = 37.0
-offset_bottom = 30.0
-theme_override_colors/font_color = Color(0.7103104, 0.7050788, 0, 1)
-theme_override_constants/outline_size = 3
+offset_left = 25.333332
+offset_top = 3.6666565
+offset_right = 39.333332
+offset_bottom = 38.666656
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
 text = "0"
 
 [node name="InfoTruco" type="Label" parent="BaseTruco" unique_id=918929632]

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://dtq4c5g3vufjx"]
+
+[ext_resource type="Texture2D" uid="uid://n3ew0v06rbao" path="res://Sprites/Paises/Argentina/Bandera/banderaArgentina.png" id="1_4p4ji"]
+[ext_resource type="Texture2D" uid="uid://c15g71j2bjvgu" path="res://Sprites/Paises/Argentina/Futbolistas/Delanteros/julianAlvarez (1).jpg" id="2_4p4ji"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_2bp2g"]
+
+[resource]
+script = ExtResource("3_2bp2g")
+posicion = 3
+info = "Julian Alvarez"
+foto = ExtResource("2_4p4ji")
+bandera = ExtResource("1_4p4ji")
+stat_ataque = 85
+stat_velocidad = 85
+stat_vida = 35
+estrellas = 5
+calidad = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

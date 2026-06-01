@@ -24,17 +24,22 @@ func _ready() -> void:
 
 func cargar_maso(p: JugadorData.Pais) -> void:
 	maso.clear()
-	var carpetas= ["res://Scripts/JugadoresData/", "res://Scripts/TrucosData/"]
-	for carpeta in carpetas:
-		var dir =DirAccess.open(carpeta)
-		if dir:
-			for archivo in dir.get_files():
-				if archivo.ends_with(".tres"):
-					var datos= load(carpeta + archivo)
-					if datos.pais ==p:
-						maso.append(carpeta + archivo)
+	_escanear_carpeta("res://Scripts/JugadoresData/", p)
+	_escanear_carpeta("res://Scripts/TrucosData/", p)
 	maso_actual =maso.duplicate()
 	maso_actual.shuffle()
+
+func _escanear_carpeta(ruta: String, p: JugadorData.Pais) -> void:
+	var dir= DirAccess.open(ruta)
+	if !dir:
+		return
+	for archivo in dir.get_files():
+		if archivo.ends_with(".tres"):
+			var datos =load(ruta + archivo)
+			if datos.pais ==p:
+				maso.append(ruta + archivo)
+	for subcarpeta in dir.get_directories():
+		_escanear_carpeta(ruta + subcarpeta + "/", p)
 
 func jugar_turno() -> void:
 	for slot in get_tree().get_nodes_in_group("slots_enemigo"):
@@ -46,7 +51,7 @@ func jugar_turno() -> void:
 func _intentar_colocar(slot: Slot) -> bool:
 	for i in maso_actual.size():
 		var datos =load(maso_actual[i])
-		if datos is JugadorData and datos.posicion ==slot.tipo and datos.estrellas <=estrellas:
+		if datos is JugadorData and _puede_ir(datos, slot) and datos.estrellas <=estrellas:
 			var carta= escenaCarta.instantiate() as Carta
 			add_child(carta)
 			carta.datos =datos
@@ -63,6 +68,13 @@ func _intentar_colocar(slot: Slot) -> bool:
 			_actualizar_label_estrellas()
 			return true
 	return false
+
+func _puede_ir(datos: JugadorData, slot: Slot) -> bool:
+	if datos.posicion ==JugadorData.Posicion.TODO:
+		return true
+	if datos.efecto_tipo ==JugadorData.EfectoJugador.MULTIPOSICION:
+		return slot.tipo !=JugadorData.Posicion.ARQUERO
+	return datos.posicion ==slot.tipo
 
 func sumar_estrella() -> void:  
 	estrellas_max +=1

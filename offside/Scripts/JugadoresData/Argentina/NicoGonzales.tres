@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://32chloj8q27"]
+
+[ext_resource type="Texture2D" uid="uid://n3ew0v06rbao" path="res://Sprites/Paises/Argentina/Bandera/banderaArgentina.png" id="1_in5ej"]
+[ext_resource type="Texture2D" uid="uid://djhdnhcexhm3l" path="res://Sprites/Paises/Argentina/Futbolistas/Delanteros/nicoGonzales (1).jpg" id="2_in5ej"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_5digm"]
+
+[resource]
+script = ExtResource("3_5digm")
+posicion = 3
+efecto_tipo = 1
+info = "Nicolas Gonzales"
+foto = ExtResource("2_in5ej")
+bandera = ExtResource("1_in5ej")
+efecto = "Nico Gonzales puedejugar en cualquier posicion, menos atajar"
+stat_ataque = 83
+stat_velocidad = 80
+stat_vida = 75
+estrellas = 7
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

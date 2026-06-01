@@ -3,8 +3,11 @@ extends Resource
 enum Calidad { BRONCE, PLATA, ORO, CAPITAN }
 enum Posicion {ARQUERO, DEFENSOR, MEDIOCAMPISTA, DELANTERO,TODO}
 enum Pais { ARGENTINA, BRASIL, FRANCIA, INGLATERRA, ALEMANIA, HOLANDA, ESPAÑA, PORTUGAL}
+enum EfectoJugador {NINGUNO, MULTIPOSICION, BUFF_ATAQUE_POR_TURNO, ESQUIVAR_CADA_2, RAGE_AL_GOL}
 @export var pais: Pais = Pais.ARGENTINA
 @export var posicion: Posicion= Posicion.ARQUERO
+@export var efecto_tipo: EfectoJugador= EfectoJugador.NINGUNO
+@export var efecto_valor: int= 0
 @export var info: String= ""
 @export var foto: Texture2D
 @export var bandera: Texture2D

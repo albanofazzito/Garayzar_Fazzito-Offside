@@ -15,31 +15,42 @@ var estrellas_max : int= 1
 
 var paisActual= JugadorData.Pais.ARGENTINA
 var escenaCarta= load("res://Escenas/Carta.tscn")
+var efecto_manager: EfectoManager
+var en_tutorial: bool = false
 func _ready() -> void:
+	efecto_manager =EfectoManager.new()
+	add_child(efecto_manager)
 	cargar_maso(paisActual)
 	_actualizar_label()
+	_robar_iniciales()
+	
 
+
+func _robar_iniciales() -> void:
+	for i in 3:
+		agregar()
+		await get_tree().create_timer(0.6).timeout
 
 func cargar_maso(pais: JugadorData.Pais) -> void:
 	maso.clear()
-	var carpetas = ["res://Scripts/JugadoresData/", "res://Scripts/TrucosData/"]
-	for carpeta in carpetas:
-		var dir = DirAccess.open(carpeta)
-		if dir:
-			for archivo in dir.get_files():
-				if archivo.ends_with(".tres"):
-					var carta = load(carpeta + archivo)
-					if carta.pais == pais:
-						maso.append(carpeta + archivo)
+	_escanear_carpeta("res://Scripts/JugadoresData/", pais)
+	_escanear_carpeta("res://Scripts/TrucosData/", pais)
 	maso_actual = maso.duplicate()
 	maso_actual.shuffle()
 
+func _escanear_carpeta(ruta: String, pais: JugadorData.Pais) -> void:
+	var dir =DirAccess.open(ruta)
+	if !dir:
+		return
+	for archivo in dir.get_files():
+		if archivo.ends_with(".tres"):
+			var carta= load(ruta + archivo)
+			if carta.pais ==pais:
+				maso.append(ruta + archivo)
+	for subcarpeta in dir.get_directories():
+		_escanear_carpeta(ruta + subcarpeta + "/", pais)
 
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey and cartas.size()<cartas_max:
-		if event.keycode == KEY_SPACE and event.pressed:
-			agregar()
 
 func cargar_jugador(ruta: String) -> Resource:
 	return load(ruta) 
@@ -60,6 +71,39 @@ func agregar() -> void:
 		carti.get_node("Base/RecipienteEstrellas/Coste").text =str(datos.estrellas)
 	cartas.append(carti)
 	orden()
+	_animar_entrada(carti)
+
+func _animar_entrada(carti: Carta) -> void:
+	var viewport_size =get_viewport().get_visible_rect().size
+	var centro_pantalla =to_local(Vector2(viewport_size.x / 2.0, viewport_size.y / 2.0 + 80.0))
+	var pos_destino =Vector2(carti.posicion_original.x, carti.posicion_original.y + Carta.y_oculto)
+	var pivot_local =Vector2(0, -176.0)
+	
+	carti.position =centro_pantalla
+	carti.scale =Vector2(0.0, 0.0)
+	carti.rotation =0.0
+	carti.modulate.a =0.0
+	carti.z_index =10
+	
+	var tw =carti.create_tween()
+	tw.tween_property(carti, "scale", Vector2(0.72, 0.72), 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tw.parallel().tween_property(carti, "modulate:a", 1.0, 0.15)
+	tw.parallel().tween_method(func(angulo: float):
+		carti.rotation =angulo
+		var offset =pivot_local * carti.scale.x
+		carti.position =centro_pantalla + offset - offset.rotated(angulo)
+	, 0.0, deg_to_rad(720.0), 0.4).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	
+	tw.tween_property(carti, "scale", Vector2(0.66, 0.66), 0.12).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	tw.tween_property(carti, "scale", Vector2(0.7, 0.7), 0.1).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tw.tween_interval(0.4)
+	
+	tw.tween_property(carti, "rotation", 0.0, 0.0)
+	tw.tween_callback(func(): carti.position =centro_pantalla)
+	tw.tween_property(carti, "position", pos_destino, 0.4).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	tw.parallel().tween_property(carti, "scale", Vector2(0.6, 0.6), 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tw.tween_property(carti, "rotation", carti.rotacion_original, 0.15).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tw.tween_property(carti, "z_index", 0, 0.0)
 
 func sacar(escenaCarta) -> void:
 	cartas.erase(escenaCarta)
@@ -107,6 +151,17 @@ func sumar_estrella() -> void:
 func gastar_estrellas(costo : int) -> void:
 	estrellas =max(0, estrellas - costo)
 	_actualizar_label()
+
+func jugar_truco(carta: Carta, columna: int) -> void:
+	gastar_estrellas(carta.datos.estrellas)
+	efecto_manager.ejecutar(carta.datos as TrucoData, self, columna)
+	cartas.erase(carta)
+	var tw =carta.create_tween()
+	tw.tween_property(carta, "scale", Vector2(1.3, 1.3), 0.08)
+	tw.tween_property(carta, "modulate:a", 0.0, 0.2)
+	await tw.finished
+	carta.queue_free()
+	orden()
 
 func _actualizar_label() -> void:
 	label_estrellas.text =str(estrellas) + "/" +str(estrellas_max)

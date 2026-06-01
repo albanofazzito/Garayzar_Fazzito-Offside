@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://bxa26kbm4vrp5"]
+
+[ext_resource type="Texture2D" uid="uid://n3ew0v06rbao" path="res://Sprites/Paises/Argentina/Bandera/banderaArgentina.png" id="1_l6fnl"]
+[ext_resource type="Texture2D" uid="uid://bp3ubt8kjvlbe" path="res://Sprites/Paises/Argentina/Futbolistas/Medios/mastantuono (1).jpg" id="2_l6fnl"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_gqqy6"]
+
+[resource]
+script = ExtResource("3_gqqy6")
+posicion = 2
+info = "Franco Mastantuono"
+foto = ExtResource("2_l6fnl")
+bandera = ExtResource("1_l6fnl")
+stat_ataque = 75
+stat_velocidad = 80
+stat_vida = 10
+estrellas = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"
