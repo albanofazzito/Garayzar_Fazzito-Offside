@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://b62mm6hj8ot7t"]
+
+[ext_resource type="Texture2D" uid="uid://cktlxpqlt7us8" path="res://Sprites/Paises/Francia/Bandera/banderaFrancia.png" id="1_x5k4d"]
+[ext_resource type="Texture2D" uid="uid://dbbuxa6ky1ktr" path="res://Sprites/Paises/Francia/Futbolistas/Medios/kone (2).jpg" id="2_x5k4d"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_oqdc2"]
+
+[resource]
+script = ExtResource("3_oqdc2")
+pais = 2
+posicion = 2
+info = "Manu Kone"
+foto = ExtResource("2_x5k4d")
+bandera = ExtResource("1_x5k4d")
+stat_ataque = 74
+stat_velocidad = 74
+stat_vida = 74
+estrellas = 4
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

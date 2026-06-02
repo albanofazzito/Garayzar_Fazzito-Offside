@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://kxbdquul1754"]
 
 [ext_resource type="Script" uid="uid://dqbjif1gqi2rc" path="res://Scripts/Menu/Semis.gd" id="1_4ll7e"]
-[ext_resource type="Texture2D" uid="uid://xbq7i5hngm1h" path="res://Sprites/Fases/Semis.jpg" id="1_r2qlh"]
+[ext_resource type="Texture2D" uid="uid://xbq7i5hngm1h" path="res://Sprites/Menus/Semis.jpg" id="1_r2qlh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ll7e"]
 bg_color = Color(0.9641623, 0.22069371, 0, 1)

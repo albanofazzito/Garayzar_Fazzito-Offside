@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://cm3f677b7vvi0"]
+
+[ext_resource type="Texture2D" uid="uid://cktlxpqlt7us8" path="res://Sprites/Paises/Francia/Bandera/banderaFrancia.png" id="1_a2d8j"]
+[ext_resource type="Texture2D" uid="uid://cu1t8advufyfo" path="res://Sprites/Paises/Francia/Futbolistas/Delanteros/barcola (1).jpg" id="2_a2d8j"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_ycd03"]
+
+[resource]
+script = ExtResource("3_ycd03")
+pais = 2
+posicion = 3
+info = "Bradley Barcola"
+foto = ExtResource("2_a2d8j")
+bandera = ExtResource("1_a2d8j")
+stat_ataque = 77
+stat_velocidad = 90
+stat_vida = 40
+estrellas = 5
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://cc84k3lix2udi"]
+
+[ext_resource type="Texture2D" uid="uid://cktlxpqlt7us8" path="res://Sprites/Paises/Francia/Bandera/banderaFrancia.png" id="1_sr3y8"]
+[ext_resource type="Texture2D" uid="uid://ptdl4mlcpwq6" path="res://Sprites/Paises/Francia/Futbolistas/Defensores/lacroix (1).jpg" id="2_sr3y8"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_xoue7"]
+
+[resource]
+script = ExtResource("3_xoue7")
+pais = 2
+posicion = 1
+info = "Maxence Lacroix"
+foto = ExtResource("2_sr3y8")
+bandera = ExtResource("1_sr3y8")
+stat_ataque = 30
+stat_velocidad = 90
+stat_vida = 80
+estrellas = 4
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

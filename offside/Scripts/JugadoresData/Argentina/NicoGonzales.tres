@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("3_5digm")
-posicion = 3
+posicion = 4
 efecto_tipo = 1
 info = "Nicolas Gonzales"
 foto = ExtResource("2_in5ej")

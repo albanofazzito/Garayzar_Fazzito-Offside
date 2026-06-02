@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://cad2utd66s7pw"]
+
+[ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="1_kf6ju"]
+[ext_resource type="Texture2D" uid="uid://71yqldrpyd0y" path="res://Sprites/Paises/Brasil/Futbolistas/Medios/danilloMedio (1).jpg" id="2_kf6ju"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_vkd3d"]
+
+[resource]
+script = ExtResource("3_vkd3d")
+pais = 1
+posicion = 2
+info = "Danilo Santos"
+foto = ExtResource("2_kf6ju")
+bandera = ExtResource("1_kf6ju")
+stat_ataque = 60
+stat_velocidad = 75
+stat_vida = 70
+estrellas = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

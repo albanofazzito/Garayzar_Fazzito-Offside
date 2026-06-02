@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://xhop8grg1fei"]
+
+[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png" id="1_gan4n"]
+[ext_resource type="Texture2D" uid="uid://ds70umvwkn5x5" path="res://Sprites/Paises/Portugal/Futbolistas/Arqueros/rui silva (1).jpeg" id="2_gan4n"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_47rmv"]
+
+[resource]
+script = ExtResource("3_47rmv")
+pais = 7
+info = "Rui Silva"
+foto = ExtResource("2_gan4n")
+bandera = ExtResource("1_gan4n")
+stat_ataque = 15
+stat_velocidad = 35
+stat_vida = 80
+estrellas = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

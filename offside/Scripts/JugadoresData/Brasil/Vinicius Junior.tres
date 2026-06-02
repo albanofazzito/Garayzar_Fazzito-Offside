@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://bm7w13b6xwatd"]
+
+[ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="1_xbh5e"]
+[ext_resource type="Texture2D" uid="uid://b2nt3i1god4kt" path="res://Sprites/Paises/Brasil/Futbolistas/Delanteros/vinisiu (1).jpeg" id="2_xbh5e"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_id87s"]
+
+[resource]
+script = ExtResource("3_id87s")
+pais = 1
+posicion = 3
+info = "Vinicius Junior"
+foto = ExtResource("2_xbh5e")
+bandera = ExtResource("1_xbh5e")
+stat_ataque = 82
+stat_velocidad = 92
+stat_vida = 33
+estrellas = 7
+calidad = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

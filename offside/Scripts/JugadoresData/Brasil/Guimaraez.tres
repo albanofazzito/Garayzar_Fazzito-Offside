@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://4dupp1r21r3x"]
+
+[ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="1_3x27t"]
+[ext_resource type="Texture2D" uid="uid://csax8bk7cktv0" path="res://Sprites/Paises/Brasil/Futbolistas/Medios/brunoGuimaraez (1).jpg" id="2_3x27t"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_vwr07"]
+
+[resource]
+script = ExtResource("3_vwr07")
+pais = 1
+posicion = 2
+info = "Bruno Guimarães"
+foto = ExtResource("2_3x27t")
+bandera = ExtResource("1_3x27t")
+stat_ataque = 77
+stat_velocidad = 66
+stat_vida = 82
+estrellas = 5
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

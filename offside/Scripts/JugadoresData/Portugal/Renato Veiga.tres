@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://d0phbd1sgrmu2"]
+
+[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png" id="1_jvaj4"]
+[ext_resource type="Texture2D" uid="uid://dywv3ggjvefwr" path="res://Sprites/Paises/Portugal/Futbolistas/Defensores/gonzaloignasio (1).jpg" id="2_jy073"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_qrm34"]
+
+[resource]
+script = ExtResource("3_qrm34")
+pais = 7
+posicion = 1
+info = "Renato Veiga"
+foto = ExtResource("2_jy073")
+bandera = ExtResource("1_jvaj4")
+stat_ataque = 20
+stat_velocidad = 63
+stat_vida = 75
+estrellas = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

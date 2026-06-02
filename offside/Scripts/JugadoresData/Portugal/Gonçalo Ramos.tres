@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://deduaswox6gk2"]
+
+[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png" id="1_uw8dl"]
+[ext_resource type="Texture2D" uid="uid://c67nlqoc3278x" path="res://Sprites/Paises/Portugal/Futbolistas/Delanteros/nemi (1).jpg" id="2_uw8dl"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_qnra7"]
+
+[resource]
+script = ExtResource("3_qnra7")
+pais = 7
+posicion = 3
+info = "Gonçalo Ramos"
+foto = ExtResource("2_uw8dl")
+bandera = ExtResource("1_uw8dl")
+stat_ataque = 80
+stat_velocidad = 75
+stat_vida = 30
+estrellas = 3
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

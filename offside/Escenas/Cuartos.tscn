@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://nmu4itad7ejn"]
 
 [ext_resource type="Script" uid="uid://gu1cj45piscm" path="res://Scripts/Menu/Cuartos.gd" id="1_bt8dc"]
-[ext_resource type="Texture2D" uid="uid://hvk4d82h6p6v" path="res://Sprites/Fases/Cuartos.png" id="2_pud0s"]
+[ext_resource type="Texture2D" uid="uid://hvk4d82h6p6v" path="res://Sprites/Menus/Cuartos.png" id="2_pud0s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xybgw"]
 bg_color = Color(0.9641623, 0.22069371, 0, 1)

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://b20vafen3esri"]
+
+[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png" id="1_t15fe"]
+[ext_resource type="Texture2D" uid="uid://dw0rlbps0aowg" path="res://Sprites/Paises/Portugal/Futbolistas/Medios/samuCosta (1).jpg" id="2_t15fe"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_3v7a4"]
+
+[resource]
+script = ExtResource("3_3v7a4")
+pais = 7
+posicion = 2
+info = "Samuel Costa"
+foto = ExtResource("2_t15fe")
+bandera = ExtResource("1_t15fe")
+stat_ataque = 65
+stat_velocidad = 60
+stat_vida = 75
+estrellas = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

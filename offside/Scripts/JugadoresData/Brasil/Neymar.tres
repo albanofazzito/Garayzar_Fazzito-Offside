@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://rpk671nsep4a"]
+
+[ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="1_jvdl0"]
+[ext_resource type="Texture2D" uid="uid://ba8ics1xiq74g" path="res://Sprites/Paises/Brasil/Futbolistas/Capitan/neymar (1).jpg" id="2_vsgxw"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_yr2vg"]
+
+[resource]
+script = ExtResource("3_yr2vg")
+pais = 1
+posicion = 3
+info = "Neymar Jr"
+foto = ExtResource("2_vsgxw")
+bandera = ExtResource("1_jvdl0")
+efecto = "Al principe que no hacepto la corona no le afectan los trucos"
+stat_ataque = 96
+stat_velocidad = 96
+stat_vida = 40
+estrellas = 10
+calidad = 3
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

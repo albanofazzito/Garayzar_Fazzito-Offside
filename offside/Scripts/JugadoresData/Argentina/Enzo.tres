@@ -13,6 +13,6 @@ bandera = ExtResource("1_keo5j")
 stat_ataque = 78
 stat_velocidad = 75
 stat_vida = 78
-estrellas = 3
+estrellas = 6
 calidad = 2
 metadata/_custom_type_script = "uid://d32sgjinvbpge"

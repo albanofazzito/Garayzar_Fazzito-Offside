@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://bosefpvw0yidr"]
+
+[ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="1_qo7g7"]
+[ext_resource type="Texture2D" uid="uid://dhpdff76ghont" path="res://Sprites/Paises/Brasil/Futbolistas/Defensores/gabriel (1).jpg" id="2_rxlcw"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_g2ox7"]
+
+[resource]
+script = ExtResource("3_g2ox7")
+pais = 1
+posicion = 1
+info = "Gabriel Magalhães"
+foto = ExtResource("2_rxlcw")
+bandera = ExtResource("1_qo7g7")
+efecto = "Un turno ataca, pero al siguiente erra su ataque al no saber patear"
+stat_ataque = 85
+stat_velocidad = 90
+stat_vida = 95
+estrellas = 2
+calidad = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

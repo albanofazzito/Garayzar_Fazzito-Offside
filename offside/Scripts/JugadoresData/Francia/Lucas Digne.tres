@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://ddhs4hs5jc833"]
+
+[ext_resource type="Texture2D" uid="uid://cktlxpqlt7us8" path="res://Sprites/Paises/Francia/Bandera/banderaFrancia.png" id="1_uq5j4"]
+[ext_resource type="Texture2D" uid="uid://di13s2brpckgx" path="res://Sprites/Paises/Francia/Futbolistas/Defensores/digne (1).jpg" id="2_uq5j4"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_okuap"]
+
+[resource]
+script = ExtResource("3_okuap")
+pais = 2
+posicion = 1
+info = "Lucas Digne"
+foto = ExtResource("2_uq5j4")
+bandera = ExtResource("1_uq5j4")
+stat_ataque = 55
+stat_velocidad = 65
+stat_vida = 77
+estrellas = 4
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

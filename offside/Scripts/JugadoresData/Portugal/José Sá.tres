@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://bt1jq0c5b65ca"]
+
+[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png" id="1_112qy"]
+[ext_resource type="Texture2D" uid="uid://dywuiegvt4qep" path="res://Sprites/Paises/Portugal/Futbolistas/Arqueros/jose sa (1).jpg" id="2_112qy"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_5jhur"]
+
+[resource]
+script = ExtResource("3_5jhur")
+pais = 7
+info = "José Sá"
+foto = ExtResource("2_112qy")
+bandera = ExtResource("1_112qy")
+stat_ataque = 17
+stat_velocidad = 40
+stat_vida = 80
+estrellas = 4
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

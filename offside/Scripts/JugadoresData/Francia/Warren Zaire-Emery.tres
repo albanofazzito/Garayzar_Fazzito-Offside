@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://b3as1t6wrq6e"]
+
+[ext_resource type="Texture2D" uid="uid://cktlxpqlt7us8" path="res://Sprites/Paises/Francia/Bandera/banderaFrancia.png" id="1_3q1pi"]
+[ext_resource type="Texture2D" uid="uid://cdj10ybob70ps" path="res://Sprites/Paises/Francia/Futbolistas/Medios/zairexd (1).jpg" id="2_3q1pi"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_gstaa"]
+
+[resource]
+script = ExtResource("3_gstaa")
+pais = 2
+posicion = 1
+info = "Warren Zaire-Emery"
+foto = ExtResource("2_3q1pi")
+bandera = ExtResource("1_3q1pi")
+stat_ataque = 65
+stat_velocidad = 80
+stat_vida = 75
+estrellas = 5
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

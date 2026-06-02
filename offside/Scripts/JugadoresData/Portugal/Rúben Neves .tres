@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://kifh53vtkrgb"]
+
+[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png" id="1_16xan"]
+[ext_resource type="Texture2D" uid="uid://725316d5mqq3" path="res://Sprites/Paises/Portugal/Futbolistas/Medios/rubenNeves (1).jpg" id="2_16xan"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_ginu2"]
+
+[resource]
+script = ExtResource("3_ginu2")
+pais = 7
+posicion = 2
+info = "Rúben Neves "
+foto = ExtResource("2_16xan")
+bandera = ExtResource("1_16xan")
+efecto = "Nunca olvidara a su mejor amigo, invoca una carta de diogo jota"
+stat_ataque = 75
+stat_velocidad = 30
+stat_vida = 77
+estrellas = 7
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

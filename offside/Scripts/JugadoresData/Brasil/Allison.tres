@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://b7dx1rv26tgv"]
+
+[ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="1_fb6wj"]
+[ext_resource type="Texture2D" uid="uid://cl3msn6k61fbv" path="res://Sprites/Paises/Brasil/Futbolistas/Arqueros/allison (1).jpg" id="2_fb6wj"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_ok6wj"]
+
+[resource]
+script = ExtResource("3_ok6wj")
+pais = 1
+info = "Allison"
+foto = ExtResource("2_fb6wj")
+bandera = ExtResource("1_fb6wj")
+stat_ataque = 35
+stat_velocidad = 65
+stat_vida = 94
+estrellas = 5
+calidad = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

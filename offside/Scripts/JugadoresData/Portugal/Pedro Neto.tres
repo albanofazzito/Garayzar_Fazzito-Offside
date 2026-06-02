@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://cn45h613p78yc"]
+
+[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png" id="1_ugwok"]
+[ext_resource type="Texture2D" uid="uid://cg6lfyygs3cog" path="res://Sprites/Paises/Portugal/Futbolistas/Delanteros/pedroNeto (1).jpg" id="2_ugwok"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_440hw"]
+
+[resource]
+script = ExtResource("3_440hw")
+pais = 7
+posicion = 3
+info = "Francisco Trincão"
+foto = ExtResource("2_ugwok")
+bandera = ExtResource("1_ugwok")
+stat_ataque = 76
+stat_velocidad = 91
+stat_vida = 40
+estrellas = 5
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"
