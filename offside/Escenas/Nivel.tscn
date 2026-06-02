@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://ccg33ron5hdu8" path="res://Scripts/VidaBase.gd" id="8_vidabase"]
 [ext_resource type="Script" uid="uid://bm5n008oa2d5g" path="res://Scripts/Nivel.gd" id="9_nivel"]
 [ext_resource type="Texture2D" uid="uid://bm1ppkpi2o5gv" path="res://Sprites/Paises/Portugal/PantallaDerrota.png" id="10_sxaxo"]
-[ext_resource type="Script" uid="uid://dkkoxgxgsvr34" path="res://Scripts/Tutorial.gd" id="11_tutorial"]
+[ext_resource type="Script" path="res://Scripts/Tutorial.gd" id="11_tutorial"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hxvt1"]
 bg_color = Color(1, 0.4252191, 0.31822595, 0.2784314)
