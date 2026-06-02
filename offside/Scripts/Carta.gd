@@ -117,12 +117,15 @@ func _input(event: InputEvent) -> void:
 			rotacion_original =0.0
 			animar(destino, 0.0)
 		else:
-			animar(posicion_original, rotacion_original)
+			animar(Vector2(posicion_original.x, posicion_original.y + y_oculto), rotacion_original)
 		get_viewport().set_input_as_handled()
 		return
 
 	const UMBRAL_VISIBLE :=150.0
 	if y_oculto > UMBRAL_VISIBLE:
+		return
+
+	if not get_parent() is Mano:
 		return
 
 	if event is InputEventMouseMotion:
@@ -176,11 +179,22 @@ func voltear() -> void:
 			z_index =0
 
 func _puede_ir_en_slot(slot: Slot) -> bool:
-	if datos.posicion ==JugadorData.Posicion.TODO:
+	if datos.posicion== JugadorData.Posicion.TODO:
 		return true
-	if datos.efecto_tipo ==JugadorData.EfectoJugador.MULTIPOSICION:
-		return slot.tipo !=JugadorData.Posicion.ARQUERO
-	return slot.tipo ==datos.posicion
+	if datos.efecto_tipo== JugadorData.EfectoJugador.MULTIPOSICION:
+		return true
+	match slot.columna:
+		0:
+			return datos.posicion== JugadorData.Posicion.ARQUERO or datos.posicion ==JugadorData.Posicion.DEFENSOR
+		1:
+			return datos.posicion ==JugadorData.Posicion.DEFENSOR
+		2:
+			return datos.posicion== JugadorData.Posicion.MEDIOCAMPISTA
+		3:
+			return datos.posicion ==JugadorData.Posicion.MEDIOCAMPISTA or datos.posicion== JugadorData.Posicion.DELANTERO
+		4:
+			return datos.posicion ==JugadorData.Posicion.DELANTERO
+	return false
 
 #usa esto para animar cartas cualquier cosa
 func animar(pos_destino: Vector2, rot_destino: float) -> void:

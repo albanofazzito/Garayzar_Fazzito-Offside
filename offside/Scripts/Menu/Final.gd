@@ -8,4 +8,5 @@ func _on_button_pressed() -> void:
 
 
 func _on_button_2_pressed() -> void:
+	Global.escenario_actual= Global.Escenario.FINAL
 	get_tree().change_scene_to_file(SiguienteNivel)
