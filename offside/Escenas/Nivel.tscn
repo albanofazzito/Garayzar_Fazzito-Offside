@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://ccg33ron5hdu8" path="res://Scripts/VidaBase.gd" id="8_vidabase"]
 [ext_resource type="Script" uid="uid://bm5n008oa2d5g" path="res://Scripts/Nivel.gd" id="9_nivel"]
 [ext_resource type="Texture2D" uid="uid://bm1ppkpi2o5gv" path="res://Sprites/Paises/Portugal/PantallaDerrota.png" id="10_sxaxo"]
-[ext_resource type="Script" path="res://Scripts/Tutorial.gd" id="11_tutorial"]
+[ext_resource type="Script" uid="uid://dkkoxgxgsvr34" path="res://Scripts/Tutorial.gd" id="11_tutorial"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hxvt1"]
 bg_color = Color(1, 0.4252191, 0.31822595, 0.2784314)
@@ -151,7 +151,8 @@ script = ExtResource("1_ctkg4")
 columna = 4
 
 [node name="ManoEnemigo" type="Node2D" parent="." unique_id=269307096 node_paths=PackedStringArray("batalla_manager", "boton_turno", "label_estrellas_enemigo")]
-position = Vector2(573, 285)
+z_index = -1
+position = Vector2(574, -133)
 script = ExtResource("4_of526")
 batalla_manager = NodePath("../BatallaManager")
 boton_turno = NodePath("../PasarTurno")
@@ -287,15 +288,16 @@ script = ExtResource("11_tutorial")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color(0, 0, 0, 0.75)
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Recuadro" type="Panel" parent="Tutorial" unique_id=1659170104]
+[node name="Recuadro" type="Panel" parent="Tutorial"]
 offset_right = 200.0
 offset_bottom = 100.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tuto")
 
-[node name="Texto" type="Label" parent="Tutorial" unique_id=937039086]
+[node name="Texto" type="Label" parent="Tutorial"]
 offset_right = 550.0
 offset_bottom = 130.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -303,7 +305,7 @@ theme_override_font_sizes/font_size = 18
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Indicador" type="Label" parent="Tutorial" unique_id=1261743939]
+[node name="Indicador" type="Label" parent="Tutorial"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -315,7 +317,7 @@ theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
 theme_override_font_sizes/font_size = 14
 horizontal_alignment = 2
 
-[node name="Flecha" type="Label" parent="Tutorial" unique_id=569839043]
+[node name="Flecha" type="Label" parent="Tutorial"]
 visible = false
 offset_right = 30.0
 offset_bottom = 35.0
