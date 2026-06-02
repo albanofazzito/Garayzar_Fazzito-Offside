@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://db5bdj8g10ak5"]
+
+[ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="1_3jd6h"]
+[ext_resource type="Texture2D" uid="uid://bn82ucqrt20tw" path="res://Sprites/Paises/Brasil/Futbolistas/Defensores/douglassantos (1).png" id="2_3jd6h"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_8uq4q"]
+
+[resource]
+script = ExtResource("3_8uq4q")
+pais = 1
+posicion = 1
+info = "Douglas Santos"
+foto = ExtResource("2_3jd6h")
+bandera = ExtResource("1_3jd6h")
+stat_ataque = 35
+stat_velocidad = 80
+stat_vida = 70
+estrellas = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

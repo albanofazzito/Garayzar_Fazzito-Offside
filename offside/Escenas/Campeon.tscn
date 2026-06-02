@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b3d8ka05wx68"]
 
 [ext_resource type="Script" uid="uid://cibp278o4sw4i" path="res://Scripts/Menu/Campeon.gd" id="1_htxk5"]
-[ext_resource type="Texture2D" uid="uid://kfxn52ldhhe6" path="res://Sprites/Fases/Campeon (1).png" id="1_i7uid"]
+[ext_resource type="Texture2D" uid="uid://kfxn52ldhhe6" path="res://Sprites/Menus/Campeon (1).png" id="1_i7uid"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7uid"]
 bg_color = Color(0.9641623, 0.22069371, 0, 1)

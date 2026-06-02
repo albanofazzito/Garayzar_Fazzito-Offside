@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://o6s806b83hnn"]
+
+[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png" id="1_argyj"]
+[ext_resource type="Texture2D" uid="uid://ga6dtt30st4q" path="res://Sprites/Paises/Portugal/Futbolistas/Delanteros/leao (1).jpg" id="2_argyj"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_q11xv"]
+
+[resource]
+script = ExtResource("3_q11xv")
+pais = 7
+posicion = 3
+info = "Francisco Trincão"
+foto = ExtResource("2_argyj")
+bandera = ExtResource("1_argyj")
+efecto = "Nunca para de sonreir, al final del turno aumenta su vida en 20 puntos"
+stat_ataque = 78
+stat_velocidad = 95
+stat_vida = 30
+estrellas = 7
+calidad = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

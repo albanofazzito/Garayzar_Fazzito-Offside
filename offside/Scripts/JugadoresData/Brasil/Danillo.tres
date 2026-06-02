@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://b0y8f5cfv4ww1"]
+
+[ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="1_xue7d"]
+[ext_resource type="Texture2D" uid="uid://b2lh1nklthbcq" path="res://Sprites/Paises/Brasil/Futbolistas/Defensores/danillo (1).jpg" id="2_xue7d"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_c4jnv"]
+
+[resource]
+script = ExtResource("3_c4jnv")
+pais = 1
+posicion = 1
+info = "Danillo"
+foto = ExtResource("2_xue7d")
+bandera = ExtResource("1_xue7d")
+stat_ataque = 70
+stat_velocidad = 67
+stat_vida = 70
+estrellas = 4
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

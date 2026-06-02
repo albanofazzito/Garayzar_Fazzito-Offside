@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://b4fn8uav2jd2b"]
+
+[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png" id="1_legkw"]
+[ext_resource type="Texture2D" uid="uid://b3hao4srckltd" path="res://Sprites/Paises/Portugal/Futbolistas/Defensores/semedo (1).jpeg" id="2_legkw"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_0ckjl"]
+
+[resource]
+script = ExtResource("3_0ckjl")
+pais = 7
+posicion = 1
+info = "Nélson Semedo"
+foto = ExtResource("2_legkw")
+bandera = ExtResource("1_legkw")
+stat_ataque = 25
+stat_velocidad = 79
+stat_vida = 73
+estrellas = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

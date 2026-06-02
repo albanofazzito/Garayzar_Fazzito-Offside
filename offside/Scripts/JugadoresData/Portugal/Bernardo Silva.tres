@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://ca1m2rhasghyn"]
+
+[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png" id="1_ifck3"]
+[ext_resource type="Texture2D" uid="uid://2h3xs8dkojvq" path="res://Sprites/Paises/Portugal/Futbolistas/Medios/bernardo (1).jpg" id="2_ifck3"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_0af57"]
+
+[resource]
+script = ExtResource("3_0af57")
+pais = 7
+posicion = 2
+info = "Bernardo Silva"
+foto = ExtResource("2_ifck3")
+bandera = ExtResource("1_ifck3")
+stat_ataque = 78
+stat_velocidad = 61
+stat_vida = 71
+estrellas = 4
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

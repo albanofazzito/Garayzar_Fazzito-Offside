@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://es2i7n8iwec0"]
+
+[ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="1_bjhty"]
+[ext_resource type="Texture2D" uid="uid://b4n10view2ank" path="res://Sprites/Paises/Brasil/Futbolistas/Delanteros/cunha (1).jpg" id="2_bjhty"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_ivka4"]
+
+[resource]
+script = ExtResource("3_ivka4")
+pais = 1
+posicion = 3
+info = "Matheus Cunha "
+foto = ExtResource("2_bjhty")
+bandera = ExtResource("1_bjhty")
+stat_ataque = 85
+stat_velocidad = 77
+stat_vida = 40
+estrellas = 4
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

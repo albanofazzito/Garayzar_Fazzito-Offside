@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://c5tf5vwujs3l5"]
+
+[ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="1_vw70h"]
+[ext_resource type="Texture2D" uid="uid://b2tidn561h0ji" path="res://Sprites/Paises/Brasil/Futbolistas/Delanteros/igorThiago (1).jpg" id="2_vw70h"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_obe7i"]
+
+[resource]
+script = ExtResource("3_obe7i")
+pais = 1
+posicion = 3
+info = "Igor Thiago "
+foto = ExtResource("2_vw70h")
+bandera = ExtResource("1_vw70h")
+stat_ataque = 90
+stat_velocidad = 20
+stat_vida = 90
+estrellas = 7
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://05ag2orw1745"]
+
+[ext_resource type="Texture2D" uid="uid://cktlxpqlt7us8" path="res://Sprites/Paises/Francia/Bandera/banderaFrancia.png" id="1_6c5gv"]
+[ext_resource type="Texture2D" uid="uid://cq8hryvk3es8x" path="res://Sprites/Paises/Francia/Futbolistas/Delanteros/akliouche (1).jpg" id="2_6c5gv"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_ugnku"]
+
+[resource]
+script = ExtResource("3_ugnku")
+pais = 2
+posicion = 3
+info = "Maghnes Akliouche"
+foto = ExtResource("2_6c5gv")
+bandera = ExtResource("1_6c5gv")
+stat_ataque = 70
+stat_velocidad = 74
+stat_vida = 48
+estrellas = 3
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

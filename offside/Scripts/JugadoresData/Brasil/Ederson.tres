@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://11as4h4onkwh"]
+
+[ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="1_ya401"]
+[ext_resource type="Texture2D" uid="uid://cyjrni24md63r" path="res://Sprites/Paises/Brasil/Futbolistas/Arqueros/ederson (1).jpg" id="2_iuikd"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_1kcmi"]
+
+[resource]
+script = ExtResource("3_1kcmi")
+pais = 1
+info = "Ederson"
+foto = ExtResource("2_iuikd")
+bandera = ExtResource("1_ya401")
+stat_ataque = 40
+stat_velocidad = 80
+stat_vida = 84
+estrellas = 7
+calidad = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://b3jxmnav8l002"]
+
+[ext_resource type="Texture2D" uid="uid://cktlxpqlt7us8" path="res://Sprites/Paises/Francia/Bandera/banderaFrancia.png" id="1_pl3b4"]
+[ext_resource type="Texture2D" uid="uid://doxdc2h6ropen" path="res://Sprites/Paises/Francia/Futbolistas/Arqueros/rissier (1).jpg" id="2_pl3b4"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_wwupf"]
+
+[resource]
+script = ExtResource("3_wwupf")
+pais = 2
+info = "Robin Risser"
+foto = ExtResource("2_pl3b4")
+bandera = ExtResource("1_pl3b4")
+stat_ataque = 20
+stat_velocidad = 70
+stat_vida = 70
+estrellas = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

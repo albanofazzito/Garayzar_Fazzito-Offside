@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://dreaspiylmoci"]
+
+[ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="1_3nls2"]
+[ext_resource type="Texture2D" uid="uid://b2ta8e6qhnti6" path="res://Sprites/Paises/Brasil/Futbolistas/Medios/fabinho (1).jpg" id="2_3nls2"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_6bngv"]
+
+[resource]
+script = ExtResource("3_6bngv")
+pais = 1
+posicion = 2
+info = "Fabinho"
+foto = ExtResource("2_3nls2")
+bandera = ExtResource("1_3nls2")
+stat_ataque = 69
+stat_velocidad = 50
+stat_vida = 81
+estrellas = 4
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

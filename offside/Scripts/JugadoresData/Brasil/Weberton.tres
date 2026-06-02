@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://bwrwr0inx271v"]
+
+[ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="1_ok8se"]
+[ext_resource type="Texture2D" uid="uid://bpsedx3oxn53j" path="res://Sprites/Paises/Brasil/Futbolistas/Arqueros/weberton (1).jpg" id="2_ya401"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_ygcpx"]
+
+[resource]
+script = ExtResource("3_ygcpx")
+pais = 1
+info = "Weverton"
+foto = ExtResource("2_ya401")
+bandera = ExtResource("1_ok8se")
+stat_ataque = 20
+stat_velocidad = 20
+stat_vida = 80
+estrellas = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

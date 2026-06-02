@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://dlv1kyfh5m4j4"]
+
+[ext_resource type="Texture2D" uid="uid://cktlxpqlt7us8" path="res://Sprites/Paises/Francia/Bandera/banderaFrancia.png" id="1_53ifr"]
+[ext_resource type="Texture2D" uid="uid://cdc235u4or4pp" path="res://Sprites/Paises/Francia/Futbolistas/Delanteros/dembow (1).jpg" id="2_53ifr"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_j5jtl"]
+
+[resource]
+script = ExtResource("3_j5jtl")
+pais = 2
+posicion = 3
+info = "Ousmane Dembele"
+foto = ExtResource("2_53ifr")
+bandera = ExtResource("1_53ifr")
+stat_ataque = 88
+stat_velocidad = 93
+stat_vida = 50
+estrellas = 9
+calidad = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

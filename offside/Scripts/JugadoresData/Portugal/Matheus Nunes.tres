@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://bhoairs2q1g5v"]
+
+[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png" id="1_evrif"]
+[ext_resource type="Texture2D" uid="uid://cyrlgnnmbnqvx" path="res://Sprites/Paises/Portugal/Futbolistas/Defensores/mateusNunes (1).jpg" id="2_evrif"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_4mx5x"]
+
+[resource]
+script = ExtResource("3_4mx5x")
+pais = 7
+posicion = 1
+info = "Matheus Nunes"
+foto = ExtResource("2_evrif")
+bandera = ExtResource("1_evrif")
+stat_ataque = 35
+stat_velocidad = 85
+stat_vida = 80
+estrellas = 3
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

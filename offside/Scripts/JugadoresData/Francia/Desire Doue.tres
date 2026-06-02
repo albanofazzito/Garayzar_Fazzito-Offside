@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://cf6x75s4eff1f"]
+
+[ext_resource type="Texture2D" uid="uid://cktlxpqlt7us8" path="res://Sprites/Paises/Francia/Bandera/banderaFrancia.png" id="1_2seva"]
+[ext_resource type="Texture2D" uid="uid://cih7p8c7gf6g4" path="res://Sprites/Paises/Francia/Futbolistas/Delanteros/doue (1).jpeg" id="2_2seva"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_bfsj0"]
+
+[resource]
+script = ExtResource("3_bfsj0")
+pais = 2
+posicion = 3
+info = "Desire Doue"
+foto = ExtResource("2_2seva")
+bandera = ExtResource("1_2seva")
+stat_ataque = 82
+stat_velocidad = 85
+stat_vida = 55
+estrellas = 5
+calidad = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

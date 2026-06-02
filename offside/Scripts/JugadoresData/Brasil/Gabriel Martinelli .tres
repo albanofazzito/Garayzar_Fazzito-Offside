@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://cqo1phxnt5ylu"]
+
+[ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="1_jp0bx"]
+[ext_resource type="Texture2D" uid="uid://cibcuhy8yo706" path="res://Sprites/Paises/Brasil/Futbolistas/Delanteros/martinelli (1).jpg" id="2_jp0bx"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_51ghm"]
+
+[resource]
+script = ExtResource("3_51ghm")
+pais = 1
+posicion = 3
+info = "Gabriel Martinelli "
+foto = ExtResource("2_jp0bx")
+bandera = ExtResource("1_jp0bx")
+stat_ataque = 77
+stat_velocidad = 95
+stat_vida = 35
+estrellas = 4
+metadata/_custom_type_script = "uid://d32sgjinvbpge"
