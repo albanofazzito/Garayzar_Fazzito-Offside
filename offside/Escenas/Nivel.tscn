@@ -3,10 +3,13 @@
 [ext_resource type="Script" uid="uid://de51q5ibwh2mv" path="res://Scripts/Slots.gd" id="1_ctkg4"]
 [ext_resource type="Script" uid="uid://b00r5mawlovtv" path="res://Scripts/BatallaManager.gd" id="1_gql56"]
 [ext_resource type="PackedScene" uid="uid://ctcd0nbvhtn0n" path="res://Escenas/ManoDeCartas.tscn" id="2_e1c7d"]
+[ext_resource type="Texture2D" uid="uid://6ypxqd7qx4or" path="res://Sprites/Iconos/velocidad-icon.png" id="4_o8bu5"]
 [ext_resource type="Script" uid="uid://nsmw8bjlc6yf" path="res://Scripts/ManoEnemigo.gd" id="4_of526"]
+[ext_resource type="Texture2D" uid="uid://rpqrohrpk3an" path="res://Sprites/Iconos/vida-icon.png" id="5_7ln58"]
 [ext_resource type="Texture2D" uid="uid://6godnb1rkm3r" path="res://Sprites/Iconos/estrella-icon.png" id="5_estrella"]
 [ext_resource type="Texture2D" uid="uid://dhllhdnq3qyxs" path="res://Sprites/Iconos/Arco.png" id="6_gql56"]
 [ext_resource type="Texture2D" uid="uid://csxcpj6gjhqus" path="res://Sprites/Iconos/ladrillos.png" id="7_7b7no"]
+[ext_resource type="Texture2D" uid="uid://do3w1fnkdcl2h" path="res://Sprites/Iconos/ataque-icon.png" id="7_p13ao"]
 [ext_resource type="Script" uid="uid://ccg33ron5hdu8" path="res://Scripts/VidaBase.gd" id="8_vidabase"]
 [ext_resource type="Script" uid="uid://bm5n008oa2d5g" path="res://Scripts/Nivel.gd" id="9_nivel"]
 [ext_resource type="Texture2D" uid="uid://bm1ppkpi2o5gv" path="res://Sprites/Paises/Portugal/PantallaDerrota.png" id="10_sxaxo"]
@@ -41,6 +44,48 @@ corner_radius_bottom_left = 12
 [node name="Node2D" type="Node2D" unique_id=1311472250]
 script = ExtResource("9_nivel")
 
+[node name="Pasto" type="ColorRect" parent="." unique_id=1978088414]
+z_index = -2
+offset_right = 1147.0
+offset_bottom = 645.0
+color = Color(0.24705882, 0.5254902, 0.16078432, 1)
+
+[node name="Divisor" type="ColorRect" parent="Pasto" unique_id=1095346955]
+layout_mode = 0
+offset_left = 137.0
+offset_right = 143.0
+offset_bottom = 645.0
+
+[node name="Divisor2" type="ColorRect" parent="Pasto" unique_id=677496400]
+layout_mode = 0
+offset_left = 310.0
+offset_right = 316.0
+offset_bottom = 645.0
+
+[node name="Divisor3" type="ColorRect" parent="Pasto" unique_id=1741942159]
+layout_mode = 0
+offset_left = 483.0
+offset_right = 489.0
+offset_bottom = 645.0
+
+[node name="Divisor4" type="ColorRect" parent="Pasto" unique_id=42354588]
+layout_mode = 0
+offset_left = 655.0
+offset_right = 661.0
+offset_bottom = 645.0
+
+[node name="Divisor5" type="ColorRect" parent="Pasto" unique_id=1937908270]
+layout_mode = 0
+offset_left = 828.0
+offset_right = 834.0
+offset_bottom = 645.0
+
+[node name="Divisor6" type="ColorRect" parent="Pasto" unique_id=486176563]
+layout_mode = 0
+offset_left = 1001.0
+offset_right = 1007.0
+offset_bottom = 645.0
+
 [node name="ManoJugador" parent="." unique_id=869793766 instance=ExtResource("2_e1c7d")]
 position = Vector2(575, 435)
 
@@ -50,9 +95,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 183.0
+offset_left = 190.0
 offset_top = 477.0
-offset_right = 947.0
+offset_right = 954.0
 offset_bottom = 519.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -64,12 +109,27 @@ layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_ctkg4")
 
+[node name="VelocidadIcon" type="Sprite2D" parent="Slots/SlotArquero" unique_id=319398442]
+position = Vector2(55, 21)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("4_o8bu5")
+
+[node name="VidaIcon" type="Sprite2D" parent="Slots/SlotArquero" unique_id=224459897]
+position = Vector2(18, 22)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("5_7ln58")
+
 [node name="SlotDefensor" type="Panel" parent="Slots" unique_id=1372134565 groups=["slots"]]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_ctkg4")
 tipo = 1
 columna = 1
+
+[node name="VelocidadIcon" type="Sprite2D" parent="Slots/SlotDefensor" unique_id=1706288029]
+position = Vector2(36, 21)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("4_o8bu5")
 
 [node name="SlotMedio" type="Panel" parent="Slots" unique_id=9635761 groups=["slots"]]
 layout_mode = 2
@@ -78,6 +138,11 @@ script = ExtResource("1_ctkg4")
 tipo = 2
 columna = 2
 
+[node name="EstrellaIcon2" type="Sprite2D" parent="Slots/SlotMedio" unique_id=367827053]
+position = Vector2(37, 20)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("5_estrella")
+
 [node name="SlotMedio2" type="Panel" parent="Slots" unique_id=1912148919 groups=["slots"]]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -85,12 +150,27 @@ script = ExtResource("1_ctkg4")
 tipo = 2
 columna = 3
 
+[node name="AtaqueIcon" type="Sprite2D" parent="Slots/SlotMedio2" unique_id=857153345]
+position = Vector2(55, 21)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("7_p13ao")
+
+[node name="EstrellaIcon2" type="Sprite2D" parent="Slots/SlotMedio2" unique_id=1746342427]
+position = Vector2(17, 20)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("5_estrella")
+
 [node name="SlotDelantero" type="Panel" parent="Slots" unique_id=538043144 groups=["slots"]]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_ctkg4")
 tipo = 3
 columna = 4
+
+[node name="AtaqueIcon" type="Sprite2D" parent="Slots/SlotDelantero" unique_id=1329825113]
+position = Vector2(37, 21)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("7_p13ao")
 
 [node name="PasarTurno" type="Button" parent="." unique_id=924819973]
 z_index = -1
@@ -108,9 +188,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 183.0
+offset_left = 190.0
 offset_top = 229.0
-offset_right = 947.0
+offset_right = 954.0
 offset_bottom = 271.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -123,12 +203,27 @@ size_flags_horizontal = 3
 script = ExtResource("1_ctkg4")
 tipo = 3
 
+[node name="AtaqueIcon" type="Sprite2D" parent="SlotsEnemigo/SlotArquero" unique_id=583576664]
+position = Vector2(37, 21)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("7_p13ao")
+
 [node name="SlotDefensor" type="Panel" parent="SlotsEnemigo" unique_id=1873246654 groups=["slots_enemigo"]]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_ctkg4")
 tipo = 2
 columna = 1
+
+[node name="AtaqueIcon" type="Sprite2D" parent="SlotsEnemigo/SlotDefensor" unique_id=573510378]
+position = Vector2(55, 21)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("7_p13ao")
+
+[node name="EstrellaIcon2" type="Sprite2D" parent="SlotsEnemigo/SlotDefensor" unique_id=1425677490]
+position = Vector2(17, 20)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("5_estrella")
 
 [node name="SlotMedio" type="Panel" parent="SlotsEnemigo" unique_id=2044825710 groups=["slots_enemigo"]]
 layout_mode = 2
@@ -137,6 +232,11 @@ script = ExtResource("1_ctkg4")
 tipo = 2
 columna = 2
 
+[node name="EstrellaIcon2" type="Sprite2D" parent="SlotsEnemigo/SlotMedio" unique_id=1454403941]
+position = Vector2(37, 20)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("5_estrella")
+
 [node name="SlotMedio2" type="Panel" parent="SlotsEnemigo" unique_id=178813553 groups=["slots_enemigo"]]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -144,11 +244,26 @@ script = ExtResource("1_ctkg4")
 tipo = 1
 columna = 3
 
+[node name="VelocidadIcon" type="Sprite2D" parent="SlotsEnemigo/SlotMedio2" unique_id=1465129340]
+position = Vector2(36, 21)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("4_o8bu5")
+
 [node name="SlotDelantero" type="Panel" parent="SlotsEnemigo" unique_id=844720116 groups=["slots_enemigo"]]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_ctkg4")
 columna = 4
+
+[node name="VelocidadIcon" type="Sprite2D" parent="SlotsEnemigo/SlotDelantero" unique_id=693520160]
+position = Vector2(55, 21)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("4_o8bu5")
+
+[node name="VidaIcon" type="Sprite2D" parent="SlotsEnemigo/SlotDelantero" unique_id=740341770]
+position = Vector2(18, 22)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("5_7ln58")
 
 [node name="ManoEnemigo" type="Node2D" parent="." unique_id=269307096 node_paths=PackedStringArray("batalla_manager", "boton_turno", "label_estrellas_enemigo")]
 z_index = -1
@@ -282,6 +397,7 @@ texture = ExtResource("10_sxaxo")
 [node name="Tutorial" type="CanvasLayer" parent="." unique_id=1862104017]
 process_mode = 3
 layer = 99
+visible = false
 script = ExtResource("11_tutorial")
 
 [node name="Fondo" type="ColorRect" parent="Tutorial" unique_id=1615833360]
@@ -291,13 +407,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Recuadro" type="Panel" parent="Tutorial"]
+[node name="Recuadro" type="Panel" parent="Tutorial" unique_id=1937403210]
 offset_right = 200.0
 offset_bottom = 100.0
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tuto")
 
-[node name="Texto" type="Label" parent="Tutorial"]
+[node name="Texto" type="Label" parent="Tutorial" unique_id=1061896444]
 offset_right = 550.0
 offset_bottom = 130.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -305,7 +421,7 @@ theme_override_font_sizes/font_size = 18
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Indicador" type="Label" parent="Tutorial"]
+[node name="Indicador" type="Label" parent="Tutorial" unique_id=1102332335]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -317,7 +433,7 @@ theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
 theme_override_font_sizes/font_size = 14
 horizontal_alignment = 2
 
-[node name="Flecha" type="Label" parent="Tutorial"]
+[node name="Flecha" type="Label" parent="Tutorial" unique_id=2009154292]
 visible = false
 offset_right = 30.0
 offset_bottom = 35.0

@@ -29,6 +29,7 @@ func _expulsar_carta(columna: int, grupo: String, mano_devolver: Mano) -> void:
 		return
 	var carta =slot.carta_actual
 	slot.carta_actual =null
+	slot.mostrar_visual()
 	if mano_devolver !=null and carta.datos is JugadorData:
 		# Animacion de retorno a la mano
 		var tw =carta.create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
@@ -107,6 +108,7 @@ func _ataque_doble_columna(grupo_atacante: String, grupo_victima: String, perdid
 				if slot.carta_actual.datos.stat_vida <= 0:
 					var carta= slot.carta_actual
 					slot.carta_actual= null
+					slot.mostrar_visual()
 					carta.queue_free()
 				else:
 					slot.carta_actual.actualizar_carta()
@@ -126,6 +128,7 @@ func _expulsar_baratos(grupo: String, costo_max: int) -> void:
 		if slot.carta_actual != null and slot.carta_actual.datos.estrellas < costo_max:
 			var carta= slot.carta_actual
 			slot.carta_actual= null
+			slot.mostrar_visual()
 			var tw= carta.create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
 			tw.tween_property(carta, "modulate", Color(1.0, 0.3, 0.3), 0.08)
 			tw.tween_property(carta, "position", carta.position + Vector2(0, -120), 0.2)

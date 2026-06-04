@@ -302,6 +302,7 @@ func _colocar_carta(carta: Carta, slot: Slot) -> void:
 	carta.rotacion_original= 0.0
 	carta.animar(destino, 0.0)
 	slot.carta_actual= carta
+	slot.ocultar_visual()
 	estrellas -= carta.datos.estrellas
 	_actualizar_label_estrellas()
 	_ordenar_mano()
@@ -386,6 +387,7 @@ func _expulsar_del_slot(columna: int, grupo: String) -> void:
 		return
 	var carta= slot.carta_actual
 	slot.carta_actual= null
+	slot.mostrar_visual()
 	var tw= carta.create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
 	tw.tween_property(carta, "modulate", Color(1.0, 0.3, 0.3), 0.08)
 	tw.parallel().tween_property(carta, "rotation", deg_to_rad(25.0), 0.12)
@@ -415,6 +417,7 @@ func _danio_slot(columna: int, valor: int) -> void:
 		if slot.carta_actual.datos.stat_vida <= 0:
 			var carta= slot.carta_actual
 			slot.carta_actual= null
+			slot.mostrar_visual()
 			carta.queue_free()
 		else:
 			slot.carta_actual.actualizar_carta()
@@ -438,6 +441,7 @@ func _ataque_doble_columna(perdida_vida: int) -> void:
 			if slot.carta_actual.datos.stat_vida <= 0:
 				var carta= slot.carta_actual
 				slot.carta_actual= null
+				slot.mostrar_visual()
 				carta.queue_free()
 			else:
 				slot.carta_actual.actualizar_carta()
@@ -447,6 +451,7 @@ func _expulsar_baratos_jugador(costo_max: int) -> void:
 		if slot.carta_actual != null and slot.carta_actual.datos.estrellas < costo_max:
 			var carta= slot.carta_actual
 			slot.carta_actual= null
+			slot.mostrar_visual()
 			var tw= carta.create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
 			tw.tween_property(carta, "modulate", Color(1.0, 0.3, 0.3), 0.08)
 			tw.tween_property(carta, "position", carta.position + Vector2(0, -120), 0.2)

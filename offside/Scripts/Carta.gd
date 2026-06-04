@@ -108,6 +108,7 @@ func _input(event: InputEvent) -> void:
 		if slot_encontrado and slot_encontrado.carta_actual ==null and _puede_ir_en_slot(slot_encontrado) and datos.estrellas <= get_parent().estrellas and ManoEnemigo.es_turno_jugador:
 			get_parent().gastar_estrellas(datos.estrellas)
 			slot_encontrado.carta_actual =self
+			slot_encontrado.ocultar_visual()
 			en_mano =false
 			z_index =-1
 			get_parent().cartas.erase(self)
