@@ -84,3 +84,88 @@ func _get_slot(columna: int, grupo: String):
 		if slot.columna ==columna:
 			return slot
 	return null
+
+func _buff_all_stats(grupo: String, valor: int) -> void:
+	for slot in get_tree().get_nodes_in_group(grupo):
+		if slot.carta_actual != null:
+			slot.carta_actual.datos.stat_ataque += valor
+			slot.carta_actual.datos.stat_velocidad += valor
+			slot.carta_actual.datos.stat_vida += valor
+			slot.carta_actual.actualizar_carta()
+			var tw= slot.carta_actual.create_tween()
+			tw.tween_property(slot.carta_actual, "modulate", Color(1.0, 0.85, 0.0), 0.1)
+			tw.tween_property(slot.carta_actual, "modulate", Color.WHITE, 0.2)
+
+func _ataque_doble_columna(grupo_atacante: String, grupo_victima: String, perdida_vida: int) -> void:
+	var columnas= [0, 1, 2, 3, 4]
+	columnas.shuffle()
+	var atacadas= columnas.slice(0, 2)
+	for col in atacadas:
+		for slot in get_tree().get_nodes_in_group(grupo_victima):
+			if slot.columna == col and slot.carta_actual != null:
+				slot.carta_actual.datos.stat_vida -= perdida_vida
+				if slot.carta_actual.datos.stat_vida <= 0:
+					var carta= slot.carta_actual
+					slot.carta_actual= null
+					carta.queue_free()
+				else:
+					slot.carta_actual.actualizar_carta()
+	for slot in get_tree().get_nodes_in_group(grupo_atacante):
+		if slot.carta_actual != null:
+			slot.carta_actual.datos.stat_vida -= perdida_vida
+			slot.carta_actual.actualizar_carta()
+			break
+
+func _inmunidad_arco(grupo_vida: String) -> void:
+	var vida= get_tree().get_first_node_in_group(grupo_vida)
+	if vida:
+		vida.inmune= true
+
+func _expulsar_baratos(grupo: String, costo_max: int) -> void:
+	for slot in get_tree().get_nodes_in_group(grupo):
+		if slot.carta_actual != null and slot.carta_actual.datos.estrellas < costo_max:
+			var carta= slot.carta_actual
+			slot.carta_actual= null
+			var tw= carta.create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
+			tw.tween_property(carta, "modulate", Color(1.0, 0.3, 0.3), 0.08)
+			tw.tween_property(carta, "position", carta.position + Vector2(0, -120), 0.2)
+			tw.parallel().tween_property(carta, "scale", Vector2(0.18, 0.18), 0.2)
+			tw.parallel().tween_property(carta, "modulate:a", 0.0, 0.18)
+			await tw.finished
+			carta.queue_free()
+
+func _buff_ataque_jugador(columna: int, grupo: String, valor: int) -> void:
+	var slot= _get_slot(columna, grupo)
+	if slot == null or slot.carta_actual == null:
+		for s in get_tree().get_nodes_in_group(grupo):
+			if s.carta_actual != null:
+				slot= s
+				break
+	if slot == null or slot.carta_actual == null:
+		return
+	slot.carta_actual.datos.stat_ataque += valor
+	slot.carta_actual.actualizar_carta()
+	var tw= slot.carta_actual.create_tween()
+	tw.tween_property(slot.carta_actual, "modulate", Color(1.0, 0.5, 0.0), 0.1)
+	tw.tween_property(slot.carta_actual, "scale", Vector2(0.7, 0.7), 0.1)
+	tw.tween_property(slot.carta_actual, "scale", Vector2(0.6, 0.6), 0.1)
+	tw.parallel().tween_property(slot.carta_actual, "modulate", Color.WHITE, 0.2)
+
+func _curar_vida(grupo_vida: String, valor: int) -> void:
+	var vida= get_tree().get_first_node_in_group(grupo_vida)
+	if vida:
+		vida.curar(valor)
+
+func _danio_directo_pasante(columna: int, grupo_atacante: String, grupo_vida: String) -> void:
+	var slot_atacante= _get_slot(columna, grupo_atacante)
+	if slot_atacante == null or slot_atacante.carta_actual == null:
+		for s in get_tree().get_nodes_in_group(grupo_atacante):
+			if s.carta_actual != null:
+				slot_atacante= s
+				break
+	if slot_atacante == null or slot_atacante.carta_actual == null:
+		return
+	var danio= slot_atacante.carta_actual.datos.stat_ataque
+	var vida= get_tree().get_first_node_in_group(grupo_vida)
+	if vida:
+		vida.recibir_danio(danio)

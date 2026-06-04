@@ -85,8 +85,92 @@ func _ordenar_mano() -> void:
 		carta.rotation= rot
 
 func jugar_turno() -> void:
+	match pais:
+		JugadorData.Pais.FRANCIA:
+			await _turno_francia()
+		JugadorData.Pais.BRASIL:
+			await _turno_brasil()
+		JugadorData.Pais.PORTUGAL:
+			await _turno_portugal()
+		_:
+			await _turno_basico()
+
+func _turno_francia() -> void:
+	var slots_prioridad= _slots_vacios_por_columna([0, 1, 2, 3, 4])
+	var cartas_ordenadas= _cartas_jugador_por_stat("stat_ataque", false)
+	for slot in slots_prioridad:
+		for carta in cartas_ordenadas:
+			if carta not in cartas_en_mano:
+				continue
+			var datos= carta.datos
+			if datos is JugadorData and _puede_ir(datos, slot) and datos.estrellas <= estrellas:
+				await _colocar_carta(carta, slot)
+				await get_tree().create_timer(0.3).timeout
+				break
+
+func _turno_brasil() -> void:
+	var trucos= _cartas_truco()
+	for truco in trucos:
+		if truco.datos.estrellas <= estrellas:
+			var columna= _mejor_columna_truco(truco.datos)
+			if columna >= 0:
+				await _jugar_truco_enemigo(truco, columna)
+				await get_tree().create_timer(0.4).timeout
+				break
+	var slots_vacios= _slots_vacios_por_columna([0, 1, 2, 3, 4])
+	var cartas_baratas= _cartas_jugador_por_stat("estrellas", true)
+	var max_gastar= max(1, estrellas / 2) if estrellas_max < 4 else estrellas
+	var gastado= 0
+	for slot in slots_vacios:
+		for carta in cartas_baratas:
+			if carta not in cartas_en_mano:
+				continue
+			var datos= carta.datos
+			if datos is JugadorData and _puede_ir(datos, slot) and datos.estrellas <= estrellas:
+				if gastado + datos.estrellas > max_gastar and estrellas_max < 4:
+					break
+				await _colocar_carta(carta, slot)
+				gastado += datos.estrellas
+				await get_tree().create_timer(0.3).timeout
+				break
+
+func _turno_portugal() -> void:
+	var slots_jugador= get_tree().get_nodes_in_group("slots")
+	var columnas_amenaza: Array= []
+	for slot in slots_jugador:
+		if slot.carta_actual != null:
+			columnas_amenaza.append(slot.columna)
+	var trucos= _cartas_truco()
+	for col in columnas_amenaza:
+		for truco in trucos:
+			if truco.datos.estrellas <= estrellas:
+				if _truco_util_en_columna(truco.datos, col):
+					await _jugar_truco_enemigo(truco, col)
+					await get_tree().create_timer(0.4).timeout
+					trucos.erase(truco)
+					break
+	var slots_enemigo= get_tree().get_nodes_in_group("slots_enemigo")
+	var slots_prioridad: Array= []
+	for slot in slots_enemigo:
+		if slot.carta_actual == null and slot.columna in columnas_amenaza:
+			slots_prioridad.append(slot)
+	for slot in slots_enemigo:
+		if slot.carta_actual == null and slot not in slots_prioridad:
+			slots_prioridad.append(slot)
+	var cartas_ordenadas= _cartas_jugador_por_stat("stat_ataque", false)
+	for slot in slots_prioridad:
+		for carta in cartas_ordenadas:
+			if carta not in cartas_en_mano:
+				continue
+			var datos= carta.datos
+			if datos is JugadorData and _puede_ir(datos, slot) and datos.estrellas <= estrellas:
+				await _colocar_carta(carta, slot)
+				await get_tree().create_timer(0.3).timeout
+				break
+
+func _turno_basico() -> void:
 	for slot in get_tree().get_nodes_in_group("slots_enemigo"):
-		if slot.carta_actual== null:
+		if slot.carta_actual == null:
 			var coloco= await _intentar_colocar(slot)
 			if coloco:
 				await get_tree().create_timer(0.4).timeout
@@ -94,27 +178,294 @@ func jugar_turno() -> void:
 func _intentar_colocar(slot: Slot) -> bool:
 	for i in cartas_en_mano.size():
 		var carta= cartas_en_mano[i]
-		var datos =carta.datos
-		if datos is JugadorData and _puede_ir(datos, slot) and datos.estrellas<= estrellas:
-			cartas_en_mano.remove_at(i)
-			carta.en_mano =false
-			carta.z_index= -1
-			carta.scale =Vector2(0.6, 0.6)
-			carta.rotation= 0.0
-			carta.get_node("Base").visible= !carta.datos is TrucoData
-			carta.get_node("BaseTruco").visible =carta.datos is TrucoData
-			carta.get_node("BaseAtras").visible= false
-			carta.frente_visible =true
-			var destino= to_local(slot.get_global_rect().get_center())
-			carta.posicion_original =destino
-			carta.rotacion_original= 0.0
-			carta.animar(destino, 0.0)
-			slot.carta_actual= carta
-			estrellas -=datos.estrellas
-			_actualizar_label_estrellas()
-			_ordenar_mano()
+		var datos= carta.datos
+		if datos is JugadorData and _puede_ir(datos, slot) and datos.estrellas <= estrellas:
+			await _colocar_carta(carta, slot)
 			return true
 	return false
+
+func _cartas_jugador_por_stat(stat: String, ascendente: bool) -> Array:
+	var jugadores: Array= []
+	for carta in cartas_en_mano:
+		if carta.datos is JugadorData and not carta.datos is TrucoData:
+			jugadores.append(carta)
+	jugadores.sort_custom(func(a, b):
+		if ascendente:
+			return a.datos[stat] < b.datos[stat]
+		else:
+			return a.datos[stat] > b.datos[stat]
+	)
+	return jugadores
+
+func _cartas_truco() -> Array:
+	var trucos: Array= []
+	for carta in cartas_en_mano:
+		if carta.datos is TrucoData:
+			trucos.append(carta)
+	return trucos
+
+func _slots_vacios_por_columna(orden: Array) -> Array:
+	var resultado: Array= []
+	var slots= get_tree().get_nodes_in_group("slots_enemigo")
+	for col in orden:
+		for slot in slots:
+			if slot.columna == col and slot.carta_actual == null:
+				resultado.append(slot)
+	return resultado
+
+func _mejor_columna_truco(datos: TrucoData) -> int:
+	match datos.tipo_efecto:
+		TrucoData.TipoEfecto.EXPULSAR_CARTA_ENEMIGA:
+			var mejor_col= -1
+			var mejor_ataque= 0
+			for slot in get_tree().get_nodes_in_group("slots"):
+				if slot.carta_actual != null:
+					var atq= slot.carta_actual.datos.stat_ataque
+					if atq > mejor_ataque:
+						mejor_ataque= atq
+						mejor_col= slot.columna
+			return mejor_col
+		TrucoData.TipoEfecto.BUFF_ATAQUE_COLUMNA, TrucoData.TipoEfecto.BUFF_VIDA_COLUMNA, TrucoData.TipoEfecto.BUFF_ATAQUE_JUGADOR:
+			for slot in get_tree().get_nodes_in_group("slots_enemigo"):
+				if slot.carta_actual != null:
+					return slot.columna
+		TrucoData.TipoEfecto.DANIO_DIRECTO:
+			for slot in get_tree().get_nodes_in_group("slots"):
+				if slot.carta_actual == null:
+					return slot.columna
+			return 0
+		TrucoData.TipoEfecto.BUFF_ALL_STATS:
+			for slot in get_tree().get_nodes_in_group("slots_enemigo"):
+				if slot.carta_actual != null:
+					return 0
+			return -1
+		TrucoData.TipoEfecto.ATAQUE_DOBLE_COLUMNA:
+			for slot in get_tree().get_nodes_in_group("slots"):
+				if slot.carta_actual != null:
+					return 0
+			return -1
+		TrucoData.TipoEfecto.INMUNIDAD_ARCO:
+			return 0
+		TrucoData.TipoEfecto.EXPULSAR_BARATOS:
+			for slot in get_tree().get_nodes_in_group("slots"):
+				if slot.carta_actual != null and slot.carta_actual.datos.estrellas < datos.valor:
+					return 0
+			return -1
+		TrucoData.TipoEfecto.CURAR_VIDA:
+			return 0
+		TrucoData.TipoEfecto.DANIO_DIRECTO_PASANTE:
+			for slot in get_tree().get_nodes_in_group("slots_enemigo"):
+				if slot.carta_actual != null:
+					return slot.columna
+			return -1
+	return -1
+
+func _truco_util_en_columna(datos: TrucoData, col: int) -> bool:
+	match datos.tipo_efecto:
+		TrucoData.TipoEfecto.EXPULSAR_CARTA_ENEMIGA:
+			var slot= _get_slot_por_columna(col, "slots")
+			return slot != null and slot.carta_actual != null
+		TrucoData.TipoEfecto.BUFF_ATAQUE_COLUMNA, TrucoData.TipoEfecto.BUFF_VIDA_COLUMNA, TrucoData.TipoEfecto.BUFF_ATAQUE_JUGADOR:
+			var slot= _get_slot_por_columna(col, "slots_enemigo")
+			return slot != null and slot.carta_actual != null
+		TrucoData.TipoEfecto.DANIO_DIRECTO, TrucoData.TipoEfecto.DANIO_DIRECTO_PASANTE:
+			return true
+		TrucoData.TipoEfecto.BUFF_ALL_STATS, TrucoData.TipoEfecto.INMUNIDAD_ARCO, TrucoData.TipoEfecto.CURAR_VIDA:
+			return true
+		TrucoData.TipoEfecto.ATAQUE_DOBLE_COLUMNA:
+			return true
+		TrucoData.TipoEfecto.EXPULSAR_BARATOS:
+			for slot in get_tree().get_nodes_in_group("slots"):
+				if slot.carta_actual != null and slot.carta_actual.datos.estrellas < datos.valor:
+					return true
+			return false
+	return false
+
+func _get_slot_por_columna(col: int, grupo: String) -> Slot:
+	for slot in get_tree().get_nodes_in_group(grupo):
+		if slot.columna == col:
+			return slot
+	return null
+
+func _colocar_carta(carta: Carta, slot: Slot) -> void:
+	cartas_en_mano.erase(carta)
+	carta.en_mano =false
+	carta.z_index= -1
+	carta.scale =Vector2(0.6, 0.6)
+	carta.rotation= 0.0
+	carta.get_node("Base").visible= true
+	carta.get_node("BaseTruco").visible= false
+	carta.get_node("BaseAtras").visible= false
+	carta.frente_visible =true
+	var destino= to_local(slot.get_global_rect().get_center())
+	carta.posicion_original =destino
+	carta.rotacion_original= 0.0
+	carta.animar(destino, 0.0)
+	slot.carta_actual= carta
+	estrellas -= carta.datos.estrellas
+	_actualizar_label_estrellas()
+	_ordenar_mano()
+
+func _jugar_truco_enemigo(carta: Carta, columna: int) -> void:
+	cartas_en_mano.erase(carta)
+	carta.en_mano= false
+	carta.z_index= 5
+	carta.scale= Vector2(0.6, 0.6)
+	carta.rotation= 0.0
+	carta.get_node("Base").visible= false
+	carta.get_node("BaseTruco").visible= true
+	carta.get_node("BaseAtras").visible= false
+	carta.frente_visible= true
+	var viewport_size= get_viewport().get_visible_rect().size
+	var centro= to_local(Vector2(viewport_size.x / 2.0, viewport_size.y / 2.0))
+	carta.position= centro
+	var tw= carta.create_tween()
+	tw.tween_property(carta, "scale", Vector2(0.8, 0.8), 0.15).set_trans(Tween.TRANS_BACK)
+	await tw.finished
+	await _esperar_click()
+	var tw2= carta.create_tween()
+	tw2.tween_property(carta, "scale", Vector2(0.0, 0.0), 0.2)
+	tw2.parallel().tween_property(carta, "modulate:a", 0.0, 0.2)
+	await tw2.finished
+	var datos= carta.datos as TrucoData
+	estrellas -= datos.estrellas
+	_actualizar_label_estrellas()
+	_aplicar_truco(datos, columna)
+	carta.queue_free()
+	_ordenar_mano()
+
+func _esperar_click() -> void:
+	var clicked= false
+	while !clicked:
+		await get_tree().process_frame
+		if Input.is_action_just_pressed("ui_accept") or Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			clicked= true
+
+func _aplicar_truco(datos: TrucoData, columna: int) -> void:
+	match datos.tipo_efecto:
+		TrucoData.TipoEfecto.EXPULSAR_CARTA_ENEMIGA:
+			_expulsar_del_slot(columna, "slots")
+		TrucoData.TipoEfecto.EXPULSAR_CARTA_PROPIA:
+			_expulsar_del_slot(columna, "slots_enemigo")
+		TrucoData.TipoEfecto.BUFF_ATAQUE_COLUMNA:
+			_buff_slot(columna, "slots_enemigo", "stat_ataque", datos.valor)
+		TrucoData.TipoEfecto.BUFF_VIDA_COLUMNA:
+			_buff_slot(columna, "slots_enemigo", "stat_vida", datos.valor)
+		TrucoData.TipoEfecto.DANIO_DIRECTO:
+			_danio_slot(columna, datos.valor)
+		TrucoData.TipoEfecto.ROBAR_CARTAS:
+			for i in datos.valor:
+				_robar_carta()
+		TrucoData.TipoEfecto.BUFF_ALL_STATS:
+			_buff_all_stats("slots_enemigo", datos.valor)
+		TrucoData.TipoEfecto.ATAQUE_DOBLE_COLUMNA:
+			_ataque_doble_columna(datos.valor)
+		TrucoData.TipoEfecto.INMUNIDAD_ARCO:
+			var vida= get_tree().get_first_node_in_group("vida_enemigo")
+			if vida:
+				vida.inmune= true
+		TrucoData.TipoEfecto.EXPULSAR_BARATOS:
+			_expulsar_baratos_jugador(datos.valor)
+		TrucoData.TipoEfecto.BUFF_ATAQUE_JUGADOR:
+			_buff_slot(columna, "slots_enemigo", "stat_ataque", datos.valor)
+		TrucoData.TipoEfecto.CURAR_VIDA:
+			var vida= get_tree().get_first_node_in_group("vida_enemigo")
+			if vida:
+				vida.curar(datos.valor)
+		TrucoData.TipoEfecto.DANIO_DIRECTO_PASANTE:
+			_danio_pasante(columna)
+
+func _expulsar_del_slot(columna: int, grupo: String) -> void:
+	var slot= _get_slot_por_columna(columna, grupo)
+	if slot == null or slot.carta_actual == null:
+		for s in get_tree().get_nodes_in_group(grupo):
+			if s.carta_actual != null:
+				slot= s
+				break
+	if slot == null or slot.carta_actual == null:
+		return
+	var carta= slot.carta_actual
+	slot.carta_actual= null
+	var tw= carta.create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
+	tw.tween_property(carta, "modulate", Color(1.0, 0.3, 0.3), 0.08)
+	tw.parallel().tween_property(carta, "rotation", deg_to_rad(25.0), 0.12)
+	tw.tween_property(carta, "position", carta.position + Vector2(0, -120), 0.2)
+	tw.parallel().tween_property(carta, "scale", Vector2(0.18, 0.18), 0.2)
+	tw.parallel().tween_property(carta, "modulate:a", 0.0, 0.18)
+	await tw.finished
+	carta.queue_free()
+
+func _buff_slot(columna: int, grupo: String, stat: String, valor: int) -> void:
+	var slot= _get_slot_por_columna(columna, grupo)
+	if slot == null or slot.carta_actual == null:
+		return
+	var carta= slot.carta_actual
+	carta.datos[stat] += valor
+	carta.actualizar_carta()
+	var tw= carta.create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	tw.tween_property(carta, "modulate", Color(0.3, 1.0, 0.5), 0.08)
+	tw.parallel().tween_property(carta, "scale", Vector2(0.69, 0.69), 0.1)
+	tw.tween_property(carta, "scale", Vector2(0.6, 0.6), 0.12)
+	tw.parallel().tween_property(carta, "modulate", Color.WHITE, 0.2)
+
+func _danio_slot(columna: int, valor: int) -> void:
+	var slot= _get_slot_por_columna(columna, "slots")
+	if slot != null and slot.carta_actual != null:
+		slot.carta_actual.datos.stat_vida -= valor
+		if slot.carta_actual.datos.stat_vida <= 0:
+			var carta= slot.carta_actual
+			slot.carta_actual= null
+			carta.queue_free()
+		else:
+			slot.carta_actual.actualizar_carta()
+
+func _buff_all_stats(grupo: String, valor: int) -> void:
+	for slot in get_tree().get_nodes_in_group(grupo):
+		if slot.carta_actual != null:
+			slot.carta_actual.datos.stat_ataque += valor
+			slot.carta_actual.datos.stat_velocidad += valor
+			slot.carta_actual.datos.stat_vida += valor
+			slot.carta_actual.actualizar_carta()
+
+func _ataque_doble_columna(perdida_vida: int) -> void:
+	var columnas= [0, 1, 2, 3, 4]
+	columnas.shuffle()
+	var atacadas= columnas.slice(0, 2)
+	for col in atacadas:
+		var slot= _get_slot_por_columna(col, "slots")
+		if slot != null and slot.carta_actual != null:
+			slot.carta_actual.datos.stat_vida -= perdida_vida
+			if slot.carta_actual.datos.stat_vida <= 0:
+				var carta= slot.carta_actual
+				slot.carta_actual= null
+				carta.queue_free()
+			else:
+				slot.carta_actual.actualizar_carta()
+
+func _expulsar_baratos_jugador(costo_max: int) -> void:
+	for slot in get_tree().get_nodes_in_group("slots"):
+		if slot.carta_actual != null and slot.carta_actual.datos.estrellas < costo_max:
+			var carta= slot.carta_actual
+			slot.carta_actual= null
+			var tw= carta.create_tween().set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
+			tw.tween_property(carta, "modulate", Color(1.0, 0.3, 0.3), 0.08)
+			tw.tween_property(carta, "position", carta.position + Vector2(0, -120), 0.2)
+			tw.parallel().tween_property(carta, "scale", Vector2(0.18, 0.18), 0.2)
+			tw.parallel().tween_property(carta, "modulate:a", 0.0, 0.18)
+
+func _danio_pasante(columna: int) -> void:
+	var slot_enemigo= _get_slot_por_columna(columna, "slots_enemigo")
+	if slot_enemigo == null or slot_enemigo.carta_actual == null:
+		for s in get_tree().get_nodes_in_group("slots_enemigo"):
+			if s.carta_actual != null:
+				slot_enemigo= s
+				break
+	if slot_enemigo == null or slot_enemigo.carta_actual == null:
+		return
+	var danio= slot_enemigo.carta_actual.datos.stat_ataque
+	var vida= get_tree().get_first_node_in_group("vida_jugador")
+	if vida:
+		vida.recibir_danio(danio)
 
 func _puede_ir(datos: JugadorData, slot: Slot) -> bool:
 	if datos.posicion ==JugadorData.Posicion.TODO:

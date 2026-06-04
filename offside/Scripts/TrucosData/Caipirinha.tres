@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="TrucoData" format=3]
+
+[ext_resource type="Script" uid="uid://bl6k4oeqdr5vx" path="res://Scripts/datosTruco.gd" id="1_bpk7d"]
+[ext_resource type="Texture2D" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="2_bandera"]
+[ext_resource type="Texture2D" path="res://Sprites/Paises/Brasil/Trucos/Caipirinha.jpeg" id="3_foto"]
+
+[resource]
+script = ExtResource("1_bpk7d")
+pais = 1
+info = "CAIPIRINHA"
+foto = ExtResource("3_foto")
+bandera = ExtResource("2_bandera")
+efecto = "La Caipirinha hace que un jugador ataque a dos columnas aleatorias y pierde 20 de vida"
+estrellas = 2
+tipo_efecto = 7
+valor = 20
+metadata/_custom_type_script = "uid://bl6k4oeqdr5vx"
