@@ -15,7 +15,14 @@ func iniciar_batalla() -> void:
 	for col in range(5):
 		await _resolver_columna(col)
 	_check_rage(vida_j_antes, vida_e_antes)
+	_resetear_inmunidad()
 	batalla_terminada.emit()
+
+func _resetear_inmunidad() -> void:
+	if vida_jugador:
+		vida_jugador.inmune = false
+	if vida_enemigo:
+		vida_enemigo.inmune = false
 
 func _inicializar_cartas() -> void:
 	for slot in get_tree().get_nodes_in_group("slots"):
@@ -94,6 +101,7 @@ func _limpiar_muertos(slot_j, slot_e) -> void:
 func _eliminar_carta(slot) -> void:
 	var carta =slot.carta_actual
 	slot.carta_actual =null
+	slot.mostrar_visual()
 	if carta.tween_color:
 		carta.tween_color.kill()
 	var tw =carta.create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)

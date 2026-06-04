@@ -5,6 +5,7 @@ signal vida_agotada
 
 const VIDA_MAX :=1000
 var vida_actual :=200
+var inmune: bool= false
 
 @onready var label :Label= $Label
 @onready var ladrillos :Sprite2D= $Ladrillos
@@ -15,11 +16,20 @@ func _ready() -> void:
 	_actualizar_ui()
 
 func recibir_danio(danio: int) -> void:
+	if inmune:
+		return
 	vida_actual =max(0, vida_actual - danio)
 	_actualizar_ui()
 	_animar_danio()
 	if vida_actual <=0:
 		vida_agotada.emit()
+
+func curar(cantidad: int) -> void:
+	vida_actual =min(VIDA_MAX, vida_actual + cantidad)
+	_actualizar_ui()
+	var tw =create_tween()
+	tw.tween_property(ladrillos, "modulate", Color.GREEN, 0.06)
+	tw.tween_property(ladrillos, "modulate", Color.WHITE, 0.2)
 
 func _actualizar_ui() -> void:
 	label.text =str(vida_actual)
