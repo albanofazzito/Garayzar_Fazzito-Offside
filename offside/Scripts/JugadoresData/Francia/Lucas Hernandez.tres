@@ -7,6 +7,9 @@
 [resource]
 script = ExtResource("3_vdsdp")
 pais = 2
+posicion = 1
+efecto_tipo = 5
+efecto_valor = 30
 info = "Lucas Hernandez"
 foto = ExtResource("2_s84tk")
 bandera = ExtResource("1_s84tk")

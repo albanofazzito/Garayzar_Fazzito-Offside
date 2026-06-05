@@ -17,6 +17,8 @@ var vida_actual: int = 0
 var tween_color: Tween
 var turnos_en_campo: int =0
 var esquivar_contador: int= 0
+var kante_usado: bool= false
+var saliba_activado: bool= false
 
 
 var COLORES_CALIDAD = {
@@ -26,11 +28,11 @@ var COLORES_CALIDAD = {
 	JugadorData.Calidad.CAPITAN: Color("#00c2d1")
 }
 var posiciones = ["ARQUERO", "DEFENSOR", "MEDIOCAMPISTA", "DELANTERO","TODO"]
-var paises = ["ARGENTINA", "BRASIL", "FRANCIA", "INGLATERRA", "ALEMANIA", "HOLANDA", "ESPAÑA", "PORTUGAL"]
+var paises = ["ARGENTINA", "BRASIL", "FRANCIA", "INGLATERRA", "ALEMANIA", "HOLANDA", "ESPANA", "PORTUGAL"]
 
 @export var datos: Resource:
 	set(value):
-		datos =value
+		datos =value.duplicate() if value else null
 		if is_node_ready():
 			actualizar_carta()
 
@@ -45,7 +47,7 @@ func actualizar_carta():
 	$Base/Stats/CajaDefensa/NumeroDefensa.text= str(datos.stat_vida)
 	$Base/RecipienteEstrellas/Coste.text =str(datos.estrellas)
 	$BaseAtras/Bandera.texture= datos.bandera
-	$BaseAtras/CajaEfecto/Efecto.text =datos.efecto
+	$BaseAtras/CajaEfecto/Efecto.text ="[center]" + datos.efecto + "[/center]"
 	$Base/PaisJugador.text= paises[datos.pais]
 	$Base/Posicion.text= posiciones[datos.posicion]
 	$BaseTruco/Efecto.text= datos.efecto
@@ -229,11 +231,22 @@ func _process(_delta: float) -> void:
 					tween.kill()
 
 func inicializar_combate() -> void:
-	if vida_actual <=0:
-		vida_actual =datos.stat_vida
+	vida_actual =datos.stat_vida
 
 func recibir_danio(danio: int) -> void:
-	vida_actual -=danio
+	var danio_real= danio
+	if datos.efecto_tipo ==JugadorData.EfectoJugador.COMPARTIR_DANIO:
+		var grupo= _get_mi_grupo()
+		var companero: Carta= null
+		for slot in get_tree().get_nodes_in_group(grupo):
+			if slot.carta_actual != null and slot.carta_actual != self:
+				companero= slot.carta_actual
+				break
+		if companero != null:
+			danio_real= danio / 2
+			companero.vida_actual -= danio - danio_real
+			companero.get_node("Base/Stats/CajaDefensa/NumeroDefensa").text =str(max(companero.vida_actual, 0))
+	vida_actual -=danio_real
 	$Base/Stats/CajaDefensa/NumeroDefensa.text =str(max(vida_actual, 0))
 	if tween_color:
 		tween_color.kill()
@@ -282,6 +295,67 @@ func aplicar_efecto_turno() -> void:
 		tw.parallel().tween_property(self, "scale", Vector2(0.67, 0.67), 0.1)
 		tw.tween_property(self, "scale", Vector2(0.6, 0.6), 0.2)
 		tw.parallel().tween_property(self, "modulate", Color.WHITE, 0.25)
+	if datos.efecto_tipo ==JugadorData.EfectoJugador.SINERGIA_HERMANOS:
+		var grupo= _get_mi_grupo()
+		var hermano_presente= false
+		for slot in get_tree().get_nodes_in_group(grupo):
+			if slot.carta_actual != null and slot.carta_actual != self:
+				if slot.carta_actual.datos.efecto_tipo ==JugadorData.EfectoJugador.SINERGIA_HERMANOS:
+					hermano_presente= true
+					break
+		if hermano_presente and turnos_en_campo ==1:
+			datos.stat_ataque +=datos.efecto_valor
+			datos.stat_velocidad +=datos.efecto_valor
+			datos.stat_vida +=datos.efecto_valor
+			vida_actual +=datos.efecto_valor
+			actualizar_carta()
+			var tw= create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+			tw.tween_property(self, "modulate", Color(0.5, 0.5, 1.0), 0.1)
+			tw.parallel().tween_property(self, "scale", Vector2(0.7, 0.7), 0.12)
+			tw.tween_property(self, "scale", Vector2(0.6, 0.6), 0.15)
+			tw.parallel().tween_property(self, "modulate", Color.WHITE, 0.2)
+	if datos.efecto_tipo ==JugadorData.EfectoJugador.BUFF_VIDA_COMPANERO:
+		if !saliba_activado:
+			var grupo= _get_mi_grupo()
+			for slot in get_tree().get_nodes_in_group(grupo):
+				if slot.carta_actual != null and slot.carta_actual != self:
+					datos.stat_vida +=datos.efecto_valor
+					vida_actual +=datos.efecto_valor
+					actualizar_carta()
+					saliba_activado= true
+					break
+	if datos.efecto_tipo ==JugadorData.EfectoJugador.DANIO_TODAS_LINEAS:
+		var grupo_victima= "slots" if _get_mi_grupo() == "slots_enemigo" else "slots_enemigo"
+		for slot in get_tree().get_nodes_in_group(grupo_victima):
+			if slot.carta_actual != null:
+				slot.carta_actual.vida_actual -= datos.efecto_valor
+				slot.carta_actual.get_node("Base/Stats/CajaDefensa/NumeroDefensa").text =str(max(slot.carta_actual.vida_actual, 0))
+	if datos.efecto_tipo ==JugadorData.EfectoJugador.MATAR_ALEATORIO:
+		var todos_slots: Array= []
+		for slot in get_tree().get_nodes_in_group("slots"):
+			if slot.carta_actual != null and slot.carta_actual != self:
+				todos_slots.append(slot)
+		for slot in get_tree().get_nodes_in_group("slots_enemigo"):
+			if slot.carta_actual != null and slot.carta_actual != self:
+				todos_slots.append(slot)
+		if todos_slots.size() > 0:
+			var slot_random= todos_slots[randi() % todos_slots.size()]
+			slot_random.carta_actual.vida_actual= 0
+			slot_random.carta_actual.get_node("Base/Stats/CajaDefensa/NumeroDefensa").text= "0"
+	if datos.efecto_tipo ==JugadorData.EfectoJugador.DANIO_ARCO_TURNO:
+		var grupo_vida= "vida_jugador" if _get_mi_grupo() == "slots_enemigo" else "vida_enemigo"
+		var vida= get_tree().get_first_node_in_group(grupo_vida)
+		if vida:
+			vida.recibir_danio(datos.efecto_valor)
+
+func _get_mi_grupo() -> String:
+	for slot in get_tree().get_nodes_in_group("slots"):
+		if slot.carta_actual == self:
+			return "slots"
+	for slot in get_tree().get_nodes_in_group("slots_enemigo"):
+		if slot.carta_actual == self:
+			return "slots_enemigo"
+	return ""
 
 func puede_esquivar() -> bool:
 	if datos.efecto_tipo ==JugadorData.EfectoJugador.ESQUIVAR_CADA_2:
@@ -293,7 +367,7 @@ func puede_esquivar() -> bool:
 
 func activar_rage(vida_base: int) -> void:
 	if datos.efecto_tipo ==JugadorData.EfectoJugador.RAGE_AL_GOL:
-		datos.stat_ataque =99
+		datos.stat_ataque =datos.efecto_valor
 		$Base/Stats/CajaAtaque/NumeroAtaque.text =str(datos.stat_ataque)
 		var tw =create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 		tw.tween_property(self, "modulate", Color(1.0, 0.0, 0.0), 0.08)

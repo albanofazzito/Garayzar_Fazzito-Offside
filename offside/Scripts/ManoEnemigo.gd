@@ -10,9 +10,12 @@ var escenaCarta =preload("res://Escenas/Carta.tscn")
 enum Estado {TURNO_JUGADOR, ESPERANDO_BATALLA, BATALLANDO}
 var estado= Estado.TURNO_JUGADOR
 @export var batalla_manager: BatallaManager
-@export var boton_turno: Button
+@export var boton_turno: TextureButton
 @export var label_estrellas_enemigo: Label
 var mano: Mano
+var tex_mi_turno= preload("res://Sprites/Iconos/pelotaVerde-removebg-preview.png")
+var tex_rival= preload("res://Sprites/Iconos/pelota-removebg-preview.png")
+var tex_batalla= preload("res://Sprites/Iconos/pelotaAzul-removebg-preview.png")
 var estrellas:int= 1
 var estrellas_max: int =1
 static var es_turno_jugador: bool =true
@@ -85,6 +88,7 @@ func _ordenar_mano() -> void:
 		carta.rotation= rot
 
 func jugar_turno() -> void:
+	await get_tree().create_timer(0.8).timeout
 	match pais:
 		JugadorData.Pais.FRANCIA:
 			await _turno_francia()
@@ -105,7 +109,7 @@ func _turno_francia() -> void:
 			var datos= carta.datos
 			if datos is JugadorData and _puede_ir(datos, slot) and datos.estrellas <= estrellas:
 				await _colocar_carta(carta, slot)
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.7).timeout
 				break
 
 func _turno_brasil() -> void:
@@ -115,7 +119,7 @@ func _turno_brasil() -> void:
 			var columna= _mejor_columna_truco(truco.datos)
 			if columna >= 0:
 				await _jugar_truco_enemigo(truco, columna)
-				await get_tree().create_timer(0.4).timeout
+				await get_tree().create_timer(0.9).timeout
 				break
 	var slots_vacios= _slots_vacios_por_columna([0, 1, 2, 3, 4])
 	var cartas_baratas= _cartas_jugador_por_stat("estrellas", true)
@@ -131,7 +135,7 @@ func _turno_brasil() -> void:
 					break
 				await _colocar_carta(carta, slot)
 				gastado += datos.estrellas
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.7).timeout
 				break
 
 func _turno_portugal() -> void:
@@ -146,7 +150,7 @@ func _turno_portugal() -> void:
 			if truco.datos.estrellas <= estrellas:
 				if _truco_util_en_columna(truco.datos, col):
 					await _jugar_truco_enemigo(truco, col)
-					await get_tree().create_timer(0.4).timeout
+					await get_tree().create_timer(0.9).timeout
 					trucos.erase(truco)
 					break
 	var slots_enemigo= get_tree().get_nodes_in_group("slots_enemigo")
@@ -165,7 +169,7 @@ func _turno_portugal() -> void:
 			var datos= carta.datos
 			if datos is JugadorData and _puede_ir(datos, slot) and datos.estrellas <= estrellas:
 				await _colocar_carta(carta, slot)
-				await get_tree().create_timer(0.3).timeout
+				await get_tree().create_timer(0.7).timeout
 				break
 
 func _turno_basico() -> void:
@@ -173,7 +177,7 @@ func _turno_basico() -> void:
 		if slot.carta_actual == null:
 			var coloco= await _intentar_colocar(slot)
 			if coloco:
-				await get_tree().create_timer(0.4).timeout
+				await get_tree().create_timer(0.8).timeout
 
 func _intentar_colocar(slot: Slot) -> bool:
 	for i in cartas_en_mano.size():
@@ -504,7 +508,7 @@ func _on_pasar_turno_pressed() -> void:
 	_actualizar_boton()
 	boton_turno.disabled =true
 	await jugar_turno()
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(1.0).timeout
 	estado =Estado.BATALLANDO
 	_actualizar_boton()
 	batalla_manager.iniciar_batalla()
@@ -526,21 +530,20 @@ func _actualizar_boton() -> void:
 		return
 	match estado:
 		Estado.TURNO_JUGADOR:
-			boton_turno.text= "▶ Mi turno"
-			boton_turno.modulate =Color(0.2, 0.8, 0.2)
+			boton_turno.texture_normal= tex_mi_turno
 		Estado.ESPERANDO_BATALLA:
-			boton_turno.text ="⏳ Rival"
-			boton_turno.modulate= Color(1.0, 0.6, 0.0)
+			boton_turno.texture_normal= tex_rival
 		Estado.BATALLANDO:
-			boton_turno.text= "⚔ Batalla!"
-			boton_turno.modulate =Color(1.0, 0.2, 0.2)
+			boton_turno.texture_normal= tex_batalla
 
 func _animar_boton() -> void:
 	if !boton_turno:
 		return
 	var tw= create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tw.tween_property(boton_turno, "scale", Vector2(1.2, 1.2), 0.1)
-	tw.tween_property(boton_turno, "scale", Vector2(1.0, 1.0), 0.15)
+	tw.tween_property(boton_turno, "scale", Vector2(0.5, 0.5), 0.08).set_trans(Tween.TRANS_SINE)
+	tw.tween_property(boton_turno, "rotation", boton_turno.rotation + TAU, 0.3).set_trans(Tween.TRANS_SINE)
+	tw.parallel().tween_property(boton_turno, "scale", Vector2(1.3, 1.3), 0.15)
+	tw.tween_property(boton_turno, "scale", Vector2(1.0, 1.0), 0.2)
 
 func _actualizar_label_estrellas() -> void:
 	if !label_estrellas_enemigo:

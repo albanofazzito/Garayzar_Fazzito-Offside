@@ -8,9 +8,11 @@
 script = ExtResource("3_bfsj0")
 pais = 2
 posicion = 3
+efecto_tipo = 6
 info = "Desire Doue"
 foto = ExtResource("2_2seva")
 bandera = ExtResource("1_2seva")
+efecto = "Doue recibe la mitad de daño cuando hay otro compañero en el tablero, pasandole la otra mitad a su compañero"
 stat_ataque = 82
 stat_velocidad = 85
 stat_vida = 55

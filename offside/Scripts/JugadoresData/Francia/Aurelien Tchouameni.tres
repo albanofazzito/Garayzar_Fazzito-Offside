@@ -8,9 +8,11 @@
 script = ExtResource("3_ci1gq")
 pais = 2
 posicion = 1
+efecto_tipo = 9
 info = "Warren Zaire-Emery"
 foto = ExtResource("2_cncen")
 bandera = ExtResource("1_dvk3i")
+efecto = "Al finla de cada turno, Tchouameni mata un jugador aleatorio de todo el campo entero"
 stat_ataque = 65
 stat_velocidad = 80
 stat_vida = 75
