@@ -8,9 +8,12 @@
 script = ExtResource("3_fh6pu")
 pais = 2
 posicion = 2
+efecto_tipo = 11
+efecto_valor = 60
 info = "Rayan Cherki"
 foto = ExtResource("2_kdx7g")
 bandera = ExtResource("1_kdx7g")
+efecto = "Cherki usa su magia para hacer 60 de daño al arco en su turno"
 stat_ataque = 75
 stat_velocidad = 75
 stat_vida = 30

@@ -8,9 +8,12 @@
 script = ExtResource("3_ryjoy")
 pais = 2
 posicion = 3
+efecto_tipo = 8
+efecto_valor = 20
 info = "Marcus Thuram"
 foto = ExtResource("2_elg0y")
 bandera = ExtResource("1_m616y")
+efecto = "Mbappe hace 20 de daño en todas las lineas"
 stat_ataque = 83
 stat_velocidad = 86
 stat_vida = 50

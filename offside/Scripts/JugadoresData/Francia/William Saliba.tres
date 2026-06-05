@@ -8,9 +8,12 @@
 script = ExtResource("3_y21uh")
 pais = 2
 posicion = 1
+efecto_tipo = 7
+efecto_valor = 50
 info = "William Saliba"
 foto = ExtResource("2_jemfp")
 bandera = ExtResource("1_jemfp")
+efecto = "Si Saliba tiene un compañero cerca, subira su defensa por 50"
 stat_ataque = 60
 stat_velocidad = 80
 stat_vida = 90

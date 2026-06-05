@@ -7,7 +7,10 @@
 [resource]
 script = ExtResource("3_ksj27")
 pais = 2
-info = "Lucas Hernandez"
+posicion = 1
+efecto_tipo = 5
+efecto_valor = 30
+info = "Theo Hernandez"
 foto = ExtResource("2_7adoq")
 bandera = ExtResource("1_uxwpw")
 efecto = "Si se juega con su hermano pasan cosas terribles...."

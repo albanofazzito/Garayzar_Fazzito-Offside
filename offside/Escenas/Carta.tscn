@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://clunaetn2y7ld"]
 
 [ext_resource type="Script" uid="uid://b3yltocih240k" path="res://Scripts/Carta.gd" id="1_jopjk"]
-[ext_resource type="Texture2D" uid="uid://cmxkbnqmlrmk0" path="res://Sprites/Paises/Alemania/Futbolistas/Capitan/messi.png" id="2_lrvte"]
+[ext_resource type="Texture2D" uid="uid://cmxkbnqmlrmk0" path="res://Sprites/Paises/PaisesBajos/Futbolistas/Capitan/messi.png" id="2_lrvte"]
 [ext_resource type="Shader" uid="uid://b2063q262o3jp" path="res://Scripts/Carta.gdshader" id="2_srhn1"]
 [ext_resource type="Shader" uid="uid://duesf3x8ofuf6" path="res://Scripts/CartaJugador.gdshader" id="4_u7gos"]
 [ext_resource type="Shader" uid="uid://laj1l6kx5r0v" path="res://Scripts/CartaStat.gdshader" id="4_vy5sh"]
@@ -465,26 +465,24 @@ size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_66sx7")
 
-[node name="Efecto" type="Label" parent="BaseAtras/CajaEfecto" unique_id=1801955924]
+[node name="Efecto" type="RichTextLabel" parent="BaseAtras/CajaEfecto" unique_id=1801955924]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -95.0
-offset_top = -57.0
-offset_right = 95.0
-offset_bottom = 58.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 17
-text = "Descripcion"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
+theme_override_colors/default_color = Color(0.1, 0.05, 0, 1)
+theme_override_font_sizes/normal_font_size = 15
+theme_override_font_sizes/bold_font_size = 16
+bbcode_enabled = true
+text = "[center]Descripcion[/center]"
+fit_content = true
+scroll_active = false
 
 [node name="BaseTruco" type="Panel" parent="." unique_id=1580867630]
 visible = false

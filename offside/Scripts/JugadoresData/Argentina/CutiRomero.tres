@@ -8,7 +8,7 @@
 script = ExtResource("1_ca784")
 posicion = 1
 efecto_tipo = 4
-efecto_valor = 89
+efecto_valor = 99
 info = "CRISTIAN ROMERO"
 foto = ExtResource("2_aqw1c")
 bandera = ExtResource("1_njylv")

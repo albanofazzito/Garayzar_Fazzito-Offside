@@ -8,9 +8,11 @@
 script = ExtResource("3_bpdwf")
 pais = 2
 posicion = 2
+efecto_tipo = 10
 info = "N'Golo Kante"
 foto = ExtResource("2_4hfy0")
 bandera = ExtResource("1_4hfy0")
+efecto = "Una vez por partida, se mueve a una columna si sabe que sobrevivira el golpe (antes de que pase el turno esa columna)"
 stat_ataque = 65
 stat_velocidad = 77
 stat_vida = 88

@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://bm5n008oa2d5g" path="res://Scripts/Nivel.gd" id="9_nivel"]
 [ext_resource type="Texture2D" uid="uid://bm1ppkpi2o5gv" path="res://Sprites/Paises/Portugal/PantallaDerrota.png" id="10_sxaxo"]
 [ext_resource type="Script" uid="uid://dkkoxgxgsvr34" path="res://Scripts/Tutorial.gd" id="11_tutorial"]
+[ext_resource type="Texture2D" uid="uid://3cf57xqdcfst" path="res://Sprites/Iconos/pelotaVerde-removebg-preview.png" id="12_pelota"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hxvt1"]
 bg_color = Color(1, 0.4252191, 0.31822595, 0.2784314)
@@ -172,14 +173,17 @@ position = Vector2(37, 21)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("7_p13ao")
 
-[node name="PasarTurno" type="Button" parent="." unique_id=924819973]
+[node name="PasarTurno" type="TextureButton" parent="." unique_id=924819973]
 z_index = -1
 offset_left = 1036.0
-offset_top = 330.0
+offset_top = 310.0
 offset_right = 1140.0
-offset_bottom = 390.0
+offset_bottom = 414.0
+pivot_offset = Vector2(52, 52)
 focus_mode = 0
-text = "▶ Mi turno"
+texture_normal = ExtResource("12_pelota")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="SlotsEnemigo" type="HBoxContainer" parent="." unique_id=310155313]
 z_index = -1

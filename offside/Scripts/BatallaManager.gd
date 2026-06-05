@@ -9,6 +9,7 @@ signal batalla_terminada
 func iniciar_batalla() -> void:
 	_inicializar_cartas()
 	_aplicar_efectos_turno()
+	_aplicar_kante()
 	var vida_j_antes =vida_jugador.vida_actual if vida_jugador else 0
 	var vida_e_antes =vida_enemigo.vida_actual if vida_enemigo else 0
 	await get_tree().create_timer(0.4).timeout
@@ -23,6 +24,30 @@ func _resetear_inmunidad() -> void:
 		vida_jugador.inmune = false
 	if vida_enemigo:
 		vida_enemigo.inmune = false
+
+func _aplicar_kante() -> void:
+	for grupo in ["slots", "slots_enemigo"]:
+		var grupo_rival= "slots_enemigo" if grupo == "slots" else "slots"
+		for slot in get_tree().get_nodes_in_group(grupo):
+			if slot.carta_actual and slot.carta_actual.datos.efecto_tipo ==JugadorData.EfectoJugador.MOVER_BLOQUEO:
+				if slot.carta_actual.kante_usado:
+					continue
+				var slot_rival_vacio= null
+				for sr in get_tree().get_nodes_in_group(grupo_rival):
+					if sr.carta_actual != null:
+						var mi_slot_col= _get_slot(sr.columna, grupo)
+						if mi_slot_col and mi_slot_col.carta_actual == null:
+							if sr.carta_actual.datos.stat_ataque < slot.carta_actual.vida_actual:
+								slot_rival_vacio= mi_slot_col
+								break
+				if slot_rival_vacio:
+					var carta= slot.carta_actual
+					slot.carta_actual= null
+					slot_rival_vacio.carta_actual= carta
+					carta.kante_usado= true
+					var destino= carta.get_parent().to_local(slot_rival_vacio.get_global_rect().get_center())
+					carta.posicion_original= destino
+					carta.animar(destino, 0.0)
 
 func _inicializar_cartas() -> void:
 	for slot in get_tree().get_nodes_in_group("slots"):
