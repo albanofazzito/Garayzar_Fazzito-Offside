@@ -17,6 +17,27 @@ func ejecutar(datos: TrucoData, mano: Mano, columna: int) -> void:
 			for i in datos.valor:
 				if mano.cartas.size() <mano.cartas_max:
 					mano.agregar()
+		TrucoData.TipoEfecto.BUFF_ALL_STATS:
+			_buff_all_stats("slots", datos.valor)
+		TrucoData.TipoEfecto.ATAQUE_DOBLE_COLUMNA:
+			_ataque_doble_columna("slots", "slots_enemigo", datos.valor)
+		TrucoData.TipoEfecto.INMUNIDAD_ARCO:
+			_inmunidad_arco("vida_jugador")
+		TrucoData.TipoEfecto.EXPULSAR_BARATOS:
+			_expulsar_baratos("slots_enemigo", datos.valor)
+		TrucoData.TipoEfecto.BUFF_ATAQUE_JUGADOR:
+			_buff_ataque_jugador(columna, "slots", datos.valor)
+		TrucoData.TipoEfecto.CURAR_VIDA:
+			_curar_vida("vida_jugador", datos.valor)
+		TrucoData.TipoEfecto.DANIO_DIRECTO_PASANTE:
+			_danio_directo_pasante(columna, "slots", "vida_enemigo")
+
+func necesita_columna(datos: TrucoData) -> bool:
+	match datos.tipo_efecto:
+		TrucoData.TipoEfecto.EXPULSAR_CARTA_ENEMIGA, TrucoData.TipoEfecto.EXPULSAR_CARTA_PROPIA, TrucoData.TipoEfecto.BUFF_ATAQUE_COLUMNA, TrucoData.TipoEfecto.BUFF_VIDA_COLUMNA, TrucoData.TipoEfecto.DANIO_DIRECTO, TrucoData.TipoEfecto.BUFF_ATAQUE_JUGADOR, TrucoData.TipoEfecto.DANIO_DIRECTO_PASANTE:
+			return true
+		_:
+			return false
 
 func _expulsar_carta(columna: int, grupo: String, mano_devolver: Mano) -> void:
 	var slot =_get_slot(columna, grupo)
@@ -61,6 +82,8 @@ func _buff_stat(columna: int, grupo: String, stat: String, valor: int) -> void:
 		return
 	var carta =slot.carta_actual
 	carta.datos[stat] +=valor
+	if stat == "stat_vida" and carta.combate_inicializado:
+		carta.vida_actual +=valor
 	carta.actualizar_carta()
 	var tw =carta.create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 	tw.tween_property(carta, "modulate", Color(0.3, 1.0, 0.5), 0.08)
@@ -92,6 +115,8 @@ func _buff_all_stats(grupo: String, valor: int) -> void:
 			slot.carta_actual.datos.stat_ataque += valor
 			slot.carta_actual.datos.stat_velocidad += valor
 			slot.carta_actual.datos.stat_vida += valor
+			if slot.carta_actual.combate_inicializado:
+				slot.carta_actual.vida_actual += valor
 			slot.carta_actual.actualizar_carta()
 			var tw= slot.carta_actual.create_tween()
 			tw.tween_property(slot.carta_actual, "modulate", Color(1.0, 0.85, 0.0), 0.1)
@@ -104,8 +129,8 @@ func _ataque_doble_columna(grupo_atacante: String, grupo_victima: String, perdid
 	for col in atacadas:
 		for slot in get_tree().get_nodes_in_group(grupo_victima):
 			if slot.columna == col and slot.carta_actual != null:
-				slot.carta_actual.datos.stat_vida -= perdida_vida
-				if slot.carta_actual.datos.stat_vida <= 0:
+				slot.carta_actual.recibir_danio(perdida_vida)
+				if !slot.carta_actual.esta_viva():
 					var carta= slot.carta_actual
 					slot.carta_actual= null
 					slot.mostrar_visual()
@@ -114,7 +139,7 @@ func _ataque_doble_columna(grupo_atacante: String, grupo_victima: String, perdid
 					slot.carta_actual.actualizar_carta()
 	for slot in get_tree().get_nodes_in_group(grupo_atacante):
 		if slot.carta_actual != null:
-			slot.carta_actual.datos.stat_vida -= perdida_vida
+			slot.carta_actual.recibir_danio(perdida_vida)
 			slot.carta_actual.actualizar_carta()
 			break
 

@@ -65,7 +65,7 @@ func _robar_carta() -> void:
 	var ruta= maso_actual.pop_back()
 	var carta =escenaCarta.instantiate() as Carta
 	add_child(carta)
-	carta.datos= load(ruta)
+	carta.datos= load(ruta).duplicate()
 	carta.en_mano =true
 	carta.scale= Vector2(0.45, 0.45)
 	carta.rotation= deg_to_rad(180)
@@ -96,6 +96,8 @@ func jugar_turno() -> void:
 			await _turno_brasil()
 		JugadorData.Pais.PORTUGAL:
 			await _turno_portugal()
+		JugadorData.Pais.ARGENTINA:
+			await _turno_argentina()
 		_:
 			await _turno_basico()
 
@@ -164,6 +166,32 @@ func _turno_portugal() -> void:
 	var cartas_ordenadas= _cartas_jugador_por_stat("stat_ataque", false)
 	for slot in slots_prioridad:
 		for carta in cartas_ordenadas:
+			if carta not in cartas_en_mano:
+				continue
+			var datos= carta.datos
+			if datos is JugadorData and _puede_ir(datos, slot) and datos.estrellas <= estrellas:
+				await _colocar_carta(carta, slot)
+				await get_tree().create_timer(0.7).timeout
+				break
+
+func _turno_argentina() -> void:
+	var messi: Carta= null
+	for carta in cartas_en_mano:
+		if carta.datos is JugadorData and not carta.datos is TrucoData:
+			if "Messi" in carta.datos.info or "messi" in carta.datos.info:
+				messi= carta
+				break
+	if messi != null and messi.datos.estrellas <= estrellas:
+		var slots_vacios= _slots_vacios_por_columna([4, 3, 2, 1, 0])
+		for slot in slots_vacios:
+			if _puede_ir(messi.datos, slot):
+				await _colocar_carta(messi, slot)
+				await get_tree().create_timer(0.7).timeout
+				break
+	var cartas_baratas= _cartas_jugador_por_stat("estrellas", true)
+	var slots_vacios= _slots_vacios_por_columna([0, 1, 2, 3, 4])
+	for slot in slots_vacios:
+		for carta in cartas_baratas:
 			if carta not in cartas_en_mano:
 				continue
 			var datos= carta.datos
@@ -307,6 +335,7 @@ func _colocar_carta(carta: Carta, slot: Slot) -> void:
 	carta.animar(destino, 0.0)
 	slot.carta_actual= carta
 	slot.ocultar_visual()
+	mano.sfx_woosh2.play()
 	estrellas -= carta.datos.estrellas
 	_actualizar_label_estrellas()
 	_ordenar_mano()
@@ -407,6 +436,8 @@ func _buff_slot(columna: int, grupo: String, stat: String, valor: int) -> void:
 		return
 	var carta= slot.carta_actual
 	carta.datos[stat] += valor
+	if stat == "stat_vida" and carta.combate_inicializado:
+		carta.vida_actual += valor
 	carta.actualizar_carta()
 	var tw= carta.create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 	tw.tween_property(carta, "modulate", Color(0.3, 1.0, 0.5), 0.08)
@@ -417,8 +448,8 @@ func _buff_slot(columna: int, grupo: String, stat: String, valor: int) -> void:
 func _danio_slot(columna: int, valor: int) -> void:
 	var slot= _get_slot_por_columna(columna, "slots")
 	if slot != null and slot.carta_actual != null:
-		slot.carta_actual.datos.stat_vida -= valor
-		if slot.carta_actual.datos.stat_vida <= 0:
+		slot.carta_actual.recibir_danio(valor)
+		if !slot.carta_actual.esta_viva():
 			var carta= slot.carta_actual
 			slot.carta_actual= null
 			slot.mostrar_visual()
@@ -432,6 +463,8 @@ func _buff_all_stats(grupo: String, valor: int) -> void:
 			slot.carta_actual.datos.stat_ataque += valor
 			slot.carta_actual.datos.stat_velocidad += valor
 			slot.carta_actual.datos.stat_vida += valor
+			if slot.carta_actual.combate_inicializado:
+				slot.carta_actual.vida_actual += valor
 			slot.carta_actual.actualizar_carta()
 
 func _ataque_doble_columna(perdida_vida: int) -> void:
@@ -441,8 +474,8 @@ func _ataque_doble_columna(perdida_vida: int) -> void:
 	for col in atacadas:
 		var slot= _get_slot_por_columna(col, "slots")
 		if slot != null and slot.carta_actual != null:
-			slot.carta_actual.datos.stat_vida -= perdida_vida
-			if slot.carta_actual.datos.stat_vida <= 0:
+			slot.carta_actual.recibir_danio(perdida_vida)
+			if !slot.carta_actual.esta_viva():
 				var carta= slot.carta_actual
 				slot.carta_actual= null
 				slot.mostrar_visual()

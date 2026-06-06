@@ -19,6 +19,7 @@ var turnos_en_campo: int =0
 var esquivar_contador: int= 0
 var kante_usado: bool= false
 var saliba_activado: bool= false
+var combate_inicializado: bool= false
 
 
 var COLORES_CALIDAD = {
@@ -97,7 +98,8 @@ func _input(event: InputEvent) -> void:
 					if slot.get_global_rect().has_point(mouse_pos):
 						columna =slot.columna
 						break
-			if columna >=0:
+			var necesita= get_parent().efecto_manager.necesita_columna(datos)
+			if columna >=0 or !necesita:
 				get_parent().jugar_truco(self, columna)
 				get_viewport().set_input_as_handled()
 				return
@@ -115,6 +117,7 @@ func _input(event: InputEvent) -> void:
 			z_index =-1
 			get_parent().cartas.erase(self)
 			get_parent().orden()
+			get_parent().sfx_woosh2.play()
 			var destino =get_parent().to_local(slot_encontrado.get_global_rect().get_center())
 			posicion_original =destino
 			rotacion_original =0.0
@@ -231,7 +234,9 @@ func _process(_delta: float) -> void:
 					tween.kill()
 
 func inicializar_combate() -> void:
-	vida_actual =datos.stat_vida
+	if !combate_inicializado:
+		vida_actual =datos.stat_vida
+		combate_inicializado =true
 
 func recibir_danio(danio: int) -> void:
 	var danio_real= danio
@@ -239,12 +244,13 @@ func recibir_danio(danio: int) -> void:
 		var grupo= _get_mi_grupo()
 		var companero: Carta= null
 		for slot in get_tree().get_nodes_in_group(grupo):
-			if slot.carta_actual != null and slot.carta_actual != self:
+			if slot.carta_actual != null and slot.carta_actual != self and slot.carta_actual.esta_viva():
 				companero= slot.carta_actual
 				break
 		if companero != null:
-			danio_real= danio / 2
-			companero.vida_actual -= danio - danio_real
+			danio_real= max(danio / 2, 1)
+			var danio_companero= danio - danio_real
+			companero.vida_actual -= danio_companero
 			companero.get_node("Base/Stats/CajaDefensa/NumeroDefensa").text =str(max(companero.vida_actual, 0))
 	vida_actual -=danio_real
 	$Base/Stats/CajaDefensa/NumeroDefensa.text =str(max(vida_actual, 0))
@@ -266,11 +272,11 @@ func animar_ataque(objetivo: Carta) -> void:
 	var offset =dir.normalized() * 35.0
 	var pos_orig =position
 	var tw =create_tween().set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
-	tw.tween_property(self, "scale", Vector2(0.69, 0.54), 0.08)
-	tw.tween_property(self, "position", position + offset, 0.1).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
-	tw.tween_property(self, "scale", Vector2(0.57, 0.63), 0.04)
-	tw.tween_property(self, "position", pos_orig, 0.15).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
-	tw.parallel().tween_property(self, "scale", Vector2(0.6, 0.6), 0.12)
+	tw.tween_property(self, "scale", Vector2(0.69, 0.54), 0.05)
+	tw.tween_property(self, "position", position + offset, 0.06).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	tw.tween_property(self, "scale", Vector2(0.57, 0.63), 0.03)
+	tw.tween_property(self, "position", pos_orig, 0.1).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	tw.parallel().tween_property(self, "scale", Vector2(0.6, 0.6), 0.08)
 	await tw.finished
 
 func animar_ataque_base() -> void:
@@ -278,11 +284,11 @@ func animar_ataque_base() -> void:
 	var offset =Vector2(0, dir_y * 45)
 	var pos_orig =position
 	var tw =create_tween()
-	tw.tween_property(self, "scale", Vector2(0.72, 0.51), 0.1).set_trans(Tween.TRANS_BACK)
-	tw.tween_property(self, "position", position + offset, 0.12).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
-	tw.tween_property(self, "scale", Vector2(0.54, 0.66), 0.05)
-	tw.tween_property(self, "position", pos_orig, 0.2).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
-	tw.parallel().tween_property(self, "scale", Vector2(0.6, 0.6), 0.15)
+	tw.tween_property(self, "scale", Vector2(0.72, 0.51), 0.06).set_trans(Tween.TRANS_BACK)
+	tw.tween_property(self, "position", position + offset, 0.07).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	tw.tween_property(self, "scale", Vector2(0.54, 0.66), 0.03)
+	tw.tween_property(self, "position", pos_orig, 0.12).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	tw.parallel().tween_property(self, "scale", Vector2(0.6, 0.6), 0.1)
 	await tw.finished
 
 func aplicar_efecto_turno() -> void:
@@ -324,12 +330,8 @@ func aplicar_efecto_turno() -> void:
 					actualizar_carta()
 					saliba_activado= true
 					break
-	if datos.efecto_tipo ==JugadorData.EfectoJugador.DANIO_TODAS_LINEAS:
-		var grupo_victima= "slots" if _get_mi_grupo() == "slots_enemigo" else "slots_enemigo"
-		for slot in get_tree().get_nodes_in_group(grupo_victima):
-			if slot.carta_actual != null:
-				slot.carta_actual.vida_actual -= datos.efecto_valor
-				slot.carta_actual.get_node("Base/Stats/CajaDefensa/NumeroDefensa").text =str(max(slot.carta_actual.vida_actual, 0))
+
+func aplicar_efecto_post_combate() -> void:
 	if datos.efecto_tipo ==JugadorData.EfectoJugador.MATAR_ALEATORIO:
 		var todos_slots: Array= []
 		for slot in get_tree().get_nodes_in_group("slots"):
