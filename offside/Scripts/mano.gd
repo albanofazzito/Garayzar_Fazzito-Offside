@@ -17,9 +17,20 @@ var paisActual= JugadorData.Pais.ARGENTINA
 var escenaCarta= load("res://Escenas/Carta.tscn")
 var efecto_manager: EfectoManager
 var en_tutorial: bool = false
+var sfx_woosh1: AudioStreamPlayer
+var sfx_woosh2: AudioStreamPlayer
 func _ready() -> void:
 	efecto_manager =EfectoManager.new()
 	add_child(efecto_manager)
+	sfx_woosh1 =AudioStreamPlayer.new()
+	sfx_woosh1.stream= load("res://Audio/woosh1.mp3")
+	sfx_woosh1.volume_db= -10.0
+	add_child(sfx_woosh1)
+	sfx_woosh2 =AudioStreamPlayer.new()
+	sfx_woosh2.stream= load("res://Audio/woosh2.wav")
+	sfx_woosh2.volume_db= -10.0
+	add_child(sfx_woosh2)
+	paisActual =Global.pais_jugador
 	cargar_maso(paisActual)
 	_actualizar_label()
 	_robar_iniciales()
@@ -67,11 +78,12 @@ func agregar() -> void:
 	var carti= escenaCarta.instantiate() as Carta
 	add_child(carti)
 	if datos:
-		carti.datos= datos
+		carti.datos= datos.duplicate()
 		carti.get_node("Base/RecipienteEstrellas/Coste").text =str(datos.estrellas)
 	cartas.append(carti)
 	orden()
 	_animar_entrada(carti)
+	sfx_woosh1.play()
 
 func _animar_entrada(carti: Carta) -> void:
 	var viewport_size =get_viewport().get_visible_rect().size

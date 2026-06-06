@@ -109,5 +109,30 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_xhjix")
 text = "OFFSIDE"
 horizontal_alignment = 1
 
+[node name="SelectorPais" type="OptionButton" parent="." unique_id=1999888777]
+layout_mode = 0
+offset_left = 420.0
+offset_top = 500.0
+offset_right = 740.0
+offset_bottom = 545.0
+theme_override_font_sizes/font_size = 20
+item_count = 8
+popup/item_0/text = "ARGENTINA"
+popup/item_1/text = "BRASIL"
+popup/item_1/id = 1
+popup/item_2/text = "FRANCIA"
+popup/item_2/id = 2
+popup/item_3/text = "INGLATERRA"
+popup/item_3/id = 3
+popup/item_4/text = "ALEMANIA"
+popup/item_4/id = 4
+popup/item_5/text = "HOLANDA"
+popup/item_5/id = 5
+popup/item_6/text = "ESPAÑA"
+popup/item_6/id = 6
+popup/item_7/text = "PORTUGAL"
+popup/item_7/id = 7
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="item_selected" from="SelectorPais" to="." method="_on_selector_pais_item_selected"]

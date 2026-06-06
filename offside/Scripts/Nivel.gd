@@ -4,24 +4,44 @@ extends Node2D
 @onready var mensaje =$PantallaFin/Mensaje
 @onready var tutorial =$Tutorial
 @onready var mano_enemigo =$ManoEnemigo
+var musica_fondo: AudioStreamPlayer
 
 func _ready() -> void:
+	musica_fondo =AudioStreamPlayer.new()
 	var escenario= Global.escenario_actual
 	match escenario:
+		Global.Escenario.TUTORIAL, Global.Escenario.CUARTOS:
+			musica_fondo.stream= load("res://Audio/MusicaFondoCuartos.mp3")
+		Global.Escenario.SEMIS:
+			musica_fondo.stream= load("res://Audio/MusicaFondoSemis.mp3")
+		Global.Escenario.FINAL:
+			musica_fondo.stream= load("res://Audio/musicaFondo.mp3")
+	musica_fondo.volume_db= -14.0
+	musica_fondo.bus ="Master"
+	add_child(musica_fondo)
+	musica_fondo.finished.connect(_on_musica_terminada)
+	musica_fondo.play()
+
+	var pj= Global.pais_jugador
+	match escenario:
 		Global.Escenario.TUTORIAL:
-			mano_enemigo.pais= JugadorData.Pais.BRASIL
-			var mano = $ManoJugador/Mano as Mano
-			mano.en_tutorial = true
-			tutorial.iniciar(mano)
+			var enemigo_base= JugadorData.Pais.BRASIL
+			mano_enemigo.pais= enemigo_base if pj != enemigo_base else JugadorData.Pais.ARGENTINA
+			var mano_j = $ManoJugador/Mano as Mano
+			mano_j.en_tutorial = true
+			tutorial.iniciar(mano_j)
 			tutorial.tutorial_finalizado.connect(_on_tutorial_fin)
 		Global.Escenario.CUARTOS:
-			mano_enemigo.pais= JugadorData.Pais.BRASIL
+			var enemigo_base= JugadorData.Pais.BRASIL
+			mano_enemigo.pais= enemigo_base if pj != enemigo_base else JugadorData.Pais.ARGENTINA
 			tutorial.queue_free()
 		Global.Escenario.SEMIS:
-			mano_enemigo.pais= JugadorData.Pais.FRANCIA
+			var enemigo_base= JugadorData.Pais.FRANCIA
+			mano_enemigo.pais= enemigo_base if pj != enemigo_base else JugadorData.Pais.ARGENTINA
 			tutorial.queue_free()
 		Global.Escenario.FINAL:
-			mano_enemigo.pais= JugadorData.Pais.PORTUGAL
+			var enemigo_base= JugadorData.Pais.PORTUGAL
+			mano_enemigo.pais= enemigo_base if pj != enemigo_base else JugadorData.Pais.ARGENTINA
 			tutorial.queue_free()
 	mano_enemigo.iniciar()
 
@@ -62,3 +82,6 @@ func _on_boton_menu_pressed() -> void:
 func _on_boton_derrota_pressed() -> void:
 	get_tree().paused =false
 	get_tree().change_scene_to_file("res://Escenas/Menu.tscn")
+
+func _on_musica_terminada() -> void:
+	musica_fondo.play()
