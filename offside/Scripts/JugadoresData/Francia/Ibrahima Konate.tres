@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://xjdyc3hx6y7l"]
+
+[ext_resource type="Texture2D" uid="uid://cktlxpqlt7us8" path="res://Sprites/Paises/Francia/Bandera/banderaFrancia.png" id="1_68c63"]
+[ext_resource type="Texture2D" uid="uid://c5eq5c5yap73o" path="res://Sprites/Paises/Francia/Futbolistas/Defensores/konate (1).jpg" id="2_68c63"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_w5yve"]
+
+[resource]
+script = ExtResource("3_w5yve")
+pais = 2
+posicion = 1
+info = "Ibrahima Konate"
+foto = ExtResource("2_68c63")
+bandera = ExtResource("1_68c63")
+stat_ataque = 34
+stat_velocidad = 80
+stat_vida = 90
+estrellas = 5
+calidad = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

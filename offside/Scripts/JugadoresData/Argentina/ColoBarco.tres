@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://dl4gphmo0bptj"]
+
+[ext_resource type="Texture2D" uid="uid://n3ew0v06rbao" path="res://Sprites/Paises/Argentina/Bandera/banderaArgentina.png" id="1_fpeqx"]
+[ext_resource type="Texture2D" uid="uid://b267d8pg1h1hy" path="res://Sprites/Paises/Argentina/Futbolistas/Medios/ColoBarco (1).jpeg" id="2_fpeqx"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_atfyj"]
+
+[resource]
+script = ExtResource("3_atfyj")
+posicion = 2
+efecto_tipo = 2
+efecto_valor = 20
+info = "Valentin Barco"
+foto = ExtResource("2_fpeqx")
+bandera = ExtResource("1_fpeqx")
+efecto = "Se para arriba de la pelota ada y cada turno sube en 20 puntos su ataque"
+stat_ataque = 30
+stat_velocidad = 85
+stat_vida = 85
+estrellas = 4
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

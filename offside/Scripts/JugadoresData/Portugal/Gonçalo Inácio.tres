@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://cdc0nwmvh40u5"]
+
+[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png" id="1_275iu"]
+[ext_resource type="Texture2D" uid="uid://dywv3ggjvefwr" path="res://Sprites/Paises/Portugal/Futbolistas/Defensores/gonzaloignasio (1).jpg" id="2_275iu"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_3yhy8"]
+
+[resource]
+script = ExtResource("3_3yhy8")
+pais = 7
+posicion = 1
+info = "Gonçalo Inácio"
+foto = ExtResource("2_275iu")
+bandera = ExtResource("1_275iu")
+stat_ataque = 20
+stat_velocidad = 67
+stat_vida = 80
+estrellas = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

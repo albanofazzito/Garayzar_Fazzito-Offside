@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://cqf5bkamfcp84"]
+
+[ext_resource type="Texture2D" uid="uid://n3ew0v06rbao" path="res://Sprites/Paises/Argentina/Bandera/banderaArgentina.png" id="1_bd5th"]
+[ext_resource type="Texture2D" uid="uid://ce7hba0gl64cq" path="res://Sprites/Paises/Argentina/Futbolistas/Medios/nicoPaz (1).jpg" id="2_bd5th"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_3fshd"]
+
+[resource]
+script = ExtResource("3_3fshd")
+posicion = 2
+info = "Nico Paz"
+foto = ExtResource("2_bd5th")
+bandera = ExtResource("1_bd5th")
+stat_ataque = 75
+stat_velocidad = 80
+stat_vida = 62
+estrellas = 3
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

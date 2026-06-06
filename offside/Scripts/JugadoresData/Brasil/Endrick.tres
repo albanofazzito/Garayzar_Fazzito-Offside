@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://bbwj2efryv3a8"]
+
+[ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="1_bseyk"]
+[ext_resource type="Texture2D" uid="uid://cidiuginuvmx6" path="res://Sprites/Paises/Brasil/Futbolistas/Delanteros/endrik (1).jpg" id="2_bseyk"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_h4k7l"]
+
+[resource]
+script = ExtResource("3_h4k7l")
+pais = 1
+posicion = 3
+info = "Endrick"
+foto = ExtResource("2_bseyk")
+bandera = ExtResource("1_bseyk")
+efecto = "Tigriño siempre ataca primero"
+stat_ataque = 85
+stat_velocidad = 100
+stat_vida = 30
+estrellas = 6
+calidad = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

@@ -1,26 +1,33 @@
 shader_type canvas_item;
 
-uniform float top_left     : hint_range(0.0, 300.0) = 20.0;
-uniform float top_right    : hint_range(0.0, 300.0) = 20.0;
-uniform float bottom_left  : hint_range(0.0, 300.0) = 20.0;
-uniform float bottom_right : hint_range(0.0, 300.0) = 20.0;
+uniform float top_left     : hint_range(0.0, 0.5) = 0.0;
+uniform float top_right    : hint_range(0.0, 0.5) = 0.0;
+uniform float bottom_left  : hint_range(0.0, 0.5) = 0.0;
+uniform float bottom_right : hint_range(0.0, 0.5) = 0.0;
 
 void fragment() {
-    vec2 size = 1.0 / TEXTURE_PIXEL_SIZE;
-    vec2 px = UV * size;
     vec4 color = texture(TEXTURE, UV);
+    float aspect= TEXTURE_PIXEL_SIZE.y / TEXTURE_PIXEL_SIZE.x;
 
-    if (px.x < top_left && px.y < top_left)
-        if (length(px - vec2(top_left)) > top_left) color.a = 0.0;
+    float rx =top_left;
+    float ry= top_left * aspect;
+    if (rx > 0.0 && UV.x < rx && UV.y < ry)
+        if (length((UV - vec2(rx, ry)) / vec2(rx, ry)) > 1.0) color.a =0.0;
 
-    if (px.x > size.x - top_right && px.y < top_right)
-        if (length(px - vec2(size.x - top_right, top_right)) > top_right) color.a = 0.0;
+    rx= top_right;
+    ry =top_right * aspect;
+    if (rx > 0.0 && UV.x > 1.0 - rx && UV.y < ry)
+        if (length((UV - vec2(1.0 - rx, ry)) / vec2(rx, ry)) > 1.0) color.a= 0.0;
 
-    if (px.x < bottom_left && px.y > size.y - bottom_left)
-        if (length(px - vec2(bottom_left, size.y - bottom_left)) > bottom_left) color.a = 0.0;
+    rx =bottom_left;
+    ry= bottom_left * aspect;
+    if (rx > 0.0 && UV.x < rx && UV.y > 1.0 - ry)
+        if (length((UV - vec2(rx, 1.0 - ry)) / vec2(rx, ry)) > 1.0) color.a =0.0;
 
-    if (px.x > size.x - bottom_right && px.y > size.y - bottom_right)
-        if (length(px - vec2(size.x - bottom_right, size.y - bottom_right)) > bottom_right) color.a = 0.0;
+    rx= bottom_right;
+    ry =bottom_right * aspect;
+    if (rx > 0.0 && UV.x > 1.0 - rx && UV.y > 1.0 - ry)
+        if (length((UV - vec2(1.0 - rx, 1.0 - ry)) / vec2(rx, ry)) > 1.0) color.a= 0.0;
 
     COLOR = color;
 }

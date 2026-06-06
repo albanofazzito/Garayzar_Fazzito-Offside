@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://1dg5am1i6b7c"]
+
+[ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="1_3jo3a"]
+[ext_resource type="Texture2D" uid="uid://b2ta8e6qhnti6" path="res://Sprites/Paises/Brasil/Futbolistas/Medios/fabinho (1).jpg" id="2_jmfab"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_38nfn"]
+
+[resource]
+script = ExtResource("3_38nfn")
+pais = 1
+posicion = 2
+info = "Fabinho"
+foto = ExtResource("2_jmfab")
+bandera = ExtResource("1_3jo3a")
+efecto = "Se pone a bailar y a final del turno aumenta en 10 puntos el ataque de todos los jugadores brasileños"
+stat_ataque = 80
+stat_velocidad = 72
+stat_vida = 67
+estrellas = 6
+calidad = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

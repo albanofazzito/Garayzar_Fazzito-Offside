@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://b6e6pc0qho8sm"]
+
+[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png" id="1_ci7eh"]
+[ext_resource type="Texture2D" uid="uid://dixid1ffsjhg8" path="res://Sprites/Paises/Portugal/Futbolistas/Delanteros/guedes (1).jpg" id="2_ci7eh"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_e5wxw"]
+
+[resource]
+script = ExtResource("3_e5wxw")
+pais = 7
+posicion = 3
+info = "Gonçalo Guedes"
+foto = ExtResource("2_ci7eh")
+bandera = ExtResource("1_ci7eh")
+stat_ataque = 70
+stat_velocidad = 82
+stat_vida = 30
+estrellas = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

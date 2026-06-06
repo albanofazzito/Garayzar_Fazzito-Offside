@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://f7l8ubjnfm1f"]
+
+[ext_resource type="Texture2D" uid="uid://n3ew0v06rbao" path="res://Sprites/Paises/Argentina/Bandera/banderaArgentina.png" id="1_0tkv4"]
+[ext_resource type="Texture2D" uid="uid://dibsaor8iixg6" path="res://Sprites/Paises/Argentina/Futbolistas/Medios/depaul (1).jpg" id="2_civtk"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_66ob4"]
+
+[resource]
+script = ExtResource("3_66ob4")
+posicion = 2
+info = "Rodrigo De Paul"
+foto = ExtResource("2_civtk")
+bandera = ExtResource("1_0tkv4")
+stat_ataque = 67
+stat_velocidad = 67
+stat_vida = 75
+estrellas = 5
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

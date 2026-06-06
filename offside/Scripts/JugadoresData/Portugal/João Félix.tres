@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://bdv0emwrul5ka"]
+
+[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png" id="1_af8vk"]
+[ext_resource type="Texture2D" uid="uid://cypkbm3cqplui" path="res://Sprites/Paises/Portugal/Futbolistas/Delanteros/joaoFelix.jpg" id="2_af8vk"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_o4uhs"]
+
+[resource]
+script = ExtResource("3_o4uhs")
+pais = 7
+posicion = 3
+info = "João Félix"
+foto = ExtResource("2_af8vk")
+bandera = ExtResource("1_af8vk")
+efecto = "Su representante es tan bueno que cada turno baja en 1 su costo"
+stat_ataque = 84
+stat_velocidad = 90
+stat_vida = 40
+estrellas = 10
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

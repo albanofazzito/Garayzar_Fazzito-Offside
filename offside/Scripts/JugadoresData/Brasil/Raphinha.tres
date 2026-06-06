@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://dokm8k7mvom3"]
+
+[ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="1_si2w1"]
+[ext_resource type="Texture2D" uid="uid://bntkhksqiidye" path="res://Sprites/Paises/Brasil/Futbolistas/Delanteros/raphina (1).jpg" id="2_si2w1"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_gcsn4"]
+
+[resource]
+script = ExtResource("3_gcsn4")
+pais = 1
+posicion = 3
+info = "Raphinha"
+foto = ExtResource("2_si2w1")
+bandera = ExtResource("1_si2w1")
+stat_ataque = 85
+stat_velocidad = 91
+stat_vida = 45
+estrellas = 8
+calidad = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

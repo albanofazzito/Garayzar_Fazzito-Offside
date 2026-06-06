@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://dognopm26n7b0"]
+
+[ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="1_qcec8"]
+[ext_resource type="Texture2D" uid="uid://chroo6506e10n" path="res://Sprites/Paises/Brasil/Futbolistas/Delanteros/luisHernrique (1).jpeg" id="2_qcec8"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_60c2p"]
+
+[resource]
+script = ExtResource("3_60c2p")
+pais = 1
+posicion = 3
+info = "Luiz Henrique"
+foto = ExtResource("2_qcec8")
+bandera = ExtResource("1_qcec8")
+stat_ataque = 57
+stat_velocidad = 90
+stat_vida = 23
+estrellas = 3
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

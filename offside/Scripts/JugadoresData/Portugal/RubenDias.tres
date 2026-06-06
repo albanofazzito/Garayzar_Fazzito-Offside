@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://b50kihky1wboa"]
+
+[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png" id="1_176x7"]
+[ext_resource type="Texture2D" uid="uid://t1nxt16qejac" path="res://Sprites/Paises/Portugal/Futbolistas/Defensores/rubenDias (1).jpg" id="2_176x7"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_uuqib"]
+
+[resource]
+script = ExtResource("3_uuqib")
+pais = 7
+posicion = 1
+info = "Rúben Dias"
+foto = ExtResource("2_176x7")
+bandera = ExtResource("1_176x7")
+stat_ataque = 39
+stat_velocidad = 60
+stat_vida = 80
+estrellas = 4
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

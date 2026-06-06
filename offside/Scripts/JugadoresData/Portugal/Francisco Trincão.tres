@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://cfx8djoo6uhvc"]
+
+[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png" id="1_7rdsv"]
+[ext_resource type="Texture2D" uid="uid://0dycth5yo2mq" path="res://Sprites/Paises/Portugal/Futbolistas/Delanteros/trincao (1).jpg" id="2_7rdsv"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_efexh"]
+
+[resource]
+script = ExtResource("3_efexh")
+pais = 7
+posicion = 3
+info = "Francisco Trincão"
+foto = ExtResource("2_7rdsv")
+bandera = ExtResource("1_7rdsv")
+stat_ataque = 80
+stat_velocidad = 80
+stat_vida = 40
+estrellas = 3
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

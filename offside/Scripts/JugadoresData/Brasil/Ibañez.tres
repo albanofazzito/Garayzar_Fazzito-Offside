@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://vjl7iayusdan"]
+
+[ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="1_livk0"]
+[ext_resource type="Texture2D" uid="uid://bjooab4v5cde8" path="res://Sprites/Paises/Brasil/Futbolistas/Defensores/ibañez (1).jpg" id="2_livk0"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_et8q0"]
+
+[resource]
+script = ExtResource("3_et8q0")
+pais = 1
+posicion = 1
+info = "Ibañez"
+foto = ExtResource("2_livk0")
+bandera = ExtResource("1_livk0")
+stat_ataque = 25
+stat_velocidad = 87
+stat_vida = 85
+estrellas = 6
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://bkuvgnik4byyt"]
+
+[ext_resource type="Texture2D" uid="uid://cktlxpqlt7us8" path="res://Sprites/Paises/Francia/Bandera/banderaFrancia.png" id="1_eslsh"]
+[ext_resource type="Texture2D" uid="uid://b80dbhfsusif6" path="res://Sprites/Paises/Francia/Futbolistas/Defensores/maloGusto (1).jpeg" id="2_eslsh"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_060nr"]
+
+[resource]
+script = ExtResource("3_060nr")
+pais = 2
+posicion = 1
+info = "Malo Gusto"
+foto = ExtResource("2_eslsh")
+bandera = ExtResource("1_eslsh")
+stat_ataque = 45
+stat_velocidad = 85
+stat_vida = 73
+estrellas = 4
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

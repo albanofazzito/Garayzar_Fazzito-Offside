@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://dx6udidctq0in"]
+
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="1_unajw"]
+[ext_resource type="Texture2D" uid="uid://n3ew0v06rbao" path="res://Sprites/Paises/Argentina/Bandera/banderaArgentina.png" id="1_vf5be"]
+[ext_resource type="Texture2D" uid="uid://bh7t77t0pqsg8" path="res://Sprites/Paises/Argentina/Futbolistas/Otamendi.png" id="2_dvbhx"]
+
+[resource]
+script = ExtResource("1_unajw")
+posicion = 1
+info = "NICOLAS OTAMENDI"
+foto = ExtResource("2_dvbhx")
+bandera = ExtResource("1_vf5be")
+stat_ataque = 50
+stat_velocidad = 60
+stat_vida = 89
+estrellas = 4
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

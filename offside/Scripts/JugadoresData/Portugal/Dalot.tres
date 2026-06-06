@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://ci0is25a0ma8u"]
+
+[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png" id="1_5mu8v"]
+[ext_resource type="Texture2D" uid="uid://ba0ydtd370e6l" path="res://Sprites/Paises/Portugal/Futbolistas/Defensores/dalot (1).jpg" id="2_5mu8v"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_aprl8"]
+
+[resource]
+script = ExtResource("3_aprl8")
+pais = 7
+posicion = 1
+info = "Diogo Dalot"
+foto = ExtResource("2_5mu8v")
+bandera = ExtResource("1_5mu8v")
+efecto = "Coloca el centro dalot y golpea al rival del frende y la derecha"
+stat_ataque = 30
+stat_velocidad = 85
+stat_vida = 75
+estrellas = 4
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

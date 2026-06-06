@@ -11,14 +11,13 @@ config_version=5
 [application]
 
 config/name="Offside"
-run/main_scene="uid://clunaetn2y7ld"
+run/main_scene="uid://bxn2k0srja0ky"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
-[display]
+[autoload]
 
-window/size/viewport_width=1600
-window/size/viewport_height=1000
+Global="*res://Scripts/Global.gd"
 
 [physics]
 

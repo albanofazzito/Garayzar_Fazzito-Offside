@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://di0qdylky4orh"]
+
+[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png" id="1_iu45t"]
+[ext_resource type="Texture2D" uid="uid://dg5g43o8sug17" path="res://Sprites/Paises/Portugal/Futbolistas/Defensores/cancelo (1).jpg" id="2_iu45t"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_wa8oj"]
+
+[resource]
+script = ExtResource("3_wa8oj")
+pais = 7
+posicion = 1
+info = "João Cancelo"
+foto = ExtResource("2_iu45t")
+bandera = ExtResource("1_iu45t")
+stat_ataque = 78
+stat_velocidad = 83
+stat_vida = 80
+estrellas = 5
+calidad = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

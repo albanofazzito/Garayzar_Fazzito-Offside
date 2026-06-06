@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://c2s618q8e02pw"]
+
+[ext_resource type="Texture2D" uid="uid://n3ew0v06rbao" path="res://Sprites/Paises/Argentina/Bandera/banderaArgentina.png" id="1_vf5nc"]
+[ext_resource type="Texture2D" uid="uid://c83bd6emerg0j" path="res://Sprites/Paises/Argentina/Futbolistas/Medios/locelso(1).jpeg" id="2_vf5nc"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_45trk"]
+
+[resource]
+script = ExtResource("3_45trk")
+posicion = 2
+info = "Lo Celso"
+foto = ExtResource("2_vf5nc")
+bandera = ExtResource("1_vf5nc")
+stat_ataque = 65
+stat_velocidad = 75
+stat_vida = 65
+estrellas = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

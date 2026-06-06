@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://dyvsp8aopm0xw"]
+
+[ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="1_p65s7"]
+[ext_resource type="Texture2D" uid="uid://da6rcjk6o7x2m" path="res://Sprites/Paises/Brasil/Futbolistas/Medios/casemiro (1).jpeg" id="2_p65s7"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_72srq"]
+
+[resource]
+script = ExtResource("3_72srq")
+pais = 1
+posicion = 2
+info = "Casemiro"
+foto = ExtResource("2_p65s7")
+bandera = ExtResource("1_p65s7")
+stat_ataque = 80
+stat_velocidad = 30
+stat_vida = 85
+estrellas = 5
+calidad = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

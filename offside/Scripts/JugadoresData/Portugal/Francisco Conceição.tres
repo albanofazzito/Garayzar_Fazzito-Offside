@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://ova000dqlrbj"]
+
+[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png" id="1_kt002"]
+[ext_resource type="Texture2D" uid="uid://dago8uhold8xw" path="res://Sprites/Paises/Portugal/Futbolistas/Delanteros/conceisao (1).jpg" id="2_kt002"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_wxhu5"]
+
+[resource]
+script = ExtResource("3_wxhu5")
+pais = 7
+posicion = 3
+info = "Francisco Conceição"
+foto = ExtResource("2_kt002")
+bandera = ExtResource("1_kt002")
+stat_ataque = 65
+stat_velocidad = 87
+stat_vida = 36
+estrellas = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

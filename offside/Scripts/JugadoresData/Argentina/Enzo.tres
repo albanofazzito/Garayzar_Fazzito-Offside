@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://es1dw7ev6dms"]
+
+[ext_resource type="Texture2D" uid="uid://n3ew0v06rbao" path="res://Sprites/Paises/Argentina/Bandera/banderaArgentina.png" id="1_keo5j"]
+[ext_resource type="Texture2D" uid="uid://chdo24wbqqlb8" path="res://Sprites/Paises/Argentina/Futbolistas/Medios/enzofernandez (1).jpg" id="2_keo5j"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_2ba4p"]
+
+[resource]
+script = ExtResource("3_2ba4p")
+posicion = 2
+info = "Enzo Fernandez"
+foto = ExtResource("2_keo5j")
+bandera = ExtResource("1_keo5j")
+stat_ataque = 78
+stat_velocidad = 75
+stat_vida = 78
+estrellas = 6
+calidad = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://can68w2f6rt45"]
+
+[ext_resource type="Texture2D" uid="uid://cktlxpqlt7us8" path="res://Sprites/Paises/Francia/Bandera/banderaFrancia.png" id="1_6njqc"]
+[ext_resource type="Texture2D" uid="uid://bdqbxi0wtb64r" path="res://Sprites/Paises/Francia/Futbolistas/Arqueros/samba (1).jpeg" id="2_6njqc"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_56nix"]
+
+[resource]
+script = ExtResource("3_56nix")
+pais = 2
+info = "Brice Samba"
+foto = ExtResource("2_6njqc")
+bandera = ExtResource("1_6njqc")
+stat_ataque = 30
+stat_velocidad = 80
+stat_vida = 80
+estrellas = 4
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

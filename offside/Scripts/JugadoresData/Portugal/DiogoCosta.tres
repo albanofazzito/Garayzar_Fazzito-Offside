@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://m2ima44gj088"]
+
+[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png" id="1_ewixq"]
+[ext_resource type="Texture2D" uid="uid://cn44d34n50i70" path="res://Sprites/Paises/Portugal/Futbolistas/Arqueros/diococosta (1).jpg" id="2_ewixq"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_vihkg"]
+
+[resource]
+script = ExtResource("3_vihkg")
+pais = 7
+info = "Diogo Costa"
+foto = ExtResource("2_ewixq")
+bandera = ExtResource("1_ewixq")
+stat_ataque = 25
+stat_velocidad = 60
+stat_vida = 90
+estrellas = 6
+calidad = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

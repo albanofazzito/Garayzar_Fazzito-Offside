@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://bxtn1blyi1g7e"]
+
+[ext_resource type="Texture2D" uid="uid://cktlxpqlt7us8" path="res://Sprites/Paises/Francia/Bandera/banderaFrancia.png" id="1_s84tk"]
+[ext_resource type="Texture2D" uid="uid://108l8qgfc2vx" path="res://Sprites/Paises/Francia/Futbolistas/Defensores/lucas hernandez (1).jpg" id="2_s84tk"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_vdsdp"]
+
+[resource]
+script = ExtResource("3_vdsdp")
+pais = 2
+posicion = 1
+efecto_tipo = 5
+efecto_valor = 30
+info = "Lucas Hernandez"
+foto = ExtResource("2_s84tk")
+bandera = ExtResource("1_s84tk")
+efecto = "Si se juega con su hermano pasan cosas terribles...."
+stat_ataque = 54
+stat_velocidad = 71
+stat_vida = 82
+estrellas = 5
+calidad = 1
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

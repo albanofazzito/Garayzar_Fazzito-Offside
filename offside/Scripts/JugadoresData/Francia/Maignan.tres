@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://31k6uei5dy4f"]
+
+[ext_resource type="Texture2D" uid="uid://cktlxpqlt7us8" path="res://Sprites/Paises/Francia/Bandera/banderaFrancia.png" id="1_aa4nx"]
+[ext_resource type="Texture2D" uid="uid://6gbrhw6nagfb" path="res://Sprites/Paises/Francia/Futbolistas/Arqueros/maignan (1).jpeg" id="2_mj3ea"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_7uawk"]
+
+[resource]
+script = ExtResource("3_7uawk")
+pais = 2
+info = "Mike Maignan"
+foto = ExtResource("2_mj3ea")
+bandera = ExtResource("1_aa4nx")
+stat_ataque = 40
+stat_velocidad = 85
+stat_vida = 90
+estrellas = 7
+calidad = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

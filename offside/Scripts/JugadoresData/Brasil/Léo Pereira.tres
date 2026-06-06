@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://bb4uepgieix1l"]
+
+[ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="1_10fmq"]
+[ext_resource type="Texture2D" uid="uid://b8mnkxybs00lv" path="res://Sprites/Paises/Brasil/Futbolistas/Defensores/LeoPereira (1).jpg" id="2_10fmq"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_fs6ww"]
+
+[resource]
+script = ExtResource("3_fs6ww")
+pais = 1
+posicion = 1
+info = "Léo Pereira"
+foto = ExtResource("2_10fmq")
+bandera = ExtResource("1_10fmq")
+stat_ataque = 20
+stat_velocidad = 55
+stat_vida = 80
+estrellas = 3
+metadata/_custom_type_script = "uid://d32sgjinvbpge"
