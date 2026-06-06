@@ -39,18 +39,21 @@ var paises = ["ARGENTINA", "BRASIL", "FRANCIA", "INGLATERRA", "ALEMANIA", "HOLAN
 
 func actualizar_carta():
 	var es_truco= datos is TrucoData
+	var texto_pais = _texto_pais(datos.pais)
 	$BaseTruco.visible=es_truco
 	$Base.visible=!es_truco
 	$Base/Jugador.texture =datos.foto
 	$Base/InfoJugador.text= datos.info
+	$Base/InfoJugadorBorde.text= datos.info
 	$Base/Stats/CajaAtaque/NumeroAtaque.text= str(datos.stat_ataque)
 	$Base/Stats/CajaVelocidad/NumeroVelocidad.text =str(datos.stat_velocidad)
 	$Base/Stats/CajaDefensa/NumeroDefensa.text= str(datos.stat_vida)
 	$Base/RecipienteEstrellas/Coste.text =str(datos.estrellas)
 	$BaseAtras/Bandera.texture= datos.bandera
 	$BaseAtras/CajaEfecto/Efecto.text ="[center]" + datos.efecto + "[/center]"
-	$Base/PaisJugador.text= paises[datos.pais]
-	$Base/Posicion.text= posiciones[datos.posicion]
+	$Base/PaisJugador.text= texto_pais
+	$Base/PaisJugadorBorde.text= texto_pais
+	$Base/Posicion.text= _texto_posicion(datos.posicion)
 	$BaseTruco/Efecto.text= datos.efecto
 	$BaseTruco/ImagenTruco.texture =datos.foto
 	$BaseTruco/InfoTruco.text=datos.info
@@ -66,6 +69,16 @@ func aplicarCalidad(calidad: JugadorData.Calidad):
 	Panel.add_theme_stylebox_override("panel", estilo)
 	Panel2.add_theme_stylebox_override("panel", estilo)
 	$Base/Divisor.color =color
+
+func _texto_pais(pais) -> String:
+	if typeof(pais) == TYPE_INT and pais >= 0 and pais < paises.size():
+		return paises[pais]
+	return str(pais)
+
+func _texto_posicion(posicion) -> String:
+	if typeof(posicion) == TYPE_INT and posicion >= 0 and posicion < posiciones.size():
+		return posiciones[posicion]
+	return str(posicion)
 
 func _input(event: InputEvent) -> void:
 	if !en_mano:
