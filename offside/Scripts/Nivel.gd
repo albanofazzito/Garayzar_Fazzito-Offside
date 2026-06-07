@@ -18,6 +18,7 @@ func _ready() -> void:
 			musica_fondo.stream= load("res://Audio/musicaFondo.mp3")
 	musica_fondo.volume_db= -14.0
 	musica_fondo.bus ="Master"
+	musica_fondo.process_mode= Node.PROCESS_MODE_ALWAYS
 	add_child(musica_fondo)
 	musica_fondo.finished.connect(_on_musica_terminada)
 	musica_fondo.play()
@@ -71,17 +72,17 @@ func _on_boton_menu_pressed() -> void:
 	var escenario= Global.escenario_actual
 	match escenario:
 		Global.Escenario.TUTORIAL:
-			get_tree().change_scene_to_file("res://Escenas/Cuartos.tscn")
+			Transicion.cambiar_escena("res://Escenas/Cuartos.tscn")
 		Global.Escenario.CUARTOS:
-			get_tree().change_scene_to_file("res://Escenas/Semis.tscn")
+			Transicion.cambiar_escena("res://Escenas/Semis.tscn")
 		Global.Escenario.SEMIS:
-			get_tree().change_scene_to_file("res://Escenas/Final.tscn")
+			Transicion.cambiar_escena("res://Escenas/Final.tscn")
 		Global.Escenario.FINAL:
-			get_tree().change_scene_to_file("res://Escenas/Campeon.tscn")
+			Transicion.cambiar_escena("res://Escenas/Campeon.tscn")
 
 func _on_boton_derrota_pressed() -> void:
 	get_tree().paused =false
-	get_tree().change_scene_to_file("res://Escenas/Menu.tscn")
+	Transicion.cambiar_escena("res://Escenas/Menu.tscn")
 
 func _on_musica_terminada() -> void:
 	musica_fondo.play()

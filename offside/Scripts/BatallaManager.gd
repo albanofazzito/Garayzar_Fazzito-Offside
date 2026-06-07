@@ -5,10 +5,11 @@ signal batalla_terminada
 
 @export var vida_enemigo: VidaBase
 @export var vida_jugador: VidaBase
+var silbato: Sprite2D
+var silbato_y: float
 
 var sfx_hit: AudioStreamPlayer
 var hits := []
-var silbato_sprite: Sprite2D
 
 func _ready() -> void:
 	sfx_hit =AudioStreamPlayer.new()
@@ -20,12 +21,9 @@ func _ready() -> void:
 		load("res://Audio/hitSound3.mp3"),
 		load("res://Audio/hitSound4.mp3")
 	]
-	silbato_sprite =Sprite2D.new()
-	silbato_sprite.texture= load("res://Sprites/Iconos/Silbato.png")
-	silbato_sprite.scale= Vector2(0.55, 0.55)
-	silbato_sprite.z_index= 10
-	silbato_sprite.visible= false
-	get_tree().current_scene.add_child(silbato_sprite)
+	silbato= get_node("../Silbato") as Sprite2D
+	if silbato:
+		silbato_y= silbato.position.y
 
 func _play_hit() -> void:
 	sfx_hit.stream= hits[randi() % hits.size()]
@@ -108,15 +106,17 @@ func _resolver_columna(col: int) -> void:
 	var carta_j =slot_j.carta_actual if slot_j else null
 	var carta_e =slot_e.carta_actual if slot_e else null
 
-	if carta_j ==null and carta_e ==null:
-		return
+	if silbato and slot_j and slot_e:
+		var centro_j= slot_j.get_global_rect().get_center()
+		var centro_e= slot_e.get_global_rect().get_center()
+		silbato.position= Vector2((centro_j.x + centro_e.x) / 2.0, silbato_y)
+		silbato.visible= true
 
-	var centro_j= slot_j.get_global_rect().get_center() if slot_j else Vector2.ZERO
-	var centro_e= slot_e.get_global_rect().get_center() if slot_e else Vector2.ZERO
-	silbato_sprite.position= (centro_j + centro_e) / 2.0
-	silbato_sprite.visible= true
-	var tw_silb= silbato_sprite.create_tween()
-	tw_silb.tween_property(silbato_sprite, "scale", Vector2(0.15, 0.15), 0.1).from(Vector2(0.0, 0.0)).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	if carta_j ==null and carta_e ==null:
+		await get_tree().create_timer(0.2).timeout
+		if silbato:
+			silbato.visible= false
+		return
 
 	if carta_j and carta_e:
 		if carta_j.datos.stat_velocidad >= carta_e.datos.stat_velocidad:
@@ -161,7 +161,8 @@ func _resolver_columna(col: int) -> void:
 			await get_tree().create_timer(0.25).timeout
 
 	await get_tree().create_timer(0.35).timeout
-	silbato_sprite.visible= false
+	if silbato:
+		silbato.visible= false
 	await _limpiar_muertos(slot_j, slot_e)
 
 func _limpiar_muertos(slot_j, slot_e) -> void:
