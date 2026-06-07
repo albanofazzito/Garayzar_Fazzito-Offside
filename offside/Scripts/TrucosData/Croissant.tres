@@ -2,11 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bl6k4oeqdr5vx" path="res://Scripts/datosTruco.gd" id="1_bpk7d"]
 [ext_resource type="Texture2D" uid="uid://cktlxpqlt7us8" path="res://Sprites/Paises/Francia/Bandera/banderaFrancia.png" id="2_bandera"]
+[ext_resource type="Texture2D" uid="uid://bq3uicur5t32v" path="res://Sprites/Paises/croissant.jpg" id="3_foto"]
 
 [resource]
 script = ExtResource("1_bpk7d")
 pais = 2
 info = "CROISSANT"
+foto = ExtResource("3_foto")
 bandera = ExtResource("2_bandera")
 efecto = "Un croissant parisino que cura 80 de vida al arco"
 estrellas = 2
