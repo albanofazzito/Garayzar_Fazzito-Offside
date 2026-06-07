@@ -48,6 +48,8 @@ func _expulsar_carta(columna: int, grupo: String, mano_devolver: Mano) -> void:
 				break
 	if slot ==null or slot.carta_actual ==null:
 		return
+	if slot.carta_actual.datos.efecto_tipo ==JugadorData.EfectoJugador.NO_TRUCOS:
+		return
 	var carta =slot.carta_actual
 	slot.carta_actual =null
 	slot.mostrar_visual()
@@ -95,6 +97,8 @@ func _buff_stat(columna: int, grupo: String, stat: String, valor: int) -> void:
 func _danio_directo(columna: int, valor: int) -> void:
 	var slot =_get_slot(columna, "slots_enemigo")
 	if slot !=null and slot.carta_actual !=null:
+		if slot.carta_actual.datos.efecto_tipo ==JugadorData.EfectoJugador.NO_TRUCOS:
+			return
 		slot.carta_actual.recibir_danio(valor)
 	else:
 		var vida =get_tree().get_first_node_in_group("vida_enemigo")
@@ -128,7 +132,7 @@ func _ataque_doble_columna(grupo_atacante: String, grupo_victima: String, perdid
 	var atacadas= columnas.slice(0, 2)
 	for col in atacadas:
 		for slot in get_tree().get_nodes_in_group(grupo_victima):
-			if slot.columna == col and slot.carta_actual != null:
+			if slot.columna == col and slot.carta_actual != null and slot.carta_actual.datos.efecto_tipo !=JugadorData.EfectoJugador.NO_TRUCOS:
 				slot.carta_actual.recibir_danio(perdida_vida)
 				if !slot.carta_actual.esta_viva():
 					var carta= slot.carta_actual
@@ -150,7 +154,7 @@ func _inmunidad_arco(grupo_vida: String) -> void:
 
 func _expulsar_baratos(grupo: String, costo_max: int) -> void:
 	for slot in get_tree().get_nodes_in_group(grupo):
-		if slot.carta_actual != null and slot.carta_actual.datos.estrellas < costo_max:
+		if slot.carta_actual != null and slot.carta_actual.datos.estrellas < costo_max and slot.carta_actual.datos.efecto_tipo !=JugadorData.EfectoJugador.NO_TRUCOS:
 			var carta= slot.carta_actual
 			slot.carta_actual= null
 			slot.mostrar_visual()

@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("3_gstaa")
 pais = 2
-posicion = 1
+posicion = 2
 info = "Warren Zaire-Emery"
 foto = ExtResource("2_3q1pi")
 bandera = ExtResource("1_3q1pi")

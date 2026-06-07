@@ -8,6 +8,7 @@
 script = ExtResource("3_aprl8")
 pais = 7
 posicion = 1
+efecto_tipo = 12
 info = "Diogo Dalot"
 foto = ExtResource("2_5mu8v")
 bandera = ExtResource("1_5mu8v")
@@ -15,6 +16,6 @@ efecto = "Coloca el centro dalot y golpea al rival del frende y la derecha"
 stat_ataque = 30
 stat_velocidad = 85
 stat_vida = 75
-estrellas = 4
+estrellas = 1
 calidad = 1
 metadata/_custom_type_script = "uid://d32sgjinvbpge"

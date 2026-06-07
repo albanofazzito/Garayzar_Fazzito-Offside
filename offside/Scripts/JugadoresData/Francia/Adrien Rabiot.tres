@@ -1,18 +1,19 @@
 [gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://ca8sup3r0spoa"]
 
 [ext_resource type="Texture2D" uid="uid://cktlxpqlt7us8" path="res://Sprites/Paises/Francia/Bandera/banderaFrancia.png" id="1_clxqn"]
-[ext_resource type="Texture2D" uid="uid://dbbuxa6ky1ktr" path="res://Sprites/Paises/Francia/Futbolistas/Medios/kone (2).jpg" id="2_7t0hb"]
+[ext_resource type="Texture2D" uid="uid://bjtduqe377sop" path="res://Sprites/Paises/Francia/Futbolistas/Medios/rabiot (1).jpeg" id="2_clxqn"]
 [ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_xv5kh"]
 
 [resource]
 script = ExtResource("3_xv5kh")
 pais = 2
 posicion = 2
-info = "Manu Kone"
-foto = ExtResource("2_7t0hb")
+info = "Adrien Rabiot"
+foto = ExtResource("2_clxqn")
 bandera = ExtResource("1_clxqn")
 stat_ataque = 74
-stat_velocidad = 74
-stat_vida = 74
-estrellas = 4
+stat_velocidad = 80
+stat_vida = 73
+estrellas = 5
+calidad = 1
 metadata/_custom_type_script = "uid://d32sgjinvbpge"

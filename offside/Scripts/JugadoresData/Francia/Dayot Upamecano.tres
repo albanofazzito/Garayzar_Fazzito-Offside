@@ -1,19 +1,19 @@
 [gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://c2alfsotnurnl"]
 
 [ext_resource type="Texture2D" uid="uid://cktlxpqlt7us8" path="res://Sprites/Paises/Francia/Bandera/banderaFrancia.png" id="1_m4k5n"]
-[ext_resource type="Texture2D" uid="uid://bbnsdpo35gbw0" path="res://Sprites/Paises/Francia/Futbolistas/Defensores/saliba (1).jpg" id="2_4pgji"]
+[ext_resource type="Texture2D" uid="uid://bq8vmu5gb6vgw" path="res://Sprites/Paises/Francia/Futbolistas/Defensores/upamecaigo (1).jpg" id="2_m4k5n"]
 [ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_ev7p7"]
 
 [resource]
 script = ExtResource("3_ev7p7")
 pais = 2
 posicion = 1
-info = "William Saliba"
-foto = ExtResource("2_4pgji")
+info = "Dayot Upamecano"
+foto = ExtResource("2_m4k5n")
 bandera = ExtResource("1_m4k5n")
-stat_ataque = 60
+stat_ataque = 40
 stat_velocidad = 80
-stat_vida = 90
-estrellas = 8
+stat_vida = 85
+estrellas = 6
 calidad = 2
 metadata/_custom_type_script = "uid://d32sgjinvbpge"

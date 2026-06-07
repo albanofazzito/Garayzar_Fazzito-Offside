@@ -8,13 +8,14 @@
 script = ExtResource("3_yr2vg")
 pais = 1
 posicion = 3
+efecto_tipo = 14
 info = "Neymar Jr"
 foto = ExtResource("2_vsgxw")
 bandera = ExtResource("1_jvdl0")
-efecto = "Al principe que no hacepto la corona no le afectan los trucos"
+efecto = "Al principe que no hacepto la corona no le afectan los trucos ni los efectos"
 stat_ataque = 96
 stat_velocidad = 96
 stat_vida = 40
-estrellas = 10
+estrellas = 1
 calidad = 3
 metadata/_custom_type_script = "uid://d32sgjinvbpge"

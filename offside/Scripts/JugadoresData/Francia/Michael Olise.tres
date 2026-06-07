@@ -1,19 +1,21 @@
 [gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://kcyvmcvg5wqi"]
 
 [ext_resource type="Texture2D" uid="uid://cktlxpqlt7us8" path="res://Sprites/Paises/Francia/Bandera/banderaFrancia.png" id="1_vhrvt"]
-[ext_resource type="Texture2D" uid="uid://cymrgfx8adyl8" path="res://Sprites/Paises/Francia/Futbolistas/Delanteros/thuram (1).jpg" id="2_5wlsr"]
+[ext_resource type="Texture2D" uid="uid://c5gb8f8v53irw" path="res://Sprites/Paises/Francia/Futbolistas/Delanteros/olise (1).jpeg" id="2_vhrvt"]
 [ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_y2bl7"]
 
 [resource]
 script = ExtResource("3_y2bl7")
 pais = 2
 posicion = 3
-info = "Marcus Thuram"
-foto = ExtResource("2_5wlsr")
+efecto_tipo = 13
+info = "Michael Olise"
+foto = ExtResource("2_vhrvt")
 bandera = ExtResource("1_vhrvt")
-stat_ataque = 83
-stat_velocidad = 86
-stat_vida = 50
-estrellas = 6
-calidad = 1
+efecto = "Encara para el medio y golpea su linea y la de la derecha"
+stat_ataque = 82
+stat_velocidad = 94
+stat_vida = 34
+estrellas = 1
+calidad = 2
 metadata/_custom_type_script = "uid://d32sgjinvbpge"
