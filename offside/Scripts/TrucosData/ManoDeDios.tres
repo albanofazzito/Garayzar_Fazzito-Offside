@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" uid="uid://bl6k4oeqdr5vx" path="res://Scripts/datosTruco.gd" id="1_bpk7d"]
 [ext_resource type="Texture2D" uid="uid://n3ew0v06rbao" path="res://Sprites/Paises/Argentina/Bandera/banderaArgentina.png" id="2_bandera"]
+[ext_resource type="Texture2D" uid="uid://c2jafqkyc8trx" path="res://Sprites/Paises/manoDeDios.jpg" id="3_foto"]
 
 [resource]
 script = ExtResource("1_bpk7d")
 info = "LA MANO DE DIOS"
+foto = ExtResource("3_foto")
 bandera = ExtResource("2_bandera")
 efecto = "El gol mas polemico de la historia hace daño directo al arco rival"
 estrellas = 2

@@ -2,11 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bl6k4oeqdr5vx" path="res://Scripts/datosTruco.gd" id="1_bpk7d"]
 [ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="2_bandera"]
+[ext_resource type="Texture2D" uid="uid://cyss70v5gc6g0" path="res://Sprites/Paises/pele.png" id="3_foto"]
 
 [resource]
 script = ExtResource("1_bpk7d")
 pais = 1
 info = "GOL DE PELE"
+foto = ExtResource("3_foto")
 bandera = ExtResource("2_bandera")
 efecto = "Un golazo legendario de Pele que hace 60 de daño directo al arco"
 estrellas = 3

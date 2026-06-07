@@ -87,6 +87,7 @@ func agregar() -> void:
 		carti.datos= datos.duplicate()
 		if carti.datos is TrucoData and carti.datos.es_universal and carti.datos.bandera== null:
 			carti.datos.bandera= _banderas.get(paisActual)
+			carti.actualizar_carta()
 		carti.get_node("Base/RecipienteEstrellas/Coste").text =str(datos.estrellas)
 	cartas.append(carti)
 	orden()

@@ -2,11 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bl6k4oeqdr5vx" path="res://Scripts/datosTruco.gd" id="1_bpk7d"]
 [ext_resource type="Texture2D" uid="uid://cktlxpqlt7us8" path="res://Sprites/Paises/Francia/Bandera/banderaFrancia.png" id="2_bandera"]
+[ext_resource type="Texture2D" uid="uid://cjo3jqaseuea4" path="res://Sprites/Paises/altaCostura.png" id="3_foto"]
 
 [resource]
 script = ExtResource("1_bpk7d")
 pais = 2
 info = "HAUTE COUTURE"
+foto = ExtResource("3_foto")
 bandera = ExtResource("2_bandera")
 efecto = "La elegancia francesa sube todas las stats de tus jugadores en 25"
 estrellas = 3

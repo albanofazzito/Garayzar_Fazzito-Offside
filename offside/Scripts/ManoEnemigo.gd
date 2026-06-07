@@ -80,6 +80,7 @@ func _robar_carta() -> void:
 	carta.datos= load(ruta).duplicate()
 	if carta.datos is TrucoData and carta.datos.es_universal and carta.datos.bandera== null:
 		carta.datos.bandera= _banderas.get(pais)
+		carta.actualizar_carta()
 	carta.en_mano =true
 	carta.scale= Vector2(0.45, 0.45)
 	carta.rotation= deg_to_rad(180)
@@ -476,10 +477,12 @@ func _expulsar_del_slot(columna: int, grupo: String) -> void:
 	var slot= _get_slot_por_columna(columna, grupo)
 	if slot == null or slot.carta_actual == null:
 		for s in get_tree().get_nodes_in_group(grupo):
-			if s.carta_actual != null:
+			if s.carta_actual != null and s.carta_actual.datos.efecto_tipo !=JugadorData.EfectoJugador.NO_TRUCOS:
 				slot= s
 				break
 	if slot == null or slot.carta_actual == null:
+		return
+	if slot.carta_actual.datos.efecto_tipo ==JugadorData.EfectoJugador.NO_TRUCOS:
 		return
 	var carta= slot.carta_actual
 	slot.carta_actual= null
@@ -511,6 +514,8 @@ func _buff_slot(columna: int, grupo: String, stat: String, valor: int) -> void:
 func _danio_slot(columna: int, valor: int) -> void:
 	var slot= _get_slot_por_columna(columna, "slots")
 	if slot != null and slot.carta_actual != null:
+		if slot.carta_actual.datos.efecto_tipo ==JugadorData.EfectoJugador.NO_TRUCOS:
+			return
 		slot.carta_actual.recibir_danio(valor)
 		if !slot.carta_actual.esta_viva():
 			var carta= slot.carta_actual
@@ -536,7 +541,7 @@ func _ataque_doble_columna(perdida_vida: int) -> void:
 	var atacadas= columnas.slice(0, 2)
 	for col in atacadas:
 		var slot= _get_slot_por_columna(col, "slots")
-		if slot != null and slot.carta_actual != null:
+		if slot != null and slot.carta_actual != null and slot.carta_actual.datos.efecto_tipo !=JugadorData.EfectoJugador.NO_TRUCOS:
 			slot.carta_actual.recibir_danio(perdida_vida)
 			if !slot.carta_actual.esta_viva():
 				var carta= slot.carta_actual
@@ -548,7 +553,7 @@ func _ataque_doble_columna(perdida_vida: int) -> void:
 
 func _expulsar_baratos_jugador(costo_max: int) -> void:
 	for slot in get_tree().get_nodes_in_group("slots"):
-		if slot.carta_actual != null and slot.carta_actual.datos.estrellas < costo_max:
+		if slot.carta_actual != null and slot.carta_actual.datos.estrellas < costo_max and slot.carta_actual.datos.efecto_tipo !=JugadorData.EfectoJugador.NO_TRUCOS:
 			var carta= slot.carta_actual
 			slot.carta_actual= null
 			slot.mostrar_visual()
@@ -576,10 +581,12 @@ func _reducir_vida_slot(columna: int) -> void:
 	var slot= _get_slot_por_columna(columna, "slots")
 	if slot== null or slot.carta_actual== null:
 		for s in get_tree().get_nodes_in_group("slots"):
-			if s.carta_actual !=null:
+			if s.carta_actual !=null and s.carta_actual.datos.efecto_tipo !=JugadorData.EfectoJugador.NO_TRUCOS:
 				slot =s
 				break
 	if slot== null or slot.carta_actual== null:
+		return
+	if slot.carta_actual.datos.efecto_tipo ==JugadorData.EfectoJugador.NO_TRUCOS:
 		return
 	slot.carta_actual.recibir_danio(30)
 	if !slot.carta_actual.esta_viva():
@@ -598,7 +605,7 @@ func _buff_ataque_all_enemigo(valor: int) -> void:
 
 func _debuff_ataque_all_jugador(valor: int) -> void:
 	for slot in get_tree().get_nodes_in_group("slots"):
-		if slot.carta_actual !=null:
+		if slot.carta_actual !=null and slot.carta_actual.datos.efecto_tipo !=JugadorData.EfectoJugador.NO_TRUCOS:
 			slot.carta_actual.datos.stat_ataque =max(0, slot.carta_actual.datos.stat_ataque - valor)
 			slot.carta_actual.actualizar_carta()
 

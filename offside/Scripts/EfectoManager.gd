@@ -221,10 +221,12 @@ func _reducir_vida_columna(columna: int, valor: int) -> void:
 	var slot= _get_slot(columna, "slots_enemigo")
 	if slot== null or slot.carta_actual== null:
 		for s in get_tree().get_nodes_in_group("slots_enemigo"):
-			if s.carta_actual !=null:
+			if s.carta_actual !=null and s.carta_actual.datos.efecto_tipo !=JugadorData.EfectoJugador.NO_TRUCOS:
 				slot =s
 				break
 	if slot== null or slot.carta_actual== null:
+		return
+	if slot.carta_actual.datos.efecto_tipo ==JugadorData.EfectoJugador.NO_TRUCOS:
 		return
 	slot.carta_actual.recibir_danio(valor)
 	if !slot.carta_actual.esta_viva():
@@ -249,7 +251,7 @@ func _buff_ataque_all(grupo: String, valor: int) -> void:
 
 func _debuff_ataque_all(grupo: String, valor: int) -> void:
 	for slot in get_tree().get_nodes_in_group(grupo):
-		if slot.carta_actual !=null:
+		if slot.carta_actual !=null and slot.carta_actual.datos.efecto_tipo !=JugadorData.EfectoJugador.NO_TRUCOS:
 			slot.carta_actual.datos.stat_ataque =max(0, slot.carta_actual.datos.stat_ataque - valor)
 			slot.carta_actual.actualizar_carta()
 			var tw= slot.carta_actual.create_tween()
