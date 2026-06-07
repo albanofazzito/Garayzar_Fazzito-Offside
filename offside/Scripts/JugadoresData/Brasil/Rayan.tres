@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://dfeiplci26mr4"]
 
 [ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="1_octyd"]
-[ext_resource type="Texture2D" uid="uid://bntkhksqiidye" path="res://Sprites/Paises/Brasil/Futbolistas/Delanteros/raphina (1).jpg" id="2_7ysff"]
+[ext_resource type="Texture2D" uid="uid://d1lkm6cv4a6f2" path="res://Sprites/Paises/Brasil/Futbolistas/Delanteros/ryan (1).jpg" id="2_octyd"]
 [ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_xipxe"]
 
 [resource]
@@ -9,7 +9,7 @@ script = ExtResource("3_xipxe")
 pais = 1
 posicion = 3
 info = "Rayan"
-foto = ExtResource("2_7ysff")
+foto = ExtResource("2_octyd")
 bandera = ExtResource("1_octyd")
 stat_ataque = 65
 stat_velocidad = 80

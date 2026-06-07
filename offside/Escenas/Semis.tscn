@@ -4,28 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://xbq7i5hngm1h" path="res://Sprites/Menus/Semis.jpg" id="1_r2qlh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ll7e"]
-bg_color = Color(0.9641623, 0.22069371, 0, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.52854294, 0.84891075, 0.9999998, 1)
+bg_color = Color(0.7294118, 0.5764706, 0.16470589, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4cxry"]
-bg_color = Color(0.26708373, 0.6049381, 1, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(1, 0, 0, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+shadow_color = Color(1, 1, 1, 1)
 
 [node name="Semis" type="Control" unique_id=1862692411]
 layout_mode = 3
@@ -42,27 +31,31 @@ offset_right = 1155.0
 offset_bottom = 652.0
 texture = ExtResource("1_r2qlh")
 
-[node name="Button" type="Button" parent="." unique_id=1518385774]
+[node name="Button3" type="Button" parent="." unique_id=1074982092]
 layout_mode = 0
-offset_left = 137.0
-offset_top = 578.0
-offset_right = 314.0
-offset_bottom = 633.0
+offset_left = 208.0
+offset_top = 559.0
+offset_right = 385.0
+offset_bottom = 618.0
 theme_override_colors/font_color = Color(0.8755652, 0.8762764, 0.8591207, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 0.69411767)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_4ll7e")
+text = "JUGAR"
+
+[node name="Button2" type="Button" parent="." unique_id=1979819155]
+layout_mode = 0
+offset_left = 770.0
+offset_top = 558.0
+offset_right = 947.0
+offset_bottom = 617.0
+theme_override_colors/font_color = Color(0.8755652, 0.8762764, 0.8591207, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 0.69411767)
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_4ll7e")
 text = "SALIR"
 
-[node name="Button2" type="Button" parent="." unique_id=970613771]
-layout_mode = 0
-offset_left = 845.0
-offset_top = 574.0
-offset_right = 1022.0
-offset_bottom = 629.0
-theme_override_colors/font_color = Color(0.8755652, 0.8762764, 0.8591207, 1)
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_4cxry")
-text = "JUGAR"
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_pressed"]

@@ -16,6 +16,6 @@ efecto = "\"mete goles\", y si lo hace, sube el daño en 50 puntos"
 stat_ataque = 99
 stat_velocidad = 87
 stat_vida = 50
-estrellas = 8
+estrellas = 7
 calidad = 3
 metadata/_custom_type_script = "uid://d32sgjinvbpge"

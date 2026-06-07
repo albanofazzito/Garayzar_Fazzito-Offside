@@ -1,19 +1,7 @@
 [gd_scene format=3 uid="uid://b3d8ka05wx68"]
 
 [ext_resource type="Script" uid="uid://cibp278o4sw4i" path="res://Scripts/Menu/Campeon.gd" id="1_htxk5"]
-[ext_resource type="Texture2D" uid="uid://kfxn52ldhhe6" path="res://Sprites/Menus/Campeon (1).png" id="1_i7uid"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7uid"]
-bg_color = Color(0.9641623, 0.22069371, 0, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.52854294, 0.84891075, 0.9999998, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+[ext_resource type="Texture2D" uid="uid://brpcfgdu0jmas" path="res://Sprites/Menus/Campeon.jpg" id="2_htxk5"]
 
 [node name="Campeon" type="Control" unique_id=77443122]
 layout_mode = 3
@@ -28,17 +16,4 @@ script = ExtResource("1_htxk5")
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 652.0
-texture = ExtResource("1_i7uid")
-
-[node name="Button" type="Button" parent="." unique_id=115237143]
-layout_mode = 0
-offset_left = 488.0
-offset_top = 92.0
-offset_right = 665.0
-offset_bottom = 147.0
-theme_override_colors/font_color = Color(0.8755652, 0.8762764, 0.8591207, 1)
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_i7uid")
-text = "SALIR"
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+texture = ExtResource("2_htxk5")

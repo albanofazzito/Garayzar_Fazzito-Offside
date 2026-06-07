@@ -8,6 +8,7 @@
 script = ExtResource("3_ginu2")
 pais = 7
 posicion = 2
+efecto_tipo = 18
 info = "Rúben Neves "
 foto = ExtResource("2_16xan")
 bandera = ExtResource("1_16xan")

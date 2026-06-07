@@ -120,41 +120,45 @@ func _resolver_columna(col: int) -> void:
 
 	if carta_j and carta_e:
 		if carta_j.datos.stat_velocidad >= carta_e.datos.stat_velocidad:
-			await carta_j.animar_ataque(carta_e)
-			_play_hit()
-			if !carta_e.puede_esquivar():
-				carta_e.recibir_danio(carta_j.datos.stat_ataque)
-			await _aplicar_splash_col(col, "slots")
-			await _aplicar_splash_derecha(col, "slots")
-			await _aplicar_splash_izquierda(col, "slots")
-			await get_tree().create_timer(0.25).timeout
-			await carta_e.animar_ataque(carta_j)
-			_play_hit()
-			if !carta_j.puede_esquivar():
-				carta_j.recibir_danio(carta_e.datos.stat_ataque)
-			await _aplicar_splash_col(col, "slots_enemigo")
-			await _aplicar_splash_derecha(col, "slots_enemigo")
-			await _aplicar_splash_izquierda(col, "slots_enemigo")
-			await get_tree().create_timer(0.25).timeout
+			if carta_j.puede_atacar():
+				await carta_j.animar_ataque(carta_e)
+				_play_hit()
+				if !carta_e.puede_esquivar():
+					carta_e.recibir_danio(carta_j.datos.stat_ataque)
+				await _aplicar_splash_col(col, "slots")
+				await _aplicar_splash_derecha(col, "slots")
+				await _aplicar_splash_izquierda(col, "slots")
+				await get_tree().create_timer(0.25).timeout
+			if carta_e.puede_atacar():
+				await carta_e.animar_ataque(carta_j)
+				_play_hit()
+				if !carta_j.puede_esquivar():
+					carta_j.recibir_danio(carta_e.datos.stat_ataque)
+				await _aplicar_splash_col(col, "slots_enemigo")
+				await _aplicar_splash_derecha(col, "slots_enemigo")
+				await _aplicar_splash_izquierda(col, "slots_enemigo")
+				await get_tree().create_timer(0.25).timeout
 		else:
-			await carta_e.animar_ataque(carta_j)
-			_play_hit()
-			if !carta_j.puede_esquivar():
-				carta_j.recibir_danio(carta_e.datos.stat_ataque)
-			await _aplicar_splash_col(col, "slots_enemigo")
-			await _aplicar_splash_derecha(col, "slots_enemigo")
-			await _aplicar_splash_izquierda(col, "slots_enemigo")
-			await get_tree().create_timer(0.25).timeout
-			await carta_j.animar_ataque(carta_e)
-			_play_hit()
-			if !carta_e.puede_esquivar():
-				carta_e.recibir_danio(carta_j.datos.stat_ataque)
-			await _aplicar_splash_col(col, "slots")
-			await _aplicar_splash_derecha(col, "slots")
-			await _aplicar_splash_izquierda(col, "slots")
-			await get_tree().create_timer(0.25).timeout
+			if carta_e.puede_atacar():
+				await carta_e.animar_ataque(carta_j)
+				_play_hit()
+				if !carta_j.puede_esquivar():
+					carta_j.recibir_danio(carta_e.datos.stat_ataque)
+				await _aplicar_splash_col(col, "slots_enemigo")
+				await _aplicar_splash_derecha(col, "slots_enemigo")
+				await _aplicar_splash_izquierda(col, "slots_enemigo")
+				await get_tree().create_timer(0.25).timeout
+			if carta_j.puede_atacar():
+				await carta_j.animar_ataque(carta_e)
+				_play_hit()
+				if !carta_e.puede_esquivar():
+					carta_e.recibir_danio(carta_j.datos.stat_ataque)
+				await _aplicar_splash_col(col, "slots")
+				await _aplicar_splash_derecha(col, "slots")
+				await _aplicar_splash_izquierda(col, "slots")
+				await get_tree().create_timer(0.25).timeout
 	elif carta_j and !carta_e:
-		if vida_enemigo:
+		if vida_enemigo and carta_j.puede_atacar():
 			await carta_j.animar_ataque_base()
 			_play_hit()
 			vida_enemigo.recibir_danio(carta_j.datos.stat_ataque)
@@ -164,7 +168,7 @@ func _resolver_columna(col: int) -> void:
 			await _aplicar_splash_izquierda(col, "slots")
 			await get_tree().create_timer(0.25).timeout
 	elif carta_e and !carta_j:
-		if vida_jugador:
+		if vida_jugador and carta_e.puede_atacar():
 			await carta_e.animar_ataque_base()
 			_play_hit()
 			vida_jugador.recibir_danio(carta_e.datos.stat_ataque)
