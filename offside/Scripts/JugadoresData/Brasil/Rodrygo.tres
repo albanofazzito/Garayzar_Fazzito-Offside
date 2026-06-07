@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://d1omns2ifimmw"]
+
+[ext_resource type="Texture2D" uid="uid://bq5oxm74lpqad" path="res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png" id="1_kr73h"]
+[ext_resource type="Texture2D" uid="uid://pm15mqlw18ci" path="res://Sprites/Paises/Brasil/Futbolistas/Delanteros/aura (1).jpg" id="2_kr73h"]
+[ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_qkij6"]
+
+[resource]
+script = ExtResource("3_qkij6")
+pais = 1
+posicion = 3
+info = "Rodrygoat"
+foto = ExtResource("2_kr73h")
+bandera = ExtResource("1_kr73h")
+stat_ataque = 90
+stat_velocidad = 94
+stat_vida = 37
+estrellas = 7
+calidad = 2
+metadata/_custom_type_script = "uid://d32sgjinvbpge"

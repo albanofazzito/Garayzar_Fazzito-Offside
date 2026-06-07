@@ -348,10 +348,10 @@ func aplicar_efecto_post_combate() -> void:
 	if datos.efecto_tipo ==JugadorData.EfectoJugador.MATAR_ALEATORIO:
 		var todos_slots: Array= []
 		for slot in get_tree().get_nodes_in_group("slots"):
-			if slot.carta_actual != null and slot.carta_actual != self:
+			if slot.carta_actual != null and slot.carta_actual != self and slot.carta_actual.datos.efecto_tipo !=JugadorData.EfectoJugador.NO_TRUCOS:
 				todos_slots.append(slot)
 		for slot in get_tree().get_nodes_in_group("slots_enemigo"):
-			if slot.carta_actual != null and slot.carta_actual != self:
+			if slot.carta_actual != null and slot.carta_actual != self and slot.carta_actual.datos.efecto_tipo !=JugadorData.EfectoJugador.NO_TRUCOS:
 				todos_slots.append(slot)
 		if todos_slots.size() > 0:
 			var slot_random= todos_slots[randi() % todos_slots.size()]

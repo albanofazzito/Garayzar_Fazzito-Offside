@@ -125,12 +125,16 @@ func _resolver_columna(col: int) -> void:
 			if !carta_e.puede_esquivar():
 				carta_e.recibir_danio(carta_j.datos.stat_ataque)
 			await _aplicar_splash_col(col, "slots")
+			await _aplicar_splash_derecha(col, "slots")
+			await _aplicar_splash_izquierda(col, "slots")
 			await get_tree().create_timer(0.25).timeout
 			await carta_e.animar_ataque(carta_j)
 			_play_hit()
 			if !carta_j.puede_esquivar():
 				carta_j.recibir_danio(carta_e.datos.stat_ataque)
 			await _aplicar_splash_col(col, "slots_enemigo")
+			await _aplicar_splash_derecha(col, "slots_enemigo")
+			await _aplicar_splash_izquierda(col, "slots_enemigo")
 			await get_tree().create_timer(0.25).timeout
 		else:
 			await carta_e.animar_ataque(carta_j)
@@ -138,26 +142,36 @@ func _resolver_columna(col: int) -> void:
 			if !carta_j.puede_esquivar():
 				carta_j.recibir_danio(carta_e.datos.stat_ataque)
 			await _aplicar_splash_col(col, "slots_enemigo")
+			await _aplicar_splash_derecha(col, "slots_enemigo")
+			await _aplicar_splash_izquierda(col, "slots_enemigo")
 			await get_tree().create_timer(0.25).timeout
 			await carta_j.animar_ataque(carta_e)
 			_play_hit()
 			if !carta_e.puede_esquivar():
 				carta_e.recibir_danio(carta_j.datos.stat_ataque)
 			await _aplicar_splash_col(col, "slots")
+			await _aplicar_splash_derecha(col, "slots")
+			await _aplicar_splash_izquierda(col, "slots")
 			await get_tree().create_timer(0.25).timeout
 	elif carta_j and !carta_e:
 		if vida_enemigo:
 			await carta_j.animar_ataque_base()
 			_play_hit()
 			vida_enemigo.recibir_danio(carta_j.datos.stat_ataque)
+			_aplicar_goleador(carta_j)
 			await _aplicar_splash_col(col, "slots")
+			await _aplicar_splash_derecha(col, "slots")
+			await _aplicar_splash_izquierda(col, "slots")
 			await get_tree().create_timer(0.25).timeout
 	elif carta_e and !carta_j:
 		if vida_jugador:
 			await carta_e.animar_ataque_base()
 			_play_hit()
 			vida_jugador.recibir_danio(carta_e.datos.stat_ataque)
+			_aplicar_goleador(carta_e)
 			await _aplicar_splash_col(col, "slots_enemigo")
+			await _aplicar_splash_derecha(col, "slots_enemigo")
+			await _aplicar_splash_izquierda(col, "slots_enemigo")
 			await get_tree().create_timer(0.25).timeout
 
 	await get_tree().create_timer(0.35).timeout
@@ -213,9 +227,54 @@ func _aplicar_splash_col(col_actual: int, grupo_atacante: String) -> void:
 	var grupo_victima= "slots" if grupo_atacante == "slots_enemigo" else "slots_enemigo"
 	var muertos: Array =[]
 	for slot in get_tree().get_nodes_in_group(grupo_victima):
-		if slot.columna != col_actual and slot.carta_actual != null:
+		if slot.columna != col_actual and slot.carta_actual != null and slot.carta_actual.datos.efecto_tipo !=JugadorData.EfectoJugador.NO_TRUCOS:
 			slot.carta_actual.recibir_danio(carta.datos.efecto_valor)
 			if !slot.carta_actual.esta_viva():
 				muertos.append(slot)
 	for slot in muertos:
 		await _eliminar_carta(slot)
+
+func _aplicar_splash_derecha(col_actual: int, grupo_atacante: String) -> void:
+	var slot_atk= _get_slot(col_actual, grupo_atacante)
+	if slot_atk ==null or slot_atk.carta_actual ==null:
+		return
+	var carta= slot_atk.carta_actual
+	if carta.datos.efecto_tipo !=JugadorData.EfectoJugador.DANIO_LINEA_DERECHA:
+		return
+	var col_derecha= col_actual + 1
+	if col_derecha > 4:
+		return
+	var grupo_victima= "slots" if grupo_atacante == "slots_enemigo" else "slots_enemigo"
+	var slot_victima= _get_slot(col_derecha, grupo_victima)
+	if slot_victima != null and slot_victima.carta_actual != null and slot_victima.carta_actual.datos.efecto_tipo !=JugadorData.EfectoJugador.NO_TRUCOS:
+		slot_victima.carta_actual.recibir_danio(carta.datos.stat_ataque)
+		if !slot_victima.carta_actual.esta_viva():
+			await _eliminar_carta(slot_victima)
+
+func _aplicar_splash_izquierda(col_actual: int, grupo_atacante: String) -> void:
+	var slot_atk= _get_slot(col_actual, grupo_atacante)
+	if slot_atk ==null or slot_atk.carta_actual ==null:
+		return
+	var carta= slot_atk.carta_actual
+	if carta.datos.efecto_tipo !=JugadorData.EfectoJugador.DANIO_LINEA_IZQUIERDA:
+		return
+	var col_izquierda= col_actual - 1
+	if col_izquierda < 0:
+		return
+	var grupo_victima= "slots" if grupo_atacante == "slots_enemigo" else "slots_enemigo"
+	var slot_victima= _get_slot(col_izquierda, grupo_victima)
+	if slot_victima != null and slot_victima.carta_actual != null and slot_victima.carta_actual.datos.efecto_tipo !=JugadorData.EfectoJugador.NO_TRUCOS:
+		slot_victima.carta_actual.recibir_danio(carta.datos.stat_ataque)
+		if !slot_victima.carta_actual.esta_viva():
+			await _eliminar_carta(slot_victima)
+
+func _aplicar_goleador(carta: Carta) -> void:
+	if carta.datos.efecto_tipo !=JugadorData.EfectoJugador.GOLEADOR:
+		return
+	carta.datos.stat_ataque +=50
+	carta.actualizar_carta()
+	var tw= carta.create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	tw.tween_property(carta, "modulate", Color(1.0, 0.85, 0.0), 0.08)
+	tw.parallel().tween_property(carta, "scale", Vector2(0.7, 0.7), 0.1)
+	tw.tween_property(carta, "scale", Vector2(0.6, 0.6), 0.12)
+	tw.parallel().tween_property(carta, "modulate", Color.WHITE, 0.2)

@@ -47,8 +47,8 @@ script = ExtResource("9_nivel")
 
 [node name="Pasto" type="ColorRect" parent="." unique_id=1978088414]
 z_index = -2
-offset_right = 1147.0
-offset_bottom = 645.0
+offset_right = 1156.0
+offset_bottom = 648.0
 color = Color(0.24705882, 0.5254902, 0.16078432, 1)
 
 [node name="Divisor" type="ColorRect" parent="Pasto" unique_id=1095346955]

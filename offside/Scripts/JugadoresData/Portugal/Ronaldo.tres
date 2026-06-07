@@ -8,13 +8,14 @@
 script = ExtResource("1_7umn8")
 pais = 7
 posicion = 3
+efecto_tipo = 15
 info = "CRISTIANO RONALDO"
 foto = ExtResource("1_8ycpx")
 bandera = ExtResource("1_xo413")
-efecto = "\"mete goles\""
+efecto = "\"mete goles\", y si lo hace, sube el daño en 50 puntos"
 stat_ataque = 99
 stat_velocidad = 87
 stat_vida = 50
-estrellas = 7
+estrellas = 1
 calidad = 3
 metadata/_custom_type_script = "uid://d32sgjinvbpge"

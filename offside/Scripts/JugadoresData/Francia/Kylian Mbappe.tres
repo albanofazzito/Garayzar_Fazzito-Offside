@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://b2nh5ftxngwa4"]
 
 [ext_resource type="Texture2D" uid="uid://cktlxpqlt7us8" path="res://Sprites/Paises/Francia/Bandera/banderaFrancia.png" id="1_m616y"]
-[ext_resource type="Texture2D" uid="uid://cymrgfx8adyl8" path="res://Sprites/Paises/Francia/Futbolistas/Delanteros/thuram (1).jpg" id="2_elg0y"]
+[ext_resource type="Texture2D" uid="uid://x7h5ob24taqb" path="res://Sprites/Paises/Francia/Futbolistas/Capitan/mbappe (1).jpg" id="2_m616y"]
 [ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_ryjoy"]
 
 [resource]
@@ -10,13 +10,13 @@ pais = 2
 posicion = 3
 efecto_tipo = 8
 efecto_valor = 20
-info = "Marcus Thuram"
-foto = ExtResource("2_elg0y")
+info = "Kylian Mbappe"
+foto = ExtResource("2_m616y")
 bandera = ExtResource("1_m616y")
 efecto = "Mbappe hace 20 de daño en todas las lineas"
-stat_ataque = 83
-stat_velocidad = 86
+stat_ataque = 94
+stat_velocidad = 99
 stat_vida = 50
-estrellas = 6
-calidad = 1
+estrellas = 10
+calidad = 3
 metadata/_custom_type_script = "uid://d32sgjinvbpge"
