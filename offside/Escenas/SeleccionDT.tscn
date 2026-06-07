@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://ch6jk07js521s"]
+
+[ext_resource type="Script" uid="uid://bgrllp2llfh1g" path="res://Scripts/Menu/SeleccionDT.gd" id="1_dt"]
+[ext_resource type="Texture2D" uid="uid://bb3ws3da5gks6" path="res://Sprites/fondo.png" id="2_2aspv"]
+
+[sub_resource type="Gradient" id="Gradient_bg"]
+colors = PackedColorArray(0.75, 0.75, 0.78, 0.4, 0.15, 0.15, 0.17, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bg"]
+gradient = SubResource("Gradient_bg")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="SeleccionDT" type="Control" unique_id=475936284]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dt")
+
+[node name="Fondo" type="ColorRect" parent="." unique_id=33240280]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.13, 0.13, 0.15, 1)
+
+[node name="FondoGradiente" type="TextureRect" parent="." unique_id=1936348]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_bg")
+
+[node name="Fondo2" type="Sprite2D" parent="." unique_id=567622113]
+modulate = Color(0.27450982, 0.27450982, 0.27450982, 0.31764707)
+position = Vector2(559, 320)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("2_2aspv")
+
+[node name="Titulo" type="RichTextLabel" parent="." unique_id=1620012558]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 70.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "[center][b][font_size=32][color=#ffffff]ELIGE TU SELECCIÓN[/color][/font_size][/b][/center]"
+fit_content = true
+scroll_active = false
+
+[node name="Galeria" type="Control" parent="." unique_id=1491696883]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 80.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FlechaIzq" type="Button" parent="." unique_id=1967279531]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -30.0
+offset_right = 60.0
+offset_bottom = 30.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+text = "<"
+
+[node name="FlechaDer" type="Button" parent="." unique_id=1333642832]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -30.0
+offset_right = -20.0
+offset_bottom = 30.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 28
+text = ">"
+
+[node name="BotonElegir" type="Button" parent="." unique_id=420931094]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -60.0
+offset_right = 80.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "ELEGIR"

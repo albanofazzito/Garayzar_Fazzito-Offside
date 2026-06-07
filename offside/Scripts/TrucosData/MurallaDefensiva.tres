@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TrucoData" format=3]
+
+[ext_resource type="Script" uid="uid://bl6k4oeqdr5vx" path="res://Scripts/datosTruco.gd" id="1_bpk7d"]
+
+[resource]
+script = ExtResource("1_bpk7d")
+info = "MURALLA DEFENSIVA"
+efecto = "Refuerza la defensa aumentando la vida de un jugador en 30"
+estrellas = 2
+tipo_efecto = 3
+valor = 30
+es_universal = true
+metadata/_custom_type_script = "uid://bl6k4oeqdr5vx"

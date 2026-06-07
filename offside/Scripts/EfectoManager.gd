@@ -31,10 +31,20 @@ func ejecutar(datos: TrucoData, mano: Mano, columna: int) -> void:
 			_curar_vida("vida_jugador", datos.valor)
 		TrucoData.TipoEfecto.DANIO_DIRECTO_PASANTE:
 			_danio_directo_pasante(columna, "slots", "vida_enemigo")
+		TrucoData.TipoEfecto.DANIO_ARCO_DIRECTO:
+			_danio_arco_directo("vida_enemigo", datos.valor)
+		TrucoData.TipoEfecto.BUFF_VELOCIDAD_COLUMNA:
+			_buff_stat(columna, "slots", "stat_velocidad", datos.valor)
+		TrucoData.TipoEfecto.REDUCIR_VIDA_COLUMNA:
+			_reducir_vida_columna(columna, datos.valor)
+		TrucoData.TipoEfecto.BUFF_ATAQUE_ALL:
+			_buff_ataque_all("slots", datos.valor)
+		TrucoData.TipoEfecto.DEBUFF_ATAQUE_ALL:
+			_debuff_ataque_all("slots_enemigo", datos.valor)
 
 func necesita_columna(datos: TrucoData) -> bool:
 	match datos.tipo_efecto:
-		TrucoData.TipoEfecto.EXPULSAR_CARTA_ENEMIGA, TrucoData.TipoEfecto.EXPULSAR_CARTA_PROPIA, TrucoData.TipoEfecto.BUFF_ATAQUE_COLUMNA, TrucoData.TipoEfecto.BUFF_VIDA_COLUMNA, TrucoData.TipoEfecto.DANIO_DIRECTO, TrucoData.TipoEfecto.BUFF_ATAQUE_JUGADOR, TrucoData.TipoEfecto.DANIO_DIRECTO_PASANTE:
+		TrucoData.TipoEfecto.EXPULSAR_CARTA_ENEMIGA, TrucoData.TipoEfecto.EXPULSAR_CARTA_PROPIA, TrucoData.TipoEfecto.BUFF_ATAQUE_COLUMNA, TrucoData.TipoEfecto.BUFF_VIDA_COLUMNA, TrucoData.TipoEfecto.DANIO_DIRECTO, TrucoData.TipoEfecto.BUFF_ATAQUE_JUGADOR, TrucoData.TipoEfecto.DANIO_DIRECTO_PASANTE, TrucoData.TipoEfecto.BUFF_VELOCIDAD_COLUMNA, TrucoData.TipoEfecto.REDUCIR_VIDA_COLUMNA:
 			return true
 		_:
 			return false
@@ -201,3 +211,47 @@ func _danio_directo_pasante(columna: int, grupo_atacante: String, grupo_vida: St
 	var vida= get_tree().get_first_node_in_group(grupo_vida)
 	if vida:
 		vida.recibir_danio(danio)
+
+func _danio_arco_directo(grupo_vida: String, valor: int) -> void:
+	var vida= get_tree().get_first_node_in_group(grupo_vida)
+	if vida:
+		vida.recibir_danio(valor)
+
+func _reducir_vida_columna(columna: int, valor: int) -> void:
+	var slot= _get_slot(columna, "slots_enemigo")
+	if slot== null or slot.carta_actual== null:
+		for s in get_tree().get_nodes_in_group("slots_enemigo"):
+			if s.carta_actual !=null:
+				slot =s
+				break
+	if slot== null or slot.carta_actual== null:
+		return
+	slot.carta_actual.recibir_danio(valor)
+	if !slot.carta_actual.esta_viva():
+		var carta= slot.carta_actual
+		slot.carta_actual= null
+		slot.mostrar_visual()
+		carta.queue_free()
+	else:
+		slot.carta_actual.actualizar_carta()
+		var tw= slot.carta_actual.create_tween()
+		tw.tween_property(slot.carta_actual, "modulate", Color(1.0, 0.3, 0.3), 0.1)
+		tw.tween_property(slot.carta_actual, "modulate", Color.WHITE, 0.2)
+
+func _buff_ataque_all(grupo: String, valor: int) -> void:
+	for slot in get_tree().get_nodes_in_group(grupo):
+		if slot.carta_actual !=null:
+			slot.carta_actual.datos.stat_ataque +=valor
+			slot.carta_actual.actualizar_carta()
+			var tw= slot.carta_actual.create_tween()
+			tw.tween_property(slot.carta_actual, "modulate", Color(1.0, 0.6, 0.0), 0.1)
+			tw.tween_property(slot.carta_actual, "modulate", Color.WHITE, 0.2)
+
+func _debuff_ataque_all(grupo: String, valor: int) -> void:
+	for slot in get_tree().get_nodes_in_group(grupo):
+		if slot.carta_actual !=null:
+			slot.carta_actual.datos.stat_ataque =max(0, slot.carta_actual.datos.stat_ataque - valor)
+			slot.carta_actual.actualizar_carta()
+			var tw= slot.carta_actual.create_tween()
+			tw.tween_property(slot.carta_actual, "modulate", Color(0.5, 0.0, 0.5), 0.1)
+			tw.tween_property(slot.carta_actual, "modulate", Color.WHITE, 0.2)

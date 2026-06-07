@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TrucoData" format=3]
+
+[ext_resource type="Script" uid="uid://bl6k4oeqdr5vx" path="res://Scripts/datosTruco.gd" id="1_bpk7d"]
+[ext_resource type="Texture2D" uid="uid://cktlxpqlt7us8" path="res://Sprites/Paises/Francia/Bandera/banderaFrancia.png" id="2_bandera"]
+
+[resource]
+script = ExtResource("1_bpk7d")
+pais = 2
+info = "LIBERTE"
+bandera = ExtResource("2_bandera")
+efecto = "Liberte! Expulsa a todos los jugadores rivales con menos de 3 estrellas"
+estrellas = 3
+tipo_efecto = 9
+valor = 3
+metadata/_custom_type_script = "uid://bl6k4oeqdr5vx"
