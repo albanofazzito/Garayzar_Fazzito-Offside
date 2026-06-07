@@ -16,6 +16,6 @@ efecto = "Al principe que no hacepto la corona no le afectan los trucos ni los e
 stat_ataque = 96
 stat_velocidad = 96
 stat_vida = 40
-estrellas = 7
+estrellas = 10
 calidad = 3
 metadata/_custom_type_script = "uid://d32sgjinvbpge"

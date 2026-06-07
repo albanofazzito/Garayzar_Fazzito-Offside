@@ -660,6 +660,7 @@ func _on_batalla_manager_batalla_terminada() -> void:
 	boton_turno.disabled= false
 	mano.sumar_estrella()
 	sumar_estrella()
+	_aplicar_mejor_representante()
 	if mano.cartas.size() <mano.cartas_max:
 		mano.agregar()
 	_robar_carta()
@@ -676,6 +677,13 @@ func _actualizar_boton() -> void:
 			boton_turno.texture_normal= tex_rival
 		Estado.BATALLANDO:
 			boton_turno.texture_normal= tex_batalla
+
+func _aplicar_mejor_representante() -> void:
+	for carta in mano.cartas:
+		if carta.datos.efecto_tipo ==JugadorData.EfectoJugador.MEJOR_REPRESENTANTE:
+			if carta.datos.estrellas > 1:
+				carta.datos.estrellas -=1
+				carta.get_node("Base/RecipienteEstrellas/Coste").text =str(carta.datos.estrellas)
 
 func _animar_boton() -> void:
 	if !boton_turno:

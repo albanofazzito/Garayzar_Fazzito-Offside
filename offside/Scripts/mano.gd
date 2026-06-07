@@ -26,6 +26,7 @@ var _banderas: Dictionary= {
 	JugadorData.Pais.PORTUGAL: preload("res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png"),
 }
 func _ready() -> void:
+	add_to_group("mano_jugador")
 	efecto_manager =EfectoManager.new()
 	add_child(efecto_manager)
 	sfx_woosh1 =AudioStreamPlayer.new()

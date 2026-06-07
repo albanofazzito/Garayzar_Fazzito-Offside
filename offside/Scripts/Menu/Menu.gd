@@ -1,10 +1,10 @@
 extends Control
 
 const SiguienteNivel = "res://Escenas/Nivel.tscn"
-const Menu = "res://Escenas/Menu.tscn"
+
 
 func _on_button_pressed() -> void:
-	Transicion.cambiar_escena(Menu)
+	get_tree().quit()
 
 func _on_button_2_pressed() -> void:
 	Transicion.cambiar_escena("res://Escenas/SeleccionDT.tscn")

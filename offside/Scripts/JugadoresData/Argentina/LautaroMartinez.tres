@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="JugadorData" format=3 uid="uid://kk2ur1fs544g"]
 
 [ext_resource type="Texture2D" uid="uid://n3ew0v06rbao" path="res://Sprites/Paises/Argentina/Bandera/banderaArgentina.png" id="1_uc4up"]
-[ext_resource type="Texture2D" uid="uid://c15g71j2bjvgu" path="res://Sprites/Paises/Argentina/Futbolistas/Delanteros/julianAlvarez (1).jpg" id="2_tgt3w"]
+[ext_resource type="Texture2D" uid="uid://duoso5enjcbkr" path="res://Sprites/Paises/Argentina/Futbolistas/Delanteros/lautaroMartinez (1).jpg" id="2_uc4up"]
 [ext_resource type="Script" uid="uid://d32sgjinvbpge" path="res://Scripts/datosJugador.gd" id="3_x7r3l"]
 
 [resource]
 script = ExtResource("3_x7r3l")
 posicion = 3
-info = "Julian Alvarez"
-foto = ExtResource("2_tgt3w")
+info = "Lautaro Martinez"
+foto = ExtResource("2_uc4up")
 bandera = ExtResource("1_uc4up")
 stat_ataque = 92
 stat_velocidad = 82

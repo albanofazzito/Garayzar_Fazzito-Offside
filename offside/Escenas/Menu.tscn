@@ -1,31 +1,24 @@
 [gd_scene format=3 uid="uid://bxn2k0srja0ky"]
 
 [ext_resource type="Script" uid="uid://d15fa026lwj0c" path="res://Scripts/Menu/Menu.gd" id="1_xhjix"]
-[ext_resource type="Texture2D" uid="uid://br3aekxc7mqvr" path="res://Sprites/Menus/seleccion.jpg" id="2_o2l53"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_425bc"]
-bg_color = Color(0.9641623, 0.22069371, 0, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.52854294, 0.84891075, 0.9999998, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
+[ext_resource type="Texture2D" uid="uid://hgngnx0ng3wt" path="res://Sprites/Menus/menu.jpg" id="2_xhjix"]
+[ext_resource type="Texture2D" uid="uid://bseubdmduad0p" path="res://Sprites/Menus/neymar.png" id="3_2a5i7"]
+[ext_resource type="Texture2D" uid="uid://c4crrihs0d2g6" path="res://Sprites/Menus/mbappe.png" id="4_2ahv8"]
+[ext_resource type="Texture2D" uid="uid://bgh8cfs0r4ewe" path="res://Sprites/Menus/ronaldo.png" id="5_8shpa"]
+[ext_resource type="Texture2D" uid="uid://ba1eayfb6piay" path="res://Sprites/Menus/messi.png" id="6_m10g6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j7eae"]
-bg_color = Color(0.26708373, 0.6049381, 1, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(1, 0, 0, 1)
+bg_color = Color(0.7294118, 0.5764706, 0.16470589, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
+shadow_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xhjix"]
 bg_color = Color(0.7305252, 0.5779242, 0.16418123, 1)
@@ -47,67 +40,108 @@ script = ExtResource("1_xhjix")
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1494903604]
 layout_mode = 0
 offset_left = -83.0
+offset_top = -21.0
 offset_right = 1213.0
-offset_bottom = 729.0
-texture = ExtResource("2_o2l53")
+offset_bottom = 708.0
+texture = ExtResource("2_xhjix")
 
-[node name="Button" type="Button" parent="." unique_id=1837110241]
+[node name="TextureRect4" type="TextureRect" parent="." unique_id=450330811]
 layout_mode = 0
-offset_left = 725.0
-offset_top = 573.0
-offset_right = 902.0
-offset_bottom = 628.0
-theme_override_colors/font_color = Color(0.8755652, 0.8762764, 0.8591207, 1)
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_425bc")
-text = "SALIR"
+offset_left = 488.99997
+offset_top = 52.0
+offset_right = 1889.0
+offset_bottom = 1187.0001
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_2a5i7")
+
+[node name="TextureRect3" type="TextureRect" parent="." unique_id=309719859]
+layout_mode = 0
+offset_left = 529.0
+offset_top = -41.0
+offset_right = 2595.2632
+offset_bottom = 1794.0024
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_2ahv8")
+
+[node name="TextureRect5" type="TextureRect" parent="." unique_id=1201323054]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 67.00001
+offset_right = 1071.0002
+offset_bottom = 1720.3988
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("5_8shpa")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1992954969]
+layout_mode = 0
+offset_left = 276.0
+offset_top = 67.00001
+offset_right = 1163.0
+offset_bottom = 1876.0
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_m10g6")
 
 [node name="Button2" type="Button" parent="." unique_id=2092469330]
 layout_mode = 0
-offset_left = 284.0
-offset_top = 573.0
-offset_right = 461.0
-offset_bottom = 628.0
+offset_left = 279.0
+offset_top = 547.0
+offset_right = 456.0
+offset_bottom = 606.0
 theme_override_colors/font_color = Color(0.8755652, 0.8762764, 0.8591207, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 0.69411767)
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_j7eae")
 text = "JUGAR"
 
 [node name="Label" type="Label" parent="." unique_id=91069539]
 layout_mode = 0
-offset_left = 471.0
-offset_top = 570.0
-offset_right = 721.0
-offset_bottom = 635.0
+offset_left = 276.0
+offset_top = 447.0
+offset_right = 834.0
+offset_bottom = 540.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0.135178, 0.5548037, 0.746757, 1)
-theme_override_colors/font_outline_color = Color(0, 0.59819067, 0.7045848, 1)
+theme_override_colors/font_shadow_color = Color(0.7294118, 0.5764706, 0.16470589, 1)
+theme_override_colors/font_outline_color = Color(0.6342096, 0.5073099, 0.41942, 1)
 theme_override_constants/line_spacing = 5
 theme_override_constants/paragraph_spacing = 4
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 text = "AYUDALOS A CUMPLIR EL 
 SUEÑO DE NUEVO"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="." unique_id=619270389]
+[node name="Label3" type="Label" parent="." unique_id=1797499202]
 layout_mode = 0
-offset_left = 327.0
-offset_top = 146.0
-offset_right = 839.0
-offset_bottom = 249.0
+offset_left = 276.0
+offset_top = 243.0
+offset_right = 836.0
+offset_bottom = 428.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0.135178, 0.5548037, 0.746757, 1)
-theme_override_colors/font_outline_color = Color(0.7443627, 0.21467945, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = 5
 theme_override_constants/paragraph_spacing = 4
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 75
+theme_override_font_sizes/font_size = 120
 theme_override_styles/normal = SubResource("StyleBoxFlat_xhjix")
 text = "OFFSIDE"
 horizontal_alignment = 1
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="Button3" type="Button" parent="." unique_id=1331389338]
+layout_mode = 0
+offset_left = 657.0
+offset_top = 547.0
+offset_right = 834.0
+offset_bottom = 606.0
+theme_override_colors/font_color = Color(0.8755652, 0.8762764, 0.8591207, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 0.69411767)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_j7eae")
+text = "SALIR"
+
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_pressed"]

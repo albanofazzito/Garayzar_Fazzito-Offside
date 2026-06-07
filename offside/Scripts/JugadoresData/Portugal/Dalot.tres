@@ -16,6 +16,6 @@ efecto = "Coloca el centro dalot y golpea al rival del frende y la derecha"
 stat_ataque = 30
 stat_velocidad = 85
 stat_vida = 75
-estrellas = 1
+estrellas = 4
 calidad = 1
 metadata/_custom_type_script = "uid://d32sgjinvbpge"

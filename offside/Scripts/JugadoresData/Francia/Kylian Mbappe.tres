@@ -17,6 +17,6 @@ efecto = "Mbappe hace 20 de daño en todas las lineas"
 stat_ataque = 94
 stat_velocidad = 99
 stat_vida = 50
-estrellas = 6
+estrellas = 10
 calidad = 3
 metadata/_custom_type_script = "uid://d32sgjinvbpge"

@@ -343,6 +343,33 @@ func aplicar_efecto_turno() -> void:
 					actualizar_carta()
 					saliba_activado= true
 					break
+	if datos.efecto_tipo ==JugadorData.EfectoJugador.JOGADINHA_DO_PAQUETA:
+		if turnos_en_campo ==1:
+			var grupo= _get_mi_grupo()
+			for slot in get_tree().get_nodes_in_group(grupo):
+				if slot.carta_actual != null and slot.carta_actual != self:
+					slot.carta_actual.datos.stat_ataque +=20
+					slot.carta_actual.datos.stat_velocidad +=20
+					slot.carta_actual.datos.stat_vida +=20
+					if slot.carta_actual.combate_inicializado:
+						slot.carta_actual.vida_actual +=20
+					slot.carta_actual.actualizar_carta()
+					var tw= slot.carta_actual.create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+					tw.tween_property(slot.carta_actual, "modulate", Color(0.2, 1.0, 0.4), 0.1)
+					tw.parallel().tween_property(slot.carta_actual, "scale", Vector2(0.68, 0.68), 0.1)
+					tw.tween_property(slot.carta_actual, "scale", Vector2(0.6, 0.6), 0.15)
+					tw.parallel().tween_property(slot.carta_actual, "modulate", Color.WHITE, 0.2)
+	if datos.efecto_tipo ==JugadorData.EfectoJugador.TE_QUIERO_AMIGO:
+		if turnos_en_campo ==1:
+			var mano_jugador= get_tree().get_first_node_in_group("mano_jugador")
+			if mano_jugador and mano_jugador.cartas.size() < mano_jugador.cartas_max:
+				var datos_jota= load("res://Scripts/JugadoresData/Portugal/Diogo Jota.tres")
+				var carti= mano_jugador.escenaCarta.instantiate() as Carta
+				mano_jugador.add_child(carti)
+				carti.datos= datos_jota.duplicate()
+				mano_jugador.cartas.append(carti)
+				mano_jugador.orden()
+				mano_jugador._animar_entrada(carti)
 
 func aplicar_efecto_post_combate() -> void:
 	if datos.efecto_tipo ==JugadorData.EfectoJugador.MATAR_ALEATORIO:
@@ -362,6 +389,10 @@ func aplicar_efecto_post_combate() -> void:
 		var vida= get_tree().get_first_node_in_group(grupo_vida)
 		if vida:
 			vida.recibir_danio(datos.efecto_valor)
+	if datos.efecto_tipo ==JugadorData.EfectoJugador.ADIOS_DIOGO:
+		if turnos_en_campo >=1:
+			vida_actual= 0
+			get_node("Base/Stats/CajaDefensa/NumeroDefensa").text= "0"
 
 func _get_mi_grupo() -> String:
 	for slot in get_tree().get_nodes_in_group("slots"):
@@ -379,6 +410,11 @@ func puede_esquivar() -> bool:
 			esquivar_contador =0
 			return true
 	return false
+
+func puede_atacar() -> bool:
+	if datos.efecto_tipo ==JugadorData.EfectoJugador.BAGGIO:
+		return turnos_en_campo % 2 ==1
+	return true
 
 func activar_rage(vida_base: int) -> void:
 	if datos.efecto_tipo ==JugadorData.EfectoJugador.RAGE_AL_GOL:
