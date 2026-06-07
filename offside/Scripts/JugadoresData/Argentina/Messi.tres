@@ -15,6 +15,6 @@ efecto = "Messi regatea tan bien que cada un turno puede esquivar el ataque del 
 stat_ataque = 99
 stat_velocidad = 94
 stat_vida = 45
-estrellas = 1
+estrellas = 7
 calidad = 3
 metadata/_custom_type_script = "uid://d32sgjinvbpge"
