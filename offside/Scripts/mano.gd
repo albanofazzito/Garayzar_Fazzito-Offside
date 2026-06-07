@@ -19,6 +19,12 @@ var efecto_manager: EfectoManager
 var en_tutorial: bool = false
 var sfx_woosh1: AudioStreamPlayer
 var sfx_woosh2: AudioStreamPlayer
+var _banderas: Dictionary= {
+	JugadorData.Pais.ARGENTINA: preload("res://Sprites/Paises/Argentina/Bandera/banderaArgentina.png"),
+	JugadorData.Pais.BRASIL: preload("res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png"),
+	JugadorData.Pais.FRANCIA: preload("res://Sprites/Paises/Francia/Bandera/banderaFrancia.png"),
+	JugadorData.Pais.PORTUGAL: preload("res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png"),
+}
 func _ready() -> void:
 	efecto_manager =EfectoManager.new()
 	add_child(efecto_manager)
@@ -56,7 +62,7 @@ func _escanear_carpeta(ruta: String, pais: JugadorData.Pais) -> void:
 	for archivo in dir.get_files():
 		if archivo.ends_with(".tres"):
 			var carta= load(ruta + archivo)
-			if carta.pais ==pais:
+			if carta.pais ==pais or (carta is TrucoData and carta.es_universal):
 				maso.append(ruta + archivo)
 	for subcarpeta in dir.get_directories():
 		_escanear_carpeta(ruta + subcarpeta + "/", pais)
@@ -79,6 +85,8 @@ func agregar() -> void:
 	add_child(carti)
 	if datos:
 		carti.datos= datos.duplicate()
+		if carti.datos is TrucoData and carti.datos.es_universal and carti.datos.bandera== null:
+			carti.datos.bandera= _banderas.get(paisActual)
 		carti.get_node("Base/RecipienteEstrellas/Coste").text =str(datos.estrellas)
 	cartas.append(carti)
 	orden()

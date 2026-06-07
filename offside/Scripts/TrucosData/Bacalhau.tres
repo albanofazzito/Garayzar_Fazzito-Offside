@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="TrucoData" format=3]
+
+[ext_resource type="Script" uid="uid://bl6k4oeqdr5vx" path="res://Scripts/datosTruco.gd" id="1_bpk7d"]
+[ext_resource type="Texture2D" uid="uid://d3mypi0j4noow" path="res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png" id="2_bandera"]
+
+[resource]
+script = ExtResource("1_bpk7d")
+pais = 7
+info = "BACALHAU"
+bandera = ExtResource("2_bandera")
+efecto = "El bacalao portugues cura 80 de vida al arco"
+estrellas = 2
+tipo_efecto = 11
+valor = 80
+metadata/_custom_type_script = "uid://bl6k4oeqdr5vx"

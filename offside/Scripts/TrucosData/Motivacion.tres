@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="TrucoData" format=3]
+
+[ext_resource type="Script" uid="uid://bl6k4oeqdr5vx" path="res://Scripts/datosTruco.gd" id="1_bpk7d"]
+
+[resource]
+script = ExtResource("1_bpk7d")
+info = "MOTIVACION"
+efecto = "Arenga del DT que aumenta el ataque de todos tus jugadores en 15"
+estrellas = 2
+tipo_efecto = 16
+valor = 15
+es_universal = true
+metadata/_custom_type_script = "uid://bl6k4oeqdr5vx"

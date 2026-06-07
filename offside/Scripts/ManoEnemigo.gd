@@ -23,11 +23,23 @@ static var es_turno_jugador: bool =true
 var angulo_mano: float =20.0
 var espaciado_mano: float= 80.0
 
+var _banderas: Dictionary= {
+	JugadorData.Pais.ARGENTINA: preload("res://Sprites/Paises/Argentina/Bandera/banderaArgentina.png"),
+	JugadorData.Pais.BRASIL: preload("res://Sprites/Paises/Brasil/Bandera/banderaBrasil.png"),
+	JugadorData.Pais.FRANCIA: preload("res://Sprites/Paises/Francia/Bandera/banderaFrancia.png"),
+	JugadorData.Pais.PORTUGAL: preload("res://Sprites/Paises/Portugal/Bandera/banderaPortugal.png"),
+}
+
+var sfx_whistle: AudioStreamPlayer
 
 func _ready() -> void:
 	mano= get_parent().get_node("ManoJugador/Mano") as Mano
 	_actualizar_boton()
 	_actualizar_label_estrellas()
+	sfx_whistle =AudioStreamPlayer.new()
+	sfx_whistle.stream= load("res://Audio/whistle.wav")
+	sfx_whistle.volume_db= -14.0
+	add_child(sfx_whistle)
 
 func iniciar() -> void:
 	cargar_maso(pais)
@@ -51,7 +63,7 @@ func _escanear_carpeta(ruta: String, p: JugadorData.Pais) -> void:
 	for archivo in dir.get_files():
 		if archivo.ends_with(".tres"):
 			var datos= load(ruta + archivo)
-			if datos.pais== p:
+			if datos.pais== p or (datos is TrucoData and datos.es_universal):
 				maso.append(ruta + archivo)
 	for subcarpeta in dir.get_directories():
 		_escanear_carpeta(ruta + subcarpeta + "/", p)
@@ -66,6 +78,8 @@ func _robar_carta() -> void:
 	var carta =escenaCarta.instantiate() as Carta
 	add_child(carta)
 	carta.datos= load(ruta).duplicate()
+	if carta.datos is TrucoData and carta.datos.es_universal and carta.datos.bandera== null:
+		carta.datos.bandera= _banderas.get(pais)
 	carta.en_mano =true
 	carta.scale= Vector2(0.45, 0.45)
 	carta.rotation= deg_to_rad(180)
@@ -290,6 +304,33 @@ func _mejor_columna_truco(datos: TrucoData) -> int:
 				if slot.carta_actual != null:
 					return slot.columna
 			return -1
+		TrucoData.TipoEfecto.DANIO_ARCO_DIRECTO:
+			return 0
+		TrucoData.TipoEfecto.BUFF_VELOCIDAD_COLUMNA:
+			for slot in get_tree().get_nodes_in_group("slots_enemigo"):
+				if slot.carta_actual != null:
+					return slot.columna
+			return -1
+		TrucoData.TipoEfecto.REDUCIR_VIDA_COLUMNA:
+			var mejor_col= -1
+			var mejor_vida= 0
+			for slot in get_tree().get_nodes_in_group("slots"):
+				if slot.carta_actual != null:
+					var v= slot.carta_actual.datos.stat_vida
+					if v > mejor_vida:
+						mejor_vida= v
+						mejor_col= slot.columna
+			return mejor_col
+		TrucoData.TipoEfecto.BUFF_ATAQUE_ALL:
+			for slot in get_tree().get_nodes_in_group("slots_enemigo"):
+				if slot.carta_actual != null:
+					return 0
+			return -1
+		TrucoData.TipoEfecto.DEBUFF_ATAQUE_ALL:
+			for slot in get_tree().get_nodes_in_group("slots"):
+				if slot.carta_actual != null:
+					return 0
+			return -1
 	return -1
 
 func _truco_util_en_columna(datos: TrucoData, col: int) -> bool:
@@ -311,6 +352,16 @@ func _truco_util_en_columna(datos: TrucoData, col: int) -> bool:
 				if slot.carta_actual != null and slot.carta_actual.datos.estrellas < datos.valor:
 					return true
 			return false
+		TrucoData.TipoEfecto.DANIO_ARCO_DIRECTO:
+			return true
+		TrucoData.TipoEfecto.BUFF_VELOCIDAD_COLUMNA:
+			var slot2= _get_slot_por_columna(col, "slots_enemigo")
+			return slot2 != null and slot2.carta_actual != null
+		TrucoData.TipoEfecto.REDUCIR_VIDA_COLUMNA:
+			var slot3= _get_slot_por_columna(col, "slots")
+			return slot3 != null and slot3.carta_actual != null
+		TrucoData.TipoEfecto.BUFF_ATAQUE_ALL, TrucoData.TipoEfecto.DEBUFF_ATAQUE_ALL:
+			return true
 	return false
 
 func _get_slot_por_columna(col: int, grupo: String) -> Slot:
@@ -408,6 +459,18 @@ func _aplicar_truco(datos: TrucoData, columna: int) -> void:
 				vida.curar(datos.valor)
 		TrucoData.TipoEfecto.DANIO_DIRECTO_PASANTE:
 			_danio_pasante(columna)
+		TrucoData.TipoEfecto.DANIO_ARCO_DIRECTO:
+			var vida_j= get_tree().get_first_node_in_group("vida_jugador")
+			if vida_j:
+				vida_j.recibir_danio(datos.valor)
+		TrucoData.TipoEfecto.BUFF_VELOCIDAD_COLUMNA:
+			_buff_slot(columna, "slots_enemigo", "stat_velocidad", datos.valor)
+		TrucoData.TipoEfecto.REDUCIR_VIDA_COLUMNA:
+			_reducir_vida_slot(columna)
+		TrucoData.TipoEfecto.BUFF_ATAQUE_ALL:
+			_buff_ataque_all_enemigo(datos.valor)
+		TrucoData.TipoEfecto.DEBUFF_ATAQUE_ALL:
+			_debuff_ataque_all_jugador(datos.valor)
 
 func _expulsar_del_slot(columna: int, grupo: String) -> void:
 	var slot= _get_slot_por_columna(columna, grupo)
@@ -509,6 +572,36 @@ func _danio_pasante(columna: int) -> void:
 	if vida:
 		vida.recibir_danio(danio)
 
+func _reducir_vida_slot(columna: int) -> void:
+	var slot= _get_slot_por_columna(columna, "slots")
+	if slot== null or slot.carta_actual== null:
+		for s in get_tree().get_nodes_in_group("slots"):
+			if s.carta_actual !=null:
+				slot =s
+				break
+	if slot== null or slot.carta_actual== null:
+		return
+	slot.carta_actual.recibir_danio(30)
+	if !slot.carta_actual.esta_viva():
+		var carta= slot.carta_actual
+		slot.carta_actual= null
+		slot.mostrar_visual()
+		carta.queue_free()
+	else:
+		slot.carta_actual.actualizar_carta()
+
+func _buff_ataque_all_enemigo(valor: int) -> void:
+	for slot in get_tree().get_nodes_in_group("slots_enemigo"):
+		if slot.carta_actual !=null:
+			slot.carta_actual.datos.stat_ataque +=valor
+			slot.carta_actual.actualizar_carta()
+
+func _debuff_ataque_all_jugador(valor: int) -> void:
+	for slot in get_tree().get_nodes_in_group("slots"):
+		if slot.carta_actual !=null:
+			slot.carta_actual.datos.stat_ataque =max(0, slot.carta_actual.datos.stat_ataque - valor)
+			slot.carta_actual.actualizar_carta()
+
 func _puede_ir(datos: JugadorData, slot: Slot) -> bool:
 	if datos.posicion ==JugadorData.Posicion.TODO:
 		return true
@@ -535,6 +628,10 @@ func sumar_estrella() -> void:
 func _on_pasar_turno_pressed() -> void:
 	if estado!= Estado.TURNO_JUGADOR:
 		return
+	if mano.en_tutorial and get_parent().has_node("Tutorial"):
+		var tut= get_parent().get_node("Tutorial")
+		if tut.activo and tut.paso_actual < tut.Paso.PASAR_TURNO:
+			return
 	_animar_boton()
 	estado= Estado.ESPERANDO_BATALLA
 	es_turno_jugador =false
@@ -544,6 +641,7 @@ func _on_pasar_turno_pressed() -> void:
 	await get_tree().create_timer(1.0).timeout
 	estado =Estado.BATALLANDO
 	_actualizar_boton()
+	_animar_boton()
 	batalla_manager.iniciar_batalla()
 
 
@@ -551,12 +649,15 @@ func _on_batalla_manager_batalla_terminada() -> void:
 	estado= Estado.TURNO_JUGADOR
 	es_turno_jugador =true
 	_actualizar_boton()
+	_animar_boton()
 	boton_turno.disabled= false
 	mano.sumar_estrella()
 	sumar_estrella()
 	if mano.cartas.size() <mano.cartas_max:
 		mano.agregar()
 	_robar_carta()
+	sfx_whistle.play()
+
 
 func _actualizar_boton() -> void:
 	if !boton_turno:

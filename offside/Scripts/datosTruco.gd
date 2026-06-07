@@ -15,7 +15,13 @@ enum TipoEfecto {
 	BUFF_ATAQUE_JUGADOR,
 	CURAR_VIDA,
 	DANIO_DIRECTO_PASANTE,
+	DANIO_ARCO_DIRECTO,
+	BUFF_VELOCIDAD_COLUMNA,
+	REDUCIR_VIDA_COLUMNA,
+	BUFF_ATAQUE_ALL,
+	DEBUFF_ATAQUE_ALL,
 }
 
 @export var tipo_efecto: TipoEfecto =TipoEfecto.EXPULSAR_CARTA_ENEMIGA
 @export var valor: int =0
+@export var es_universal: bool= false
