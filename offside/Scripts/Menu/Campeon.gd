@@ -18,4 +18,5 @@ func _ready() -> void:
 		$TextureRect.texture= load(_fondos[pais])
 
 func _on_button_pressed() -> void:
+	Global.play_sfx_boton()
 	Transicion.cambiar_escena(Menu)

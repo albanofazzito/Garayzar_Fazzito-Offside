@@ -196,6 +196,7 @@ func _ir_derecha() -> void:
 	_actualizar_galeria()
 
 func _elegir_dt() -> void:
+	Global.play_sfx_boton()
 	Global.pais_jugador= dts[indice_actual]["enum_pais"]
 	Global.escenario_actual= Global.Escenario.TUTORIAL
 	Transicion.cambiar_escena("res://Escenas/Nivel.tscn")
