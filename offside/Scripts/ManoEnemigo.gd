@@ -33,6 +33,7 @@ var _banderas: Dictionary= {
 var sfx_whistle: AudioStreamPlayer
 
 func _ready() -> void:
+	add_to_group("mano_enemigo")
 	mano= get_parent().get_node("ManoJugador/Mano") as Mano
 	_actualizar_boton()
 	_actualizar_label_estrellas()
@@ -63,6 +64,8 @@ func _escanear_carpeta(ruta: String, p: JugadorData.Pais) -> void:
 	for archivo in dir.get_files():
 		if archivo.ends_with(".tres"):
 			var datos= load(ruta + archivo)
+			if datos == null:
+				continue
 			if datos.pais== p or (datos is TrucoData and datos.es_universal):
 				maso.append(ruta + archivo)
 	for subcarpeta in dir.get_directories():
@@ -193,7 +196,7 @@ func _turno_argentina() -> void:
 	var messi: Carta= null
 	for carta in cartas_en_mano:
 		if carta.datos is JugadorData and not carta.datos is TrucoData:
-			if "Messi" in carta.datos.info or "messi" in carta.datos.info:
+			if "MESSI" in carta.datos.info.to_upper():
 				messi= carta
 				break
 	if messi != null and messi.datos.estrellas <= estrellas:
@@ -693,6 +696,10 @@ func _aplicar_mejor_representante() -> void:
 			if carta.datos.estrellas > 1:
 				carta.datos.estrellas -=1
 				carta.get_node("Base/RecipienteEstrellas/Coste").text =str(carta.datos.estrellas)
+	for carta in cartas_en_mano:
+		if carta.datos.efecto_tipo ==JugadorData.EfectoJugador.MEJOR_REPRESENTANTE:
+			if carta.datos.estrellas > 1:
+				carta.datos.estrellas -=1
 
 func _animar_boton() -> void:
 	if !boton_turno:

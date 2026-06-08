@@ -6,9 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://c4crrihs0d2g6" path="res://Sprites/Menus/mbappe.png" id="4_2ahv8"]
 [ext_resource type="Texture2D" uid="uid://bgh8cfs0r4ewe" path="res://Sprites/Menus/ronaldo.png" id="5_8shpa"]
 [ext_resource type="Texture2D" uid="uid://ba1eayfb6piay" path="res://Sprites/Menus/messi.png" id="6_m10g6"]
+[ext_resource type="Texture2D" uid="uid://crvc4g6bop6pg" path="res://Sprites/Fases/pixil-frame-0(3).png" id="7_2ahv8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j7eae"]
-bg_color = Color(0.7294118, 0.5764706, 0.16470589, 1)
+bg_color = Color(0, 0, 0, 1)
 border_width_left = 7
 border_width_top = 7
 border_width_right = 7
@@ -27,6 +28,18 @@ border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
 border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ahv8"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 9
+border_width_top = 9
+border_width_right = 9
+border_width_bottom = 9
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
 
 [node name="Menu" type="Control" unique_id=1506411835]
 layout_mode = 3
@@ -142,6 +155,28 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_j7eae")
 text = "SALIR"
+
+[node name="Panel" type="Panel" parent="." unique_id=97020389]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -376.0
+offset_top = -84.0
+offset_right = 368.5
+offset_bottom = 107.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2ahv8")
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel" unique_id=437807511]
+texture_filter = 1
+position = Vector2(370, 97)
+scale = Vector2(6, 8)
+skew = 0.3455751
+texture = ExtResource("7_2ahv8")
 
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="Button3" to="." method="_on_button_pressed"]

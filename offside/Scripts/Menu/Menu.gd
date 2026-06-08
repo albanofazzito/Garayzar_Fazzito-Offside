@@ -2,6 +2,12 @@ extends Control
 
 const SiguienteNivel = "res://Escenas/Nivel.tscn"
 
+func _ready() -> void:
+	get_tree().paused = false
+	ManoEnemigo.es_turno_jugador = true
+	Carta.carta_siendo_arrastrada = null
+	Carta.y_oculto = 280.0
+	Transicion.transicionando = false
 
 func _on_button_pressed() -> void:
 	get_tree().quit()

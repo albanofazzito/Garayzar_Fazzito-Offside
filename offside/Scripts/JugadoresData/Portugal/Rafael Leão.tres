@@ -8,7 +8,9 @@
 script = ExtResource("3_q11xv")
 pais = 7
 posicion = 3
-info = "Francisco Trincão"
+efecto_tipo = 21
+efecto_valor = 20
+info = "Rafael Leão"
 foto = ExtResource("2_argyj")
 bandera = ExtResource("1_argyj")
 efecto = "Nunca para de sonreir, al final del turno aumenta su vida en 20 puntos"

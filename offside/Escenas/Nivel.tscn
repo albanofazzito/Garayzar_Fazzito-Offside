@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://de51q5ibwh2mv" path="res://Scripts/Slots.gd" id="1_ctkg4"]
 [ext_resource type="Script" uid="uid://b00r5mawlovtv" path="res://Scripts/BatallaManager.gd" id="1_gql56"]
 [ext_resource type="PackedScene" uid="uid://ctcd0nbvhtn0n" path="res://Escenas/ManoDeCartas.tscn" id="2_e1c7d"]
+[ext_resource type="Texture2D" uid="uid://b72opbjnwvldr" path="res://Sprites/Cancha/Cancha.png" id="2_wev4w"]
 [ext_resource type="Texture2D" uid="uid://6ypxqd7qx4or" path="res://Sprites/Iconos/velocidad-icon.png" id="4_o8bu5"]
 [ext_resource type="Script" uid="uid://nsmw8bjlc6yf" path="res://Scripts/ManoEnemigo.gd" id="4_of526"]
 [ext_resource type="Texture2D" uid="uid://rpqrohrpk3an" path="res://Sprites/Iconos/vida-icon.png" id="5_7ln58"]
@@ -46,8 +47,15 @@ corner_radius_bottom_left = 12
 [node name="Node2D" type="Node2D" unique_id=1311472250]
 script = ExtResource("9_nivel")
 
+[node name="Cancha" type="Sprite2D" parent="." unique_id=875233780]
+modulate = Color(1, 1, 1, 0.24313726)
+z_index = -9
+position = Vector2(578, 324.5)
+scale = Vector2(0.7979166, 0.66944444)
+texture = ExtResource("2_wev4w")
+
 [node name="Pasto" type="ColorRect" parent="." unique_id=1978088414]
-z_index = -2
+z_index = -10
 offset_right = 1156.0
 offset_bottom = 648.0
 color = Color(0.24705882, 0.5254902, 0.16078432, 1)
@@ -395,11 +403,43 @@ offset_right = 60.0
 offset_bottom = 95.0
 text = "Menu"
 
-[node name="PantallaDerrota" type="Sprite2D" parent="." unique_id=62566926]
+[node name="PantallaDerrota" type="CanvasLayer" parent="." unique_id=62566926]
+process_mode = 3
+layer = 100
 visible = false
-position = Vector2(576.25, 323.75)
-scale = Vector2(2.0527728, 1.607232)
+
+[node name="Fondo" type="TextureRect" parent="PantallaDerrota"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch_mode = 6
 texture = ExtResource("10_sxaxo")
+
+[node name="BotonReintentar" type="Button" parent="PantallaDerrota"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = 200.0
+offset_right = -20.0
+offset_bottom = 240.0
+theme_override_font_sizes/font_size = 18
+text = "REINTENTAR"
+
+[node name="BotonMenuDerrota" type="Button" parent="PantallaDerrota"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = 200.0
+offset_right = 140.0
+offset_bottom = 240.0
+theme_override_font_sizes/font_size = 18
+text = "MENU"
 
 [node name="Tutorial" type="CanvasLayer" parent="." unique_id=1862104017]
 process_mode = 3
@@ -459,3 +499,5 @@ texture = ExtResource("16_p13ao")
 [connection signal="vida_agotada" from="Vida" to="." method="_on_derrota"]
 [connection signal="vida_agotada" from="VidaEnemigo" to="." method="_on_victoria"]
 [connection signal="pressed" from="PantallaFin/BotonMenu" to="." method="_on_boton_menu_pressed"]
+[connection signal="pressed" from="PantallaDerrota/BotonReintentar" to="." method="_on_boton_reintentar_pressed"]
+[connection signal="pressed" from="PantallaDerrota/BotonMenuDerrota" to="." method="_on_boton_derrota_pressed"]
