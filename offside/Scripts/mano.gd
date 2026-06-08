@@ -63,6 +63,8 @@ func _escanear_carpeta(ruta: String, pais: JugadorData.Pais) -> void:
 	for archivo in dir.get_files():
 		if archivo.ends_with(".tres"):
 			var carta= load(ruta + archivo)
+			if carta == null:
+				continue
 			if carta.pais ==pais or (carta is TrucoData and carta.es_universal):
 				maso.append(ruta + archivo)
 	for subcarpeta in dir.get_directories():

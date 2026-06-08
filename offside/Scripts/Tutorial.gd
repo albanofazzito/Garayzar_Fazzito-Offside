@@ -182,4 +182,5 @@ func _saltar_tutorial() -> void:
 	activo= false
 	visible= false
 	get_tree().paused= false
+	Global.escenario_actual= Global.Escenario.TUTORIAL
 	Transicion.cambiar_escena("res://Escenas/Cuartos.tscn")

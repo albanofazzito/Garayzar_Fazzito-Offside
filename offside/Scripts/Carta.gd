@@ -30,6 +30,13 @@ var COLORES_CALIDAD = {
 }
 var posiciones = ["ARQUERO", "DEFENSOR", "MEDIOCAMPISTA", "DELANTERO","TODO"]
 var paises = ["ARGENTINA", "BRASIL", "FRANCIA", "INGLATERRA", "ALEMANIA", "HOLANDA", "ESPANA", "PORTUGAL"]
+var _iconos_posicion= {
+	JugadorData.Posicion.ARQUERO: preload("res://Sprites/Iconos/vida-icon.png"),
+	JugadorData.Posicion.DEFENSOR: preload("res://Sprites/Iconos/velocidad-icon.png"),
+	JugadorData.Posicion.MEDIOCAMPISTA: preload("res://Sprites/Iconos/estrella-icon.png"),
+	JugadorData.Posicion.DELANTERO: preload("res://Sprites/Iconos/ataque-icon.png"),
+	JugadorData.Posicion.TODO: preload("res://Sprites/Iconos/estrella-icon.png"),
+}
 
 @export var datos: Resource:
 	set(value):
@@ -44,7 +51,6 @@ func actualizar_carta():
 	$Base.visible=!es_truco
 	$Base/Jugador.texture =datos.foto
 	$Base/InfoJugador.text= datos.info
-	$Base/InfoJugadorBorde.text= datos.info
 	$Base/Stats/CajaAtaque/NumeroAtaque.text= str(datos.stat_ataque)
 	$Base/Stats/CajaVelocidad/NumeroVelocidad.text =str(datos.stat_velocidad)
 	if combate_inicializado:
@@ -55,8 +61,20 @@ func actualizar_carta():
 	$BaseAtras/Bandera.texture= datos.bandera
 	$BaseAtras/CajaEfecto/Efecto.text ="[center]" + datos.efecto + "[/center]"
 	$Base/PaisJugador.text= texto_pais
-	$Base/PaisJugadorBorde.text= texto_pais
 	$Base/Posicion.text= _texto_posicion(datos.posicion)
+	if datos.posicion in _iconos_posicion:
+		$Base/PosicionIconIzq.texture= _iconos_posicion[datos.posicion]
+		$Base/PosicionIconDer.texture= _iconos_posicion[datos.posicion]
+		if datos.posicion == JugadorData.Posicion.MEDIOCAMPISTA:
+			$Base/PosicionIconIzq.scale= Vector2(0.025, 0.025)
+			$Base/PosicionIconDer.scale= Vector2(0.025, 0.025)
+			$Base/PosicionIconIzq.position= Vector2(40, 231)
+			$Base/PosicionIconDer.position= Vector2(240, 231)
+		else:
+			$Base/PosicionIconIzq.scale= Vector2(0.035, 0.035)
+			$Base/PosicionIconDer.scale= Vector2(0.035, 0.035)
+			$Base/PosicionIconIzq.position= Vector2(73, 231)
+			$Base/PosicionIconDer.position= Vector2(207, 231)
 	$BaseTruco/Efecto.text= datos.efecto
 	$BaseTruco/ImagenTruco.texture =datos.foto
 	$BaseTruco/InfoTruco.text=datos.info
@@ -105,13 +123,30 @@ func _input(event: InputEvent) -> void:
 
 		if datos is TrucoData and ManoEnemigo.es_turno_jugador and datos.estrellas <= get_parent().estrellas:
 			var columna :=-1
+			# Primero: detectar si se soltó sobre una carta colocada en campo
 			for slot in get_tree().get_nodes_in_group("slots"):
-				if slot.get_global_rect().has_point(mouse_pos):
-					columna =slot.columna
-					break
+				if slot.carta_actual != null and slot.carta_actual != self:
+					var carta_campo = slot.carta_actual
+					if carta_campo.get_node("Base").get_global_rect().has_point(mouse_pos):
+						columna = slot.columna
+						break
+			# Si no se encontró carta, buscar en slots enemigos
+			if columna == -1:
+				for slot in get_tree().get_nodes_in_group("slots_enemigo"):
+					if slot.carta_actual != null:
+						var carta_campo = slot.carta_actual
+						if carta_campo.get_node("Base").get_global_rect().has_point(mouse_pos):
+							columna = slot.columna
+							break
+			# Fallback: detectar por zona expandida del slot
+			if columna == -1:
+				for slot in get_tree().get_nodes_in_group("slots"):
+					if slot.get_drop_rect().has_point(mouse_pos):
+						columna =slot.columna
+						break
 			if columna ==-1:
 				for slot in get_tree().get_nodes_in_group("slots_enemigo"):
-					if slot.get_global_rect().has_point(mouse_pos):
+					if slot.get_drop_rect().has_point(mouse_pos):
 						columna =slot.columna
 						break
 			var necesita= get_parent().efecto_manager.necesita_columna(datos)
@@ -122,7 +157,7 @@ func _input(event: InputEvent) -> void:
 
 		var slot_encontrado: Slot =null
 		for slot in get_tree().get_nodes_in_group("slots"):
-			if slot.get_global_rect().has_point(mouse_pos):
+			if slot.get_drop_rect().has_point(mouse_pos):
 				slot_encontrado =slot
 				break
 		if slot_encontrado and slot_encontrado.carta_actual ==null and _puede_ir_en_slot(slot_encontrado) and datos.estrellas <= get_parent().estrellas and ManoEnemigo.es_turno_jugador:
@@ -317,6 +352,16 @@ func aplicar_efecto_turno() -> void:
 		tw.parallel().tween_property(self, "scale", Vector2(0.67, 0.67), 0.1)
 		tw.tween_property(self, "scale", Vector2(0.6, 0.6), 0.2)
 		tw.parallel().tween_property(self, "modulate", Color.WHITE, 0.25)
+	if datos.efecto_tipo ==JugadorData.EfectoJugador.BUFF_VIDA_POR_TURNO:
+		datos.stat_vida +=datos.efecto_valor
+		if combate_inicializado:
+			vida_actual +=datos.efecto_valor
+		$Base/Stats/CajaDefensa/NumeroDefensa.text =str(datos.stat_vida if !combate_inicializado else vida_actual)
+		var tw= create_tween().set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+		tw.tween_property(self, "modulate", Color(0.3, 1.0, 0.5), 0.08)
+		tw.parallel().tween_property(self, "scale", Vector2(0.67, 0.67), 0.1)
+		tw.tween_property(self, "scale", Vector2(0.6, 0.6), 0.2)
+		tw.parallel().tween_property(self, "modulate", Color.WHITE, 0.25)
 	if datos.efecto_tipo ==JugadorData.EfectoJugador.SINERGIA_HERMANOS:
 		var grupo= _get_mi_grupo()
 		var hermano_presente= false
@@ -364,15 +409,21 @@ func aplicar_efecto_turno() -> void:
 					tw.parallel().tween_property(slot.carta_actual, "modulate", Color.WHITE, 0.2)
 	if datos.efecto_tipo ==JugadorData.EfectoJugador.TE_QUIERO_AMIGO:
 		if turnos_en_campo ==1:
-			var mano_jugador= get_tree().get_first_node_in_group("mano_jugador")
-			if mano_jugador and mano_jugador.cartas.size() < mano_jugador.cartas_max:
-				var datos_jota= load("res://Scripts/JugadoresData/Portugal/Diogo Jota.tres")
-				var carti= mano_jugador.escenaCarta.instantiate() as Carta
-				mano_jugador.add_child(carti)
-				carti.datos= datos_jota.duplicate()
-				mano_jugador.cartas.append(carti)
-				mano_jugador.orden()
-				mano_jugador._animar_entrada(carti)
+			var mi_grupo= _get_mi_grupo()
+			if mi_grupo == "slots":
+				var mano_jugador= get_tree().get_first_node_in_group("mano_jugador")
+				if mano_jugador and mano_jugador.cartas.size() < mano_jugador.cartas_max:
+					var datos_jota= load("res://Scripts/JugadoresData/Portugal/Diogo Jota.tres")
+					var carti= mano_jugador.escenaCarta.instantiate() as Carta
+					mano_jugador.add_child(carti)
+					carti.datos= datos_jota.duplicate()
+					mano_jugador.cartas.append(carti)
+					mano_jugador.orden()
+					mano_jugador._animar_entrada(carti)
+			elif mi_grupo == "slots_enemigo":
+				var mano_enemigo= get_tree().get_first_node_in_group("mano_enemigo") as ManoEnemigo
+				if mano_enemigo:
+					mano_enemigo._robar_carta()
 
 func aplicar_efecto_post_combate() -> void:
 	if datos.efecto_tipo ==JugadorData.EfectoJugador.MATAR_ALEATORIO:

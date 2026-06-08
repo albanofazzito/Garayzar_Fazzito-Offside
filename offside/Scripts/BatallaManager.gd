@@ -9,12 +9,19 @@ var silbato: Sprite2D
 var silbato_y: float
 
 var sfx_hit: AudioStreamPlayer
+var sfx_gol: AudioStreamPlayer
 var hits := []
+var tex_pelota: Texture2D
 
 func _ready() -> void:
 	sfx_hit =AudioStreamPlayer.new()
 	sfx_hit.volume_db= -20.0
 	add_child(sfx_hit)
+	sfx_gol =AudioStreamPlayer.new()
+	sfx_gol.stream= load("res://Audio/gol.mp3")
+	sfx_gol.volume_db= -10.0
+	add_child(sfx_gol)
+	tex_pelota= preload("res://Sprites/Iconos/sport-ball-football-free_png.png.png")
 	hits = [
 		load("res://Audio/hitSound1.mp3"),
 		load("res://Audio/hitSound2.mp3"),
@@ -28,6 +35,25 @@ func _ready() -> void:
 func _play_hit() -> void:
 	sfx_hit.stream= hits[randi() % hits.size()]
 	sfx_hit.play()
+
+func _play_gol(carta: Carta, hacia_arriba: bool) -> void:
+	sfx_gol.play()
+	var duracion = sfx_gol.stream.get_length()
+	get_tree().create_timer(duracion).timeout.connect(func(): sfx_gol.stop())
+	var pelota = Sprite2D.new()
+	pelota.texture = tex_pelota
+	pelota.scale = Vector2(0.06, 0.06)
+	pelota.position = carta.global_position
+	pelota.z_index = 50
+	get_tree().current_scene.add_child(pelota)
+	var destino_y = 50.0 if hacia_arriba else 600.0
+	var destino = Vector2(carta.global_position.x, destino_y)
+	var tw = pelota.create_tween()
+	tw.tween_property(pelota, "position", destino, 0.35).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	tw.parallel().tween_property(pelota, "rotation", TAU * 2.0, 0.35)
+	tw.parallel().tween_property(pelota, "scale", Vector2(0.03, 0.03), 0.35)
+	tw.tween_property(pelota, "modulate:a", 0.0, 0.15)
+	tw.finished.connect(func(): pelota.queue_free())
 
 func iniciar_batalla() -> void:
 	_inicializar_cartas()
@@ -160,7 +186,7 @@ func _resolver_columna(col: int) -> void:
 	elif carta_j and !carta_e:
 		if vida_enemigo and carta_j.puede_atacar():
 			await carta_j.animar_ataque_base()
-			_play_hit()
+			_play_gol(carta_j, true)
 			vida_enemigo.recibir_danio(carta_j.datos.stat_ataque)
 			_aplicar_goleador(carta_j)
 			await _aplicar_splash_col(col, "slots")
@@ -170,7 +196,7 @@ func _resolver_columna(col: int) -> void:
 	elif carta_e and !carta_j:
 		if vida_jugador and carta_e.puede_atacar():
 			await carta_e.animar_ataque_base()
-			_play_hit()
+			_play_gol(carta_e, false)
 			vida_jugador.recibir_danio(carta_e.datos.stat_ataque)
 			_aplicar_goleador(carta_e)
 			await _aplicar_splash_col(col, "slots_enemigo")
