@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xbq7i5hngm1h"
-path="res://.godot/imported/Semis.jpg-b45df77795328d11f96feee32c05126c.ctex"
+uid="uid://dstgp7lejw7gv"
+path="res://.godot/imported/Cuartos_portugal.jpg-e4e22f67bebd1f090f902495e6e8c7c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Fases/Semis.jpg"
-dest_files=["res://.godot/imported/Semis.jpg-b45df77795328d11f96feee32c05126c.ctex"]
+source_file="res://Sprites/Fases/Cuartos_portugal.jpg"
+dest_files=["res://.godot/imported/Cuartos_portugal.jpg-e4e22f67bebd1f090f902495e6e8c7c4.ctex"]
 
 [params]
 

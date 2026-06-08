@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kfxn52ldhhe6"
-path="res://.godot/imported/Campeon (1).png-4a2aea0f00bd507774fb3a3c72c331f4.ctex"
+uid="uid://cafmjrbbreoxm"
+path="res://.godot/imported/FinalArgentina.jpg-1b0c143a04079ce0b07bc4fa5eff3fa1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Fases/Campeon (1).png"
-dest_files=["res://.godot/imported/Campeon (1).png-4a2aea0f00bd507774fb3a3c72c331f4.ctex"]
+source_file="res://Sprites/Fases/FinalArgentina.jpg"
+dest_files=["res://.godot/imported/FinalArgentina.jpg-1b0c143a04079ce0b07bc4fa5eff3fa1.ctex"]
 
 [params]
 

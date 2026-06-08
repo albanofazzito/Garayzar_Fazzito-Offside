@@ -72,6 +72,7 @@ func iniciar(mano: Mano) -> void:
 	visible= true
 	paso_actual= Paso.BIENVENIDA
 	cartas_al_inicio =mano_ref.cartas.size()
+	_crear_boton_saltar()
 	_mostrar_paso()
 
 func _mostrar_paso() -> void:
@@ -162,3 +163,23 @@ func _finalizar() -> void:
 	visible =false
 	get_tree().paused= false
 	tutorial_finalizado.emit()
+
+func _crear_boton_saltar() -> void:
+	var btn= Button.new()
+	btn.text= "SALTAR"
+	btn.position= Vector2(1020, 10)
+	btn.custom_minimum_size= Vector2(100, 35)
+	var style= StyleBoxFlat.new()
+	style.bg_color= Color(0.2, 0.2, 0.2, 0.8)
+	style.set_corner_radius_all(5)
+	btn.add_theme_stylebox_override("normal", style)
+	btn.add_theme_color_override("font_color", Color(0.9, 0.9, 0.9))
+	btn.add_theme_font_size_override("font_size", 14)
+	btn.pressed.connect(_saltar_tutorial)
+	add_child(btn)
+
+func _saltar_tutorial() -> void:
+	activo= false
+	visible= false
+	get_tree().paused= false
+	Transicion.cambiar_escena("res://Escenas/Cuartos.tscn")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br3aekxc7mqvr"
-path="res://.godot/imported/seleccion.jpg-d31b6220d013e75f2ad1bfef8427f2a6.ctex"
+uid="uid://3euq2yetwr40"
+path="res://.godot/imported/SemisArgentina.jpg-0011d35bea831e91e6bb27b723fb5ce4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Fases/seleccion.jpg"
-dest_files=["res://.godot/imported/seleccion.jpg-d31b6220d013e75f2ad1bfef8427f2a6.ctex"]
+source_file="res://Sprites/Fases/SemisArgentina.jpg"
+dest_files=["res://.godot/imported/SemisArgentina.jpg-0011d35bea831e91e6bb27b723fb5ce4.ctex"]
 
 [params]
 

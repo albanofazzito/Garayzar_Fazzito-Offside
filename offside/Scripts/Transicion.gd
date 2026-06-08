@@ -18,18 +18,15 @@ func cambiar_escena(ruta: String) -> void:
 	if transicionando:
 		return
 	transicionando= true
+	get_tree().paused= false
 	color_rect.mouse_filter= Control.MOUSE_FILTER_STOP
 	var tw= create_tween()
 	tw.tween_property(color_rect, "color:a", 1.0, 0.3)
-	tw.tween_callback(func():
-		get_tree().change_scene_to_file(ruta)
-		_fade_in_despues.call_deferred()
-	)
-
-func _fade_in_despues() -> void:
+	await tw.finished
+	get_tree().change_scene_to_file(ruta)
+	await get_tree().process_frame
 	var tw2= create_tween()
 	tw2.tween_property(color_rect, "color:a", 0.0, 0.3)
-	tw2.tween_callback(func():
-		color_rect.mouse_filter= Control.MOUSE_FILTER_IGNORE
-		transicionando= false
-	)
+	await tw2.finished
+	color_rect.mouse_filter= Control.MOUSE_FILTER_IGNORE
+	transicionando= false
