@@ -15,6 +15,7 @@ func _ready() -> void:
 	ManoEnemigo.es_turno_jugador = true
 	Carta.carta_siendo_arrastrada = null
 	Carta.y_oculto = 280.0
+	Global.iniciar_musica_menu()
 	$TextureRect.mouse_filter= Control.MOUSE_FILTER_IGNORE
 	var pais= Global.pais_jugador
 	if pais in _fondos:

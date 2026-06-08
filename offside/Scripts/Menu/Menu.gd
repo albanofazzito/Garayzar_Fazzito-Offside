@@ -8,6 +8,7 @@ func _ready() -> void:
 	Carta.carta_siendo_arrastrada = null
 	Carta.y_oculto = 280.0
 	Transicion.transicionando = false
+	Global.iniciar_musica_menu()
 
 func _on_button_pressed() -> void:
 	get_tree().quit()

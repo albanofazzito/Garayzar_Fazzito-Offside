@@ -10,6 +10,8 @@ var _fondos= {
 }
 
 func _ready() -> void:
+	get_tree().paused = false
+	Global.iniciar_musica_menu()
 	$TextureRect.mouse_filter= Control.MOUSE_FILTER_IGNORE
 	var pais= Global.pais_jugador
 	if pais in _fondos:

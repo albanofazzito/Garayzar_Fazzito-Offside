@@ -14,6 +14,7 @@ var _pantallas_derrota= {
 }
 
 func _ready() -> void:
+	Global.parar_musica_menu()
 	musica_fondo =AudioStreamPlayer.new()
 	var escenario= Global.escenario_actual
 	match escenario:
@@ -57,6 +58,8 @@ func _on_tutorial_fin() -> void:
 func _on_derrota() -> void:
 	mensaje.text ="DERROTA"
 	mensaje.modulate =Color(1.0, 0.3, 0.3)
+	musica_fondo.stop()
+	Global.iniciar_musica_menu()
 	var pj= Global.pais_jugador
 	if pj in _pantallas_derrota:
 		$PantallaDerrota/Fondo.texture= load(_pantallas_derrota[pj])

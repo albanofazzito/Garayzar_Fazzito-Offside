@@ -57,6 +57,7 @@ var tween_activo: Tween
 @onready var boton_elegir: Button= $BotonElegir
 
 func _ready() -> void:
+	Global.iniciar_musica_menu()
 	flecha_izq.pressed.connect(_ir_izquierda)
 	flecha_der.pressed.connect(_ir_derecha)
 	boton_elegir.pressed.connect(_elegir_dt)
