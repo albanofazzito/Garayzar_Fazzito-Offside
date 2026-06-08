@@ -86,6 +86,7 @@ func _mostrar_pantalla() -> void:
 	get_tree().paused =true
 
 func _on_boton_reintentar_pressed() -> void:
+	Global.play_sfx_boton()
 	var tw = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tw.tween_property($PantallaDerrota/BotonReintentar, "modulate:a", 0.0, 0.2)
 	tw.parallel().tween_property($PantallaDerrota/BotonMenuDerrota, "modulate:a", 0.0, 0.2)
@@ -96,6 +97,7 @@ func _on_boton_reintentar_pressed() -> void:
 	)
 
 func _on_boton_derrota_pressed() -> void:
+	Global.play_sfx_boton()
 	var tw = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tw.tween_property($PantallaDerrota/BotonReintentar, "modulate:a", 0.0, 0.2)
 	tw.parallel().tween_property($PantallaDerrota/BotonMenuDerrota, "modulate:a", 0.0, 0.2)
@@ -106,6 +108,7 @@ func _on_boton_derrota_pressed() -> void:
 	)
 
 func _on_boton_menu_pressed() -> void:
+	Global.play_sfx_boton()
 	get_tree().paused =false
 	var escenario= Global.escenario_actual
 	match escenario:

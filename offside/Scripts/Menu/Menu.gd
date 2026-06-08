@@ -11,9 +11,11 @@ func _ready() -> void:
 	Global.iniciar_musica_menu()
 
 func _on_button_pressed() -> void:
+	Global.play_sfx_boton()
 	get_tree().quit()
 
 func _on_button_2_pressed() -> void:
+	Global.play_sfx_boton()
 	Transicion.cambiar_escena("res://Escenas/SeleccionDT.tscn")
 
 func _input(event: InputEvent) -> void:
