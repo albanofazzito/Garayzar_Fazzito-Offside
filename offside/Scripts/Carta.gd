@@ -47,7 +47,10 @@ func actualizar_carta():
 	$Base/InfoJugadorBorde.text= datos.info
 	$Base/Stats/CajaAtaque/NumeroAtaque.text= str(datos.stat_ataque)
 	$Base/Stats/CajaVelocidad/NumeroVelocidad.text =str(datos.stat_velocidad)
-	$Base/Stats/CajaDefensa/NumeroDefensa.text= str(datos.stat_vida)
+	if combate_inicializado:
+		$Base/Stats/CajaDefensa/NumeroDefensa.text= str(max(vida_actual, 0))
+	else:
+		$Base/Stats/CajaDefensa/NumeroDefensa.text= str(datos.stat_vida)
 	$Base/RecipienteEstrellas/Coste.text =str(datos.estrellas)
 	$BaseAtras/Bandera.texture= datos.bandera
 	$BaseAtras/CajaEfecto/Efecto.text ="[center]" + datos.efecto + "[/center]"

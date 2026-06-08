@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hvk4d82h6p6v"
-path="res://.godot/imported/Cuartos.png-572a7649bed62dbab9e69128df606195.ctex"
+uid="uid://brvjuxqxsccmf"
+path="res://.godot/imported/Final_Portugal.jpg-4590672ff25e41ebd7f8917076e7608e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Fases/Cuartos.png"
-dest_files=["res://.godot/imported/Cuartos.png-572a7649bed62dbab9e69128df606195.ctex"]
+source_file="res://Sprites/Fases/Final_Portugal.jpg"
+dest_files=["res://.godot/imported/Final_Portugal.jpg-4590672ff25e41ebd7f8917076e7608e.ctex"]
 
 [params]
 

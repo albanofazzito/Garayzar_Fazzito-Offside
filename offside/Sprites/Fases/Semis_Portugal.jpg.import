@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyieeirq0giof"
-path="res://.godot/imported/Final.jpg-7408fadbf429a1091765931b2ca9e8c3.ctex"
+uid="uid://kfelgcm4kbjw"
+path="res://.godot/imported/Semis_Portugal.jpg-c2d8104d6038756bcefb7b1bef4e640d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Fases/Final.jpg"
-dest_files=["res://.godot/imported/Final.jpg-7408fadbf429a1091765931b2ca9e8c3.ctex"]
+source_file="res://Sprites/Fases/Semis_Portugal.jpg"
+dest_files=["res://.godot/imported/Semis_Portugal.jpg-c2d8104d6038756bcefb7b1bef4e640d.ctex"]
 
 [params]
 

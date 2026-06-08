@@ -77,6 +77,14 @@ func robar_carta() -> String:
 	if maso_actual.is_empty():
 		maso_actual= maso.duplicate()
 		maso_actual.shuffle()
+	if Global.escenario_actual == Global.Escenario.TUTORIAL and cartas.size() < 1:
+		for estrellas_buscar in [1, 2]:
+			for i in maso_actual.size():
+				var recurso= load(maso_actual[i])
+				if recurso is JugadorData and not recurso is TrucoData and recurso.estrellas == estrellas_buscar:
+					var ruta= maso_actual[i]
+					maso_actual.remove_at(i)
+					return ruta
 	return maso_actual.pop_back()
 
 func agregar() -> void:

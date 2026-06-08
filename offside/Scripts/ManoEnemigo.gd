@@ -203,6 +203,15 @@ func _turno_argentina() -> void:
 				await _colocar_carta(messi, slot)
 				await get_tree().create_timer(0.7).timeout
 				break
+	if estrellas >= 3:
+		var trucos= _cartas_truco()
+		for truco in trucos:
+			if truco.datos.estrellas <= estrellas:
+				var columna= _mejor_columna_truco(truco.datos)
+				if columna >= 0:
+					await _jugar_truco_enemigo(truco, columna)
+					await get_tree().create_timer(0.9).timeout
+					break
 	var cartas_baratas= _cartas_jugador_por_stat("estrellas", true)
 	var slots_vacios= _slots_vacios_por_columna([0, 1, 2, 3, 4])
 	for slot in slots_vacios:
